@@ -9,13 +9,11 @@
 :root{
   --bg:#061b14;
   --panel:#0b2b21;
-  --panel2:#0e3428;
   --line:#174c3a;
   --text:#e6f4ed;
   --muted:#8caea1;
   --accent:#2cc77c;
   --accent2:#d8a934;
-  --danger:#d95757;
   --shadow:0 8px 24px rgba(0,0,0,.22);
 }
 
@@ -37,9 +35,7 @@ body{
   border-bottom:1px solid var(--line);
   padding:12px 18px;
   display:flex;
-  gap:12px;
   align-items:center;
-  justify-content:space-between;
 }
 
 .title-wrap h1{
@@ -72,9 +68,7 @@ body{
   font-size:11px;
 }
 
-.badge strong{
-  color:var(--text);
-}
+.badge strong{color:var(--text)}
 
 #bracket{
   width:max-content;
@@ -108,9 +102,7 @@ body{
   position:relative;
 }
 
-.match + .match{
-  margin-top:16px;
-}
+.match + .match{margin-top:16px}
 
 .match .time{
   font-size:10px;
@@ -129,9 +121,7 @@ body{
   font-size:11px;
 }
 
-.player:last-of-type{
-  border-bottom:0;
-}
+.player:last-of-type{border-bottom:0}
 
 .player .name{
   flex:1;
@@ -160,13 +150,8 @@ body{
   font-weight:bold;
 }
 
-.player.winner .score{
-  background:#175b40;
-}
-
-.player.loser{
-  opacity:.58;
-}
+.player.winner .score{background:#175b40}
+.player.loser{opacity:.58}
 
 .match-foot{
   display:flex;
@@ -186,41 +171,16 @@ body{
   font-style:italic;
 }
 
-.stage.prelim .match{
-  min-height:105px;
-}
+.stage.prelim .match{min-height:105px}
+.stage.r16 .match{margin-top:30px}
+.stage.qf .match{margin-top:104px}
+.stage.sf .match{margin-top:255px}
+.stage.final .match{margin-top:510px}
 
-.stage.r16 .match{
-  margin-top:30px;
-}
-
-.stage.qf .match{
-  margin-top:104px;
-}
-
-.stage.sf .match{
-  margin-top:255px;
-}
-
-.stage.final .match{
-  margin-top:510px;
-}
-
-.stage.r16 .match + .match{
-  margin-top:30px;
-}
-
-.stage.qf .match + .match{
-  margin-top:155px;
-}
-
-.stage.sf .match + .match{
-  margin-top:470px;
-}
-
-.stage.final .match + .match{
-  margin-top:0;
-}
+.stage.r16 .match + .match{margin-top:30px}
+.stage.qf .match + .match{margin-top:155px}
+.stage.sf .match + .match{margin-top:470px}
+.stage.final .match + .match{margin-top:0}
 
 .note{
   max-width:1500px;
@@ -231,16 +191,12 @@ body{
 }
 
 @media(max-width:1000px){
-
-  .topbar{
-    position:static;
-  }
+  .topbar{position:static}
 
   #bracket{
     grid-template-columns:repeat(5,250px);
     overflow-x:auto;
   }
-
 }
 </style>
 </head>
@@ -248,18 +204,13 @@ body{
 <body>
 
 <header class="topbar">
-
   <div class="title-wrap">
-
     <h1>FIFA 26 Tournament</h1>
-
     <p>
       Single match • 6 minutes each half •
       Draws go to penalties • No Best of 3
     </p>
-
   </div>
-
 </header>
 
 <div class="info">
@@ -289,21 +240,15 @@ body{
 <main id="bracket"></main>
 
 <div class="note">
-
   Default layout follows the tournament bracket.
   Nima is paired with Arush.
+  The winner of Nima vs Arush plays the winner of Anirban Guha vs Robert Gupta in the Round of 16.
   Kush Soni is paired with Kabir.
   The winner of Kush Soni vs Kabir plays Varun Rathi in the Round of 16.
-  Results are displayed here only; tournament controls are available
-  on the admin page.
-
+  Results are displayed here only; tournament controls are available on the admin page.
 </div>
 
 <script>
-
-/* =========================================================
-   PLAYERS
-========================================================= */
 
 const PLAYERS = [
 
@@ -338,51 +283,17 @@ const PLAYERS = [
 const byName = Object.fromEntries(
   PLAYERS.map(p => [
     p[0],
-    {
-      name:p[0],
-      roll:p[1]
-    }
+    {name:p[0],roll:p[1]}
   ])
 );
 
-
-/* =========================================================
-   STAGES
-========================================================= */
-
 const stages = [
-
-  {
-    id:"prelim",
-    label:"PRELIMINARY"
-  },
-
-  {
-    id:"r16",
-    label:"ROUND OF 16"
-  },
-
-  {
-    id:"qf",
-    label:"QUARTERFINALS"
-  },
-
-  {
-    id:"sf",
-    label:"SEMIFINALS"
-  },
-
-  {
-    id:"final",
-    label:"FINAL"
-  }
-
+  {id:"prelim",label:"PRELIMINARY"},
+  {id:"r16",label:"ROUND OF 16"},
+  {id:"qf",label:"QUARTERFINALS"},
+  {id:"sf",label:"SEMIFINALS"},
+  {id:"final",label:"FINAL"}
 ];
-
-
-/* =========================================================
-   MATCH CREATOR
-========================================================= */
 
 function makeMatch(
   id,
@@ -393,39 +304,47 @@ function makeMatch(
   nextSlot=null,
   bye=false
 ){
-
   return {
-
     id,
     stage,
-
     p1:a,
     p2:b,
-
     score1:null,
     score2:null,
-
     penalties:null,
-
     winner:null,
-
     nextMatch,
     nextSlot,
-
     bye,
-
     time:null,
-
     played:false
-
   };
-
 }
 
+/*
+=========================================================
+DEFAULT BRACKET
 
-/* =========================================================
-   DEFAULT MATCHES
-========================================================= */
+9 PRELIMINARY MATCHES
+
+p1 -> r1 slot 1
+p8 -> r1 slot 0
+
+Therefore:
+
+Winner Nima/Arush
+        vs
+Winner Anirban/Robert
+
+p9 -> r8 slot 1
+
+Therefore:
+
+Varun Rathi
+        vs
+Winner Kush/Kabir
+=========================================================
+*/
 
 const DEFAULT_MATCHES = [
 
@@ -492,15 +411,22 @@ const DEFAULT_MATCHES = [
     1
   ),
 
+  /*
+    IMPORTANT:
+    Nima/Arush feeds R1 SLOT 0.
+  */
+
   makeMatch(
     "p8",
     "prelim",
     "Nima",
-    "Arush"
+    "Arush",
+    "r1",
+    0
   ),
 
-  /* KUSH vs KABIR
-     Winner goes to Varun Rathi's R16 match.
+  /*
+    Kush/Kabir feeds R8 SLOT 1.
   */
 
   makeMatch(
@@ -512,10 +438,9 @@ const DEFAULT_MATCHES = [
     1
   ),
 
-
-  /* =====================================================
+  /* =========================
      ROUND OF 16
-  ===================================================== */
+  ========================= */
 
   makeMatch(
     "r1",
@@ -580,126 +505,55 @@ const DEFAULT_MATCHES = [
     0
   ),
 
-  /* VARUN VS WINNER KUSH/KABIR */
-
   makeMatch(
     "r8",
     "r16",
     "Varun Rathi",
     null,
     "q4",
-    1,
-    false
+    1
   ),
 
-
-  /* =====================================================
+  /* =========================
      QUARTERFINALS
-  ===================================================== */
+  ========================= */
 
-  makeMatch(
-    "q1",
-    "qf",
-    null,
-    null,
-    "s1",
-    0
-  ),
+  makeMatch("q1","qf",null,null,"s1",0),
+  makeMatch("q2","qf",null,null,"s1",1),
+  makeMatch("q3","qf",null,null,"s2",0),
+  makeMatch("q4","qf",null,null,"s2",1),
 
-  makeMatch(
-    "q2",
-    "qf",
-    null,
-    null,
-    "s1",
-    1
-  ),
-
-  makeMatch(
-    "q3",
-    "qf",
-    null,
-    null,
-    "s2",
-    0
-  ),
-
-  makeMatch(
-    "q4",
-    "qf",
-    null,
-    null,
-    "s2",
-    1
-  ),
-
-
-  /* =====================================================
+  /* =========================
      SEMIFINALS
-  ===================================================== */
+  ========================= */
 
-  makeMatch(
-    "s1",
-    "sf",
-    null,
-    null,
-    "f1",
-    0
-  ),
+  makeMatch("s1","sf",null,null,"f1",0),
+  makeMatch("s2","sf",null,null,"f1",1),
 
-  makeMatch(
-    "s2",
-    "sf",
-    null,
-    null,
-    "f1",
-    1
-  ),
-
-
-  /* =====================================================
+  /* =========================
      FINAL
-  ===================================================== */
+  ========================= */
 
-  makeMatch(
-    "f1",
-    "final"
-  )
+  makeMatch("f1","final")
 
 ];
 
-
-/* =========================================================
-   LOAD STATE
-========================================================= */
-
 function clone(x){
-
-  return JSON.parse(
-    JSON.stringify(x)
-  );
-
+  return JSON.parse(JSON.stringify(x));
 }
 
 function loadState(){
-
   const saved =
-    localStorage.getItem(
-      "fifa26TournamentMatches"
-    );
+    localStorage.getItem("fifa26TournamentMatches");
 
   return saved
     ? JSON.parse(saved)
     : clone(DEFAULT_MATCHES);
-
 }
 
 function loadSettings(){
-
   const saved =
-    localStorage.getItem(
-      "fifa26TournamentSettings"
-    );
+    localStorage.getItem("fifa26TournamentSettings");
 
   return saved
     ? JSON.parse(saved)
@@ -708,58 +562,36 @@ function loadSettings(){
         halfMinutes:6,
         gapMinutes:0
       };
-
 }
 
 let matches = loadState();
-
 let settings = loadSettings();
 
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
 function player(name){
-
-  return name
-    ? byName[name]
-    : null;
-
+  return name ? byName[name] : null;
 }
 
 function displayPlayer(name){
 
   if(!name){
-
     return '<span class="empty">TBD</span>';
-
   }
 
   const p = player(name);
 
   return `
     <span class="name">
-
       ${escapeHtml(p?.name || name)}
-
       ${
         p?.roll
-        ?
-        `<span class="roll">
-          ${escapeHtml(p.roll)}
-        </span>`
-        :
-        ""
+        ? `<span class="roll">${escapeHtml(p.roll)}</span>`
+        : ""
       }
-
     </span>
   `;
-
 }
 
 function escapeHtml(s){
-
   return String(s).replace(
     /[&<>"']/g,
     c => ({
@@ -770,73 +602,44 @@ function escapeHtml(s){
       "'":'&#039;'
     }[c])
   );
-
 }
 
 function minutesFromTime(t){
-
-  const [h,m] =
-    t.split(":").map(Number);
-
+  const [h,m] = t.split(":").map(Number);
   return h * 60 + m;
-
 }
 
 function timeString(total){
 
-  total =
-    (total + 1440) % 1440;
+  total = (total + 1440) % 1440;
 
-  const h =
-    Math.floor(total / 60);
-
-  const m =
-    total % 60;
+  const h = Math.floor(total / 60);
+  const m = total % 60;
 
   return (
-    String(h).padStart(2,"0")
-    +
-    ":"
-    +
+    String(h).padStart(2,"0") +
+    ":" +
     String(m).padStart(2,"0")
   );
-
 }
-
-
-/* =========================================================
-   SCHEDULE
-========================================================= */
 
 function scheduleMatches(){
 
   const prelim =
-    matches.filter(
-      m => m.stage === "prelim"
-    );
+    matches.filter(m => m.stage === "prelim");
 
   const both26 = m => {
 
-    const a =
-      player(m.p1)?.roll || "";
+    const a = player(m.p1)?.roll || "";
+    const b = player(m.p2)?.roll || "";
 
-    const b =
-      player(m.p2)?.roll || "";
-
-    return (
-      a.includes("26") &&
-      b.includes("26")
-    );
-
+    return a.includes("26") && b.includes("26");
   };
 
   const only25 = m => {
 
-    const a =
-      player(m.p1)?.roll || "";
-
-    const b =
-      player(m.p2)?.roll || "";
+    const a = player(m.p1)?.roll || "";
+    const b = player(m.p2)?.roll || "";
 
     return (
       a &&
@@ -844,7 +647,6 @@ function scheduleMatches(){
       !a.includes("26") &&
       !b.includes("26")
     );
-
   };
 
   const order = [
@@ -852,107 +654,65 @@ function scheduleMatches(){
     ...prelim.filter(both26),
 
     ...prelim.filter(
-      m =>
-        !both26(m) &&
-        !only25(m)
+      m => !both26(m) && !only25(m)
     ),
 
     ...prelim.filter(only25),
 
-    ...matches.filter(
-      m => m.stage === "r16"
-    ),
-
-    ...matches.filter(
-      m => m.stage === "qf"
-    ),
-
-    ...matches.filter(
-      m => m.stage === "sf"
-    ),
-
-    ...matches.filter(
-      m => m.stage === "final"
-    )
+    ...matches.filter(m => m.stage === "r16"),
+    ...matches.filter(m => m.stage === "qf"),
+    ...matches.filter(m => m.stage === "sf"),
+    ...matches.filter(m => m.stage === "final")
 
   ];
 
-  let cursor =
-    minutesFromTime(
-      settings.startTime
-    );
+  let cursor = minutesFromTime(settings.startTime);
 
   const minAfter745 = 466;
 
   for(const m of order){
 
-    if(
-      only25(m) &&
-      cursor < minAfter745
-    ){
-
+    if(only25(m) && cursor < minAfter745){
       cursor = minAfter745;
-
     }
 
-    m.time =
-      timeString(cursor);
+    m.time = timeString(cursor);
 
     cursor +=
-      Number(settings.halfMinutes) * 2
-      +
+      Number(settings.halfMinutes) * 2 +
       Number(settings.gapMinutes);
-
   }
-
 }
-
-
-/* =========================================================
-   MATCH CARD
-========================================================= */
 
 function matchCard(m){
 
-  const el =
-    document.createElement(
-      "article"
-    );
+  const el = document.createElement("article");
 
   el.className = "match";
 
-  const finished =
-    m.played && m.winner;
+  const finished = m.played && m.winner;
 
   const p1Win =
-    finished &&
-    m.winner === m.p1;
+    finished && m.winner === m.p1;
 
   const p2Win =
-    finished &&
-    m.winner === m.p2;
+    finished && m.winner === m.p2;
 
   let status =
     m.played
-    ?
-    (
-      m.penalties
-      ?
-      `Penalties ${escapeHtml(m.penalties)}`
-      :
-      "Final"
-    )
-    :
-    "Not played";
+    ? (
+        m.penalties
+        ? `Penalties ${escapeHtml(m.penalties)}`
+        : "Final"
+      )
+    : "Not played";
 
-  if(
-    m.id === "r8" &&
-    !m.played
-  ){
+  if(m.id === "r1" && !m.played){
+    status = "Winner Nima / Arush vs Winner Anirban / Robert";
+  }
 
-    status =
-      "Winner of Kush Soni vs Kabir";
-
+  if(m.id === "r8" && !m.played){
+    status = "Winner of Kush Soni vs Kabir";
   }
 
   el.innerHTML = `
@@ -961,11 +721,11 @@ function matchCard(m){
       ${m.time || "--:--"}
     </div>
 
-    <div
-      class="player
+    <div class="
+      player
       ${p1Win ? "winner" : ""}
-      ${finished && !p1Win ? "loser" : ""}"
-    >
+      ${finished && !p1Win ? "loser" : ""}
+    ">
 
       ${displayPlayer(m.p1)}
 
@@ -975,11 +735,11 @@ function matchCard(m){
 
     </div>
 
-    <div
-      class="player
+    <div class="
+      player
       ${p2Win ? "winner" : ""}
-      ${finished && !p2Win ? "loser" : ""}"
-    >
+      ${finished && !p2Win ? "loser" : ""}
+    ">
 
       ${displayPlayer(m.p2)}
 
@@ -996,89 +756,52 @@ function matchCard(m){
       </span>
 
     </div>
-
   `;
 
   return el;
-
 }
-
-
-/* =========================================================
-   RENDER
-========================================================= */
 
 function render(){
 
   scheduleMatches();
 
-  document.getElementById(
-    "startBadge"
-  ).textContent =
+  document.getElementById("startBadge").textContent =
     settings.startTime;
 
-  document.getElementById(
-    "durationBadge"
-  ).textContent =
-    (
-      Number(settings.halfMinutes) * 2
-    )
-    +
-    " min";
+  document.getElementById("durationBadge").textContent =
+    Number(settings.halfMinutes) * 2 + " min";
 
   const root =
-    document.getElementById(
-      "bracket"
-    );
+    document.getElementById("bracket");
 
   root.innerHTML = "";
 
   for(const s of stages){
 
-    const col =
-      document.createElement(
-        "section"
-      );
+    const col = document.createElement("section");
 
-    col.className =
-      "stage " + s.id;
+    col.className = "stage " + s.id;
 
-    col.innerHTML =
-      `
-        <h2>${s.label}</h2>
-        <div class="stage-list"></div>
-      `;
+    col.innerHTML = `
+      <h2>${s.label}</h2>
+      <div class="stage-list"></div>
+    `;
 
     const list =
-      col.querySelector(
-        ".stage-list"
-      );
+      col.querySelector(".stage-list");
 
     matches
-      .filter(
-        m => m.stage === s.id
-      )
-      .forEach(
-        m =>
-          list.appendChild(
-            matchCard(m)
-          )
+      .filter(m => m.stage === s.id)
+      .forEach(m =>
+        list.appendChild(matchCard(m))
       );
 
     root.appendChild(col);
-
   }
-
 }
-
-
-/* =========================================================
-   START
-========================================================= */
 
 render();
 
 </script>
-
 </body>
 </html>
