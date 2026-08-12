@@ -19,9 +19,7 @@
   --shadow:0 8px 24px rgba(0,0,0,.22);
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -264,7 +262,6 @@ body{
 
 </header>
 
-
 <div class="info">
 
   <div class="badge">
@@ -289,19 +286,18 @@ body{
 
 </div>
 
-
 <main id="bracket"></main>
-
 
 <div class="note">
 
   Default layout follows the tournament bracket.
-  Nima is paired with Arush and Varun Rathi receives a bye.
+  Nima is paired with Arush.
+  Kush Soni is paired with Kabir.
+  The winner of Kush Soni vs Kabir plays Varun Rathi in the Round of 16.
   Results are displayed here only; tournament controls are available
   on the admin page.
 
 </div>
-
 
 <script>
 
@@ -326,6 +322,7 @@ const PLAYERS = [
   ["Abhilash Naskar","MBA26004"],
   ["Siddhant Singh","MBA25180"],
   ["Kush Soni","MBA25119"],
+  ["Kabir","MBA25212"],
   ["Jay Mishra","MBATm26037"],
   ["Hemant Agrawal","MBA25188"],
   ["Varun Rathi","MBA25230"],
@@ -337,7 +334,6 @@ const PLAYERS = [
   ["Arush","25005"]
 
 ];
-
 
 const byName = Object.fromEntries(
   PLAYERS.map(p => [
@@ -503,11 +499,28 @@ const DEFAULT_MATCHES = [
     "Arush"
   ),
 
+  /* KUSH vs KABIR
+     Winner goes to Varun Rathi's R16 match.
+  */
+
+  makeMatch(
+    "p9",
+    "prelim",
+    "Kush Soni",
+    "Kabir",
+    "r8",
+    1
+  ),
+
+
+  /* =====================================================
+     ROUND OF 16
+  ===================================================== */
 
   makeMatch(
     "r1",
     "r16",
-    "Kush Soni",
+    null,
     null,
     "q1",
     0
@@ -567,6 +580,8 @@ const DEFAULT_MATCHES = [
     0
   ),
 
+  /* VARUN VS WINNER KUSH/KABIR */
+
   makeMatch(
     "r8",
     "r16",
@@ -574,9 +589,13 @@ const DEFAULT_MATCHES = [
     null,
     "q4",
     1,
-    true
+    false
   ),
 
+
+  /* =====================================================
+     QUARTERFINALS
+  ===================================================== */
 
   makeMatch(
     "q1",
@@ -615,6 +634,10 @@ const DEFAULT_MATCHES = [
   ),
 
 
+  /* =====================================================
+     SEMIFINALS
+  ===================================================== */
+
   makeMatch(
     "s1",
     "sf",
@@ -633,6 +656,10 @@ const DEFAULT_MATCHES = [
     1
   ),
 
+
+  /* =====================================================
+     FINAL
+  ===================================================== */
 
   makeMatch(
     "f1",
@@ -654,7 +681,6 @@ function clone(x){
 
 }
 
-
 function loadState(){
 
   const saved =
@@ -667,7 +693,6 @@ function loadState(){
     : clone(DEFAULT_MATCHES);
 
 }
-
 
 function loadSettings(){
 
@@ -686,7 +711,6 @@ function loadSettings(){
 
 }
 
-
 let matches = loadState();
 
 let settings = loadSettings();
@@ -704,7 +728,6 @@ function player(name){
 
 }
 
-
 function displayPlayer(name){
 
   if(!name){
@@ -713,9 +736,7 @@ function displayPlayer(name){
 
   }
 
-
   const p = player(name);
-
 
   return `
     <span class="name">
@@ -737,7 +758,6 @@ function displayPlayer(name){
 
 }
 
-
 function escapeHtml(s){
 
   return String(s).replace(
@@ -753,7 +773,6 @@ function escapeHtml(s){
 
 }
 
-
 function minutesFromTime(t){
 
   const [h,m] =
@@ -762,7 +781,6 @@ function minutesFromTime(t){
   return h * 60 + m;
 
 }
-
 
 function timeString(total){
 
@@ -797,7 +815,6 @@ function scheduleMatches(){
       m => m.stage === "prelim"
     );
 
-
   const both26 = m => {
 
     const a =
@@ -812,7 +829,6 @@ function scheduleMatches(){
     );
 
   };
-
 
   const only25 = m => {
 
@@ -830,7 +846,6 @@ function scheduleMatches(){
     );
 
   };
-
 
   const order = [
 
@@ -862,15 +877,12 @@ function scheduleMatches(){
 
   ];
 
-
   let cursor =
     minutesFromTime(
       settings.startTime
     );
 
-
   const minAfter745 = 466;
-
 
   for(const m of order){
 
@@ -883,10 +895,8 @@ function scheduleMatches(){
 
     }
 
-
     m.time =
       timeString(cursor);
-
 
     cursor +=
       Number(settings.halfMinutes) * 2
@@ -909,23 +919,18 @@ function matchCard(m){
       "article"
     );
 
-
   el.className = "match";
-
 
   const finished =
     m.played && m.winner;
-
 
   const p1Win =
     finished &&
     m.winner === m.p1;
 
-
   const p2Win =
     finished &&
     m.winner === m.p2;
-
 
   let status =
     m.played
@@ -938,14 +943,7 @@ function matchCard(m){
       "Final"
     )
     :
-    (
-      m.bye
-      ?
-      "BYE"
-      :
-      "Not played"
-    );
-
+    "Not played";
 
   if(
     m.id === "r8" &&
@@ -953,17 +951,15 @@ function matchCard(m){
   ){
 
     status =
-      "Varun Rathi gets a bye";
+      "Winner of Kush Soni vs Kabir";
 
   }
-
 
   el.innerHTML = `
 
     <div class="time">
       ${m.time || "--:--"}
     </div>
-
 
     <div
       class="player
@@ -979,7 +975,6 @@ function matchCard(m){
 
     </div>
 
-
     <div
       class="player
       ${p2Win ? "winner" : ""}
@@ -994,7 +989,6 @@ function matchCard(m){
 
     </div>
 
-
     <div class="match-foot">
 
       <span class="status">
@@ -1004,7 +998,6 @@ function matchCard(m){
     </div>
 
   `;
-
 
   return el;
 
@@ -1019,12 +1012,10 @@ function render(){
 
   scheduleMatches();
 
-
   document.getElementById(
     "startBadge"
   ).textContent =
     settings.startTime;
-
 
   document.getElementById(
     "durationBadge"
@@ -1035,15 +1026,12 @@ function render(){
     +
     " min";
 
-
   const root =
     document.getElementById(
       "bracket"
     );
 
-
   root.innerHTML = "";
-
 
   for(const s of stages){
 
@@ -1052,10 +1040,8 @@ function render(){
         "section"
       );
 
-
     col.className =
       "stage " + s.id;
-
 
     col.innerHTML =
       `
@@ -1063,12 +1049,10 @@ function render(){
         <div class="stage-list"></div>
       `;
 
-
     const list =
       col.querySelector(
         ".stage-list"
       );
-
 
     matches
       .filter(
@@ -1080,7 +1064,6 @@ function render(){
             matchCard(m)
           )
       );
-
 
     root.appendChild(col);
 
