@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FIFA 26 Tournament — Admin</title>
 
 <style>
-
 :root{
   --bg:#061b14;
   --panel:#0b2b21;
-  --panel2:#0e3428;
   --line:#174c3a;
   --text:#e6f4ed;
   --muted:#8caea1;
@@ -26,9 +18,7 @@
   --shadow:0 8px 24px rgba(0,0,0,.22);
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -38,15 +28,8 @@ body{
   min-height:100vh;
 }
 
-button,
-input,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
+button,input,select{font:inherit}
+button{cursor:pointer}
 
 .topbar{
   position:sticky;
@@ -86,9 +69,7 @@ button{
   border-radius:6px;
 }
 
-.btn:hover{
-  background:#124332;
-}
+.btn:hover{background:#124332}
 
 .btn.primary{
   background:#168957;
@@ -118,14 +99,7 @@ button{
   font-size:11px;
 }
 
-.badge strong{
-  color:var(--text);
-}
-
-
-/* =========================================================
-   BRACKET
-========================================================= */
+.badge strong{color:var(--text)}
 
 #bracket{
   width:max-content;
@@ -158,9 +132,7 @@ button{
   box-shadow:var(--shadow);
 }
 
-.match + .match{
-  margin-top:16px;
-}
+.match + .match{margin-top:16px}
 
 .match .time{
   font-size:10px;
@@ -179,9 +151,7 @@ button{
   font-size:11px;
 }
 
-.player:last-of-type{
-  border-bottom:0;
-}
+.player:last-of-type{border-bottom:0}
 
 .player .name{
   flex:1;
@@ -210,13 +180,8 @@ button{
   font-weight:bold;
 }
 
-.player.winner .score{
-  background:#175b40;
-}
-
-.player.loser{
-  opacity:.58;
-}
+.player.winner .score{background:#175b40}
+.player.loser{opacity:.58}
 
 .match-foot{
   display:flex;
@@ -239,55 +204,23 @@ button{
   font-size:10px;
 }
 
-.result-btn:hover{
-  background:#168957;
-}
+.result-btn:hover{background:#168957}
 
 .empty{
   color:#5d8074;
   font-style:italic;
 }
 
-.stage.prelim .match{
-  min-height:105px;
-}
+.stage.prelim .match{min-height:105px}
+.stage.r16 .match{margin-top:30px}
+.stage.qf .match{margin-top:104px}
+.stage.sf .match{margin-top:255px}
+.stage.final .match{margin-top:510px}
 
-.stage.r16 .match{
-  margin-top:30px;
-}
-
-.stage.qf .match{
-  margin-top:104px;
-}
-
-.stage.sf .match{
-  margin-top:255px;
-}
-
-.stage.final .match{
-  margin-top:510px;
-}
-
-.stage.r16 .match + .match{
-  margin-top:30px;
-}
-
-.stage.qf .match + .match{
-  margin-top:155px;
-}
-
-.stage.sf .match + .match{
-  margin-top:470px;
-}
-
-.stage.final .match + .match{
-  margin-top:0;
-}
-
-
-/* =========================================================
-   EDIT PANEL
-========================================================= */
+.stage.r16 .match + .match{margin-top:30px}
+.stage.qf .match + .match{margin-top:155px}
+.stage.sf .match + .match{margin-top:470px}
+.stage.final .match + .match{margin-top:0}
 
 .edit-panel{
   max-width:1500px;
@@ -296,9 +229,7 @@ button{
   display:none;
 }
 
-.edit-panel.show{
-  display:block;
-}
+.edit-panel.show{display:block}
 
 .edit-box{
   background:#09251c;
@@ -314,8 +245,7 @@ button{
 
 .settings{
   display:grid;
-  grid-template-columns:
-    repeat(3,minmax(150px,1fr));
+  grid-template-columns:repeat(3,minmax(150px,1fr));
   gap:10px;
   margin-bottom:12px;
 }
@@ -339,8 +269,7 @@ button{
 
 .edit-grid{
   display:grid;
-  grid-template-columns:
-    repeat(3,minmax(220px,1fr));
+  grid-template-columns:repeat(3,minmax(220px,1fr));
   gap:10px;
 }
 
@@ -403,11 +332,6 @@ button{
   margin-top:15px;
 }
 
-
-/* =========================================================
-   RESULT MODAL
-========================================================= */
-
 .overlay{
   position:fixed;
   inset:0;
@@ -419,9 +343,7 @@ button{
   padding:18px;
 }
 
-.overlay.show{
-  display:flex;
-}
+.overlay.show{display:flex}
 
 .modal{
   width:min(760px,100%);
@@ -434,9 +356,7 @@ button{
   box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 
-.modal h3{
-  margin:0 0 14px;
-}
+.modal h3{margin:0 0 14px}
 
 .form-grid{
   display:grid;
@@ -444,16 +364,9 @@ button{
   gap:10px;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
 @media(max-width:1000px){
 
-  .topbar{
-    position:static;
-  }
+  .topbar{position:static}
 
   #bracket{
     grid-template-columns:repeat(5,250px);
@@ -467,15 +380,11 @@ button{
   .settings{
     grid-template-columns:1fr;
   }
-
 }
-
 </style>
-
 </head>
 
 <body>
-
 
 <header class="topbar">
 
@@ -493,24 +402,17 @@ button{
 
   <div class="actions">
 
-    <button
-      class="btn"
-      id="editBtn"
-    >
+    <button class="btn" id="editBtn">
       Edit Brackets
     </button>
 
-    <button
-      class="btn danger"
-      id="resetBtn"
-    >
+    <button class="btn danger" id="resetBtn">
       Reset Tournament
     </button>
 
   </div>
 
 </header>
-
 
 <div class="info">
 
@@ -536,46 +438,21 @@ button{
 
 </div>
 
-
-<!-- =====================================================
-     EDIT PANEL
-===================================================== -->
-
-<section
-  class="edit-panel"
-  id="editPanel"
->
+<section class="edit-panel" id="editPanel">
 
   <div class="edit-box">
 
-    <h3>
-      Manual Bracket Setup
-    </h3>
-
+    <h3>Manual Bracket Setup</h3>
 
     <div class="settings">
 
       <div class="field">
-
-        <label>
-          Starting time
-        </label>
-
-        <input
-          id="startTime"
-          type="time"
-          value="07:30"
-        >
-
+        <label>Starting time</label>
+        <input id="startTime" type="time" value="07:30">
       </div>
 
-
       <div class="field">
-
-        <label>
-          Minutes per half
-        </label>
-
+        <label>Minutes per half</label>
         <input
           id="halfMinutes"
           type="number"
@@ -583,16 +460,10 @@ button{
           max="30"
           value="6"
         >
-
       </div>
 
-
       <div class="field">
-
-        <label>
-          Extra gap between matches
-        </label>
-
+        <label>Extra gap between matches</label>
         <input
           id="gapMinutes"
           type="number"
@@ -600,45 +471,27 @@ button{
           max="60"
           value="0"
         >
-
       </div>
 
     </div>
 
-
-    <div
-      class="edit-grid"
-      id="editGrid"
-    ></div>
-
+    <div class="edit-grid" id="editGrid"></div>
 
     <div class="player-pool">
 
-      <strong>
-        Player pool
-      </strong>
+      <strong>Player pool</strong>
 
-      <div
-        class="pool-list"
-        id="playerPool"
-      ></div>
+      <div class="pool-list" id="playerPool"></div>
 
     </div>
 
-
     <div class="modal-actions">
 
-      <button
-        class="btn"
-        id="cancelEdit"
-      >
+      <button class="btn" id="cancelEdit">
         Cancel
       </button>
 
-      <button
-        class="btn primary"
-        id="saveEdit"
-      >
+      <button class="btn primary" id="saveEdit">
         Save Brackets & Timings
       </button>
 
@@ -648,25 +501,15 @@ button{
 
 </section>
 
-
 <main id="bracket"></main>
 
-
-<!-- =====================================================
-     RESULT MODAL
-===================================================== -->
-
-<div
-  class="overlay"
-  id="resultOverlay"
->
+<div class="overlay" id="resultOverlay">
 
   <div class="modal">
 
     <h3 id="resultTitle">
       Enter Result
     </h3>
-
 
     <div class="form-grid">
 
@@ -685,7 +528,6 @@ button{
 
       </div>
 
-
       <div class="field">
 
         <label id="p2Label">
@@ -703,35 +545,25 @@ button{
 
     </div>
 
-
     <div
       class="field"
       id="penaltyField"
       style="display:none;margin-top:10px"
     >
 
-      <label>
-        Penalty winner
-      </label>
+      <label>Penalty winner</label>
 
       <select id="penaltyWinner"></select>
 
     </div>
 
-
     <div class="modal-actions">
 
-      <button
-        class="btn"
-        id="closeResult"
-      >
+      <button class="btn" id="closeResult">
         Cancel
       </button>
 
-      <button
-        class="btn primary"
-        id="saveResult"
-      >
+      <button class="btn primary" id="saveResult">
         Save Result
       </button>
 
@@ -741,12 +573,7 @@ button{
 
 </div>
 
-
 <script>
-
-/* =========================================================
-   PLAYERS
-========================================================= */
 
 const PLAYERS = [
 
@@ -778,7 +605,6 @@ const PLAYERS = [
 
 ];
 
-
 const byName = Object.fromEntries(
   PLAYERS.map(p => [
     p[0],
@@ -789,44 +615,13 @@ const byName = Object.fromEntries(
   ])
 );
 
-
-/* =========================================================
-   STAGES
-========================================================= */
-
 const stages = [
-
-  {
-    id:"prelim",
-    label:"PRELIMINARY"
-  },
-
-  {
-    id:"r16",
-    label:"ROUND OF 16"
-  },
-
-  {
-    id:"qf",
-    label:"QUARTERFINALS"
-  },
-
-  {
-    id:"sf",
-    label:"SEMIFINALS"
-  },
-
-  {
-    id:"final",
-    label:"FINAL"
-  }
-
+  {id:"prelim",label:"PRELIMINARY"},
+  {id:"r16",label:"ROUND OF 16"},
+  {id:"qf",label:"QUARTERFINALS"},
+  {id:"sf",label:"SEMIFINALS"},
+  {id:"final",label:"FINAL"}
 ];
-
-
-/* =========================================================
-   MATCH CREATOR
-========================================================= */
 
 function makeMatch(
   id,
@@ -839,36 +634,29 @@ function makeMatch(
 ){
 
   return {
-
     id,
     stage,
-
     p1:a,
     p2:b,
-
     score1:null,
     score2:null,
-
     penalties:null,
-
     winner:null,
-
     nextMatch,
     nextSlot,
-
     bye,
-
     time:null,
-
     played:false
-
   };
-
 }
-
 
 /* =========================================================
    DEFAULT MATCHES
+
+   p1 -> r1 slot 1
+   p8 -> r1 slot 0
+
+   p9 -> r8 slot 1
 ========================================================= */
 
 const DEFAULT_MATCHES = [
@@ -936,16 +724,18 @@ const DEFAULT_MATCHES = [
     1
   ),
 
+  /* NIMA / ARUSH -> R1 SLOT 0 */
+
   makeMatch(
     "p8",
     "prelim",
     "Nima",
-    "Arush"
+    "Arush",
+    "r1",
+    0
   ),
 
-  /* KUSH VS KABIR
-     WINNER → VARUN RATHI
-  */
+  /* KUSH / KABIR -> R8 SLOT 1 */
 
   makeMatch(
     "p9",
@@ -956,10 +746,9 @@ const DEFAULT_MATCHES = [
     1
   ),
 
-
-  /* =====================================================
+  /* =========================
      ROUND OF 16
-  ===================================================== */
+  ========================= */
 
   makeMatch(
     "r1",
@@ -1024,105 +813,41 @@ const DEFAULT_MATCHES = [
     0
   ),
 
-  /* VARUN RATHI VS WINNER KUSH/KABIR */
-
   makeMatch(
     "r8",
     "r16",
     "Varun Rathi",
     null,
     "q4",
-    1,
-    false
+    1
   ),
 
-
-  /* =====================================================
+  /* =========================
      QUARTERFINALS
-  ===================================================== */
+  ========================= */
 
-  makeMatch(
-    "q1",
-    "qf",
-    null,
-    null,
-    "s1",
-    0
-  ),
+  makeMatch("q1","qf",null,null,"s1",0),
+  makeMatch("q2","qf",null,null,"s1",1),
+  makeMatch("q3","qf",null,null,"s2",0),
+  makeMatch("q4","qf",null,null,"s2",1),
 
-  makeMatch(
-    "q2",
-    "qf",
-    null,
-    null,
-    "s1",
-    1
-  ),
-
-  makeMatch(
-    "q3",
-    "qf",
-    null,
-    null,
-    "s2",
-    0
-  ),
-
-  makeMatch(
-    "q4",
-    "qf",
-    null,
-    null,
-    "s2",
-    1
-  ),
-
-
-  /* =====================================================
+  /* =========================
      SEMIFINALS
-  ===================================================== */
+  ========================= */
 
-  makeMatch(
-    "s1",
-    "sf",
-    null,
-    null,
-    "f1",
-    0
-  ),
+  makeMatch("s1","sf",null,null,"f1",0),
+  makeMatch("s2","sf",null,null,"f1",1),
 
-  makeMatch(
-    "s2",
-    "sf",
-    null,
-    null,
-    "f1",
-    1
-  ),
-
-
-  /* =====================================================
+  /* =========================
      FINAL
-  ===================================================== */
+  ========================= */
 
-  makeMatch(
-    "f1",
-    "final"
-  )
+  makeMatch("f1","final")
 
 ];
 
-
-/* =========================================================
-   STATE
-========================================================= */
-
 function clone(x){
-
-  return JSON.parse(
-    JSON.stringify(x)
-  );
-
+  return JSON.parse(JSON.stringify(x));
 }
 
 function loadState(){
@@ -1135,7 +860,6 @@ function loadState(){
   return saved
     ? JSON.parse(saved)
     : clone(DEFAULT_MATCHES);
-
 }
 
 function loadSettings(){
@@ -1152,8 +876,10 @@ function loadSettings(){
         halfMinutes:6,
         gapMinutes:0
       };
-
 }
+
+let matches = loadState();
+let settings = loadSettings();
 
 function saveState(){
 
@@ -1166,28 +892,10 @@ function saveState(){
     "fifa26TournamentSettings",
     JSON.stringify(settings)
   );
-
 }
 
-let matches = loadState();
-
-let settings = loadSettings();
-
-let resultMatchId = null;
-
-let editSnapshot = null;
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
 function player(name){
-
-  return name
-    ? byName[name]
-    : null;
-
+  return name ? byName[name] : null;
 }
 
 function escapeHtml(s){
@@ -1202,15 +910,12 @@ function escapeHtml(s){
       "'":'&#039;'
     }[c])
   );
-
 }
 
 function displayPlayer(name){
 
   if(!name){
-
     return '<span class="empty">TBD</span>';
-
   }
 
   const p = player(name);
@@ -1220,16 +925,11 @@ function displayPlayer(name){
       ${escapeHtml(p?.name || name)}
       ${
         p?.roll
-        ?
-        `<span class="roll">
-          ${escapeHtml(p.roll)}
-        </span>`
-        :
-        ""
+        ? `<span class="roll">${escapeHtml(p.roll)}</span>`
+        : ""
       }
     </span>
   `;
-
 }
 
 function minutesFromTime(t){
@@ -1238,34 +938,21 @@ function minutesFromTime(t){
     t.split(":").map(Number);
 
   return h * 60 + m;
-
 }
 
 function timeString(total){
 
-  total =
-    (total + 1440) % 1440;
+  total = (total + 1440) % 1440;
 
-  const h =
-    Math.floor(total / 60);
-
-  const m =
-    total % 60;
+  const h = Math.floor(total / 60);
+  const m = total % 60;
 
   return (
-    String(h).padStart(2,"0")
-    +
-    ":"
-    +
+    String(h).padStart(2,"0") +
+    ":" +
     String(m).padStart(2,"0")
   );
-
 }
-
-
-/* =========================================================
-   SCHEDULE
-========================================================= */
 
 function scheduleMatches(){
 
@@ -1286,7 +973,6 @@ function scheduleMatches(){
       a.includes("26") &&
       b.includes("26")
     );
-
   };
 
   const only25 = m => {
@@ -1303,7 +989,6 @@ function scheduleMatches(){
       !a.includes("26") &&
       !b.includes("26")
     );
-
   };
 
   const order = [
@@ -1349,34 +1034,22 @@ function scheduleMatches(){
       only25(m) &&
       cursor < minAfter745
     ){
-
       cursor = minAfter745;
-
     }
 
     m.time =
       timeString(cursor);
 
     cursor +=
-      Number(settings.halfMinutes) * 2
-      +
+      Number(settings.halfMinutes) * 2 +
       Number(settings.gapMinutes);
-
   }
-
 }
-
-
-/* =========================================================
-   PROPAGATE WINNER
-========================================================= */
 
 function propagateWinner(m){
 
   if(!m.winner || !m.nextMatch){
-
     return;
-
   }
 
   const next =
@@ -1385,28 +1058,182 @@ function propagateWinner(m){
     );
 
   if(!next){
-
     return;
-
   }
 
   if(m.nextSlot === 0){
-
     next.p1 = m.winner;
-
-  }
-  else{
-
+  }else{
     next.p2 = m.winner;
-
   }
-
 }
 
+function matchCard(m){
+
+  const el =
+    document.createElement("article");
+
+  el.className = "match";
+
+  const finished =
+    m.played && m.winner;
+
+  const p1Win =
+    finished &&
+    m.winner === m.p1;
+
+  const p2Win =
+    finished &&
+    m.winner === m.p2;
+
+  let status =
+    m.played
+    ? (
+        m.penalties
+        ? `Penalties ${escapeHtml(m.penalties)}`
+        : "Final"
+      )
+    : "Not played";
+
+  if(
+    m.id === "r1" &&
+    !m.played
+  ){
+    status =
+      "Winner Nima / Arush vs Winner Anirban / Robert";
+  }
+
+  if(
+    m.id === "r8" &&
+    !m.played
+  ){
+    status =
+      "Winner of Kush Soni vs Kabir";
+  }
+
+  el.innerHTML = `
+
+    <div class="time">
+      ${m.time || "--:--"}
+    </div>
+
+    <div class="
+      player
+      ${p1Win ? "winner" : ""}
+      ${finished && !p1Win ? "loser" : ""}
+    ">
+
+      ${displayPlayer(m.p1)}
+
+      <span class="score">
+        ${m.score1 ?? "–"}
+      </span>
+
+    </div>
+
+    <div class="
+      player
+      ${p2Win ? "winner" : ""}
+      ${finished && !p2Win ? "loser" : ""}
+    ">
+
+      ${displayPlayer(m.p2)}
+
+      <span class="score">
+        ${m.score2 ?? "–"}
+      </span>
+
+    </div>
+
+    <div class="match-foot">
+
+      <span class="status">
+        ${status}
+      </span>
+
+      ${
+        m.p1 && m.p2 && !m.bye
+        ?
+        `
+        <button
+          class="result-btn"
+          data-result="${m.id}"
+        >
+          ${m.played ? "Edit Result" : "Enter Result"}
+        </button>
+        `
+        :
+        ""
+      }
+
+    </div>
+  `;
+
+  const btn =
+    el.querySelector("[data-result]");
+
+  if(btn){
+    btn.onclick =
+      () => openResult(m.id);
+  }
+
+  return el;
+}
+
+function render(){
+
+  scheduleMatches();
+
+  document.getElementById(
+    "startBadge"
+  ).textContent =
+    settings.startTime;
+
+  document.getElementById(
+    "durationBadge"
+  ).textContent =
+    Number(settings.halfMinutes) * 2 +
+    " min";
+
+  const root =
+    document.getElementById("bracket");
+
+  root.innerHTML = "";
+
+  for(const s of stages){
+
+    const col =
+      document.createElement("section");
+
+    col.className =
+      "stage " + s.id;
+
+    col.innerHTML = `
+      <h2>${s.label}</h2>
+      <div class="stage-list"></div>
+    `;
+
+    const list =
+      col.querySelector(".stage-list");
+
+    matches
+      .filter(m => m.stage === s.id)
+      .forEach(
+        m =>
+          list.appendChild(
+            matchCard(m)
+          )
+      );
+
+    root.appendChild(col);
+  }
+}
 
 /* =========================================================
    RESULT
 ========================================================= */
+
+let resultMatchId = null;
 
 function openResult(id){
 
@@ -1417,11 +1244,7 @@ function openResult(id){
       x => x.id === id
     );
 
-  if(!m || !m.p1 || !m.p2){
-
-    return;
-
-  }
+  if(!m) return;
 
   document.getElementById(
     "resultTitle"
@@ -1450,12 +1273,12 @@ function openResult(id){
 
   updatePenaltyField();
 
-  const select =
+  const sel =
     document.getElementById(
       "penaltyWinner"
     );
 
-  select.innerHTML = `
+  sel.innerHTML = `
     <option value="">
       Select penalty winner
     </option>
@@ -1470,16 +1293,21 @@ function openResult(id){
   `;
 
   if(m.winner){
-
-    select.value =
-      m.winner;
-
+    sel.value = m.winner;
   }
 
-  document.getElementById(
-    "resultOverlay"
-  ).classList.add("show");
+  document
+    .getElementById("resultOverlay")
+    .classList.add("show");
+}
 
+function closeResult(){
+
+  resultMatchId = null;
+
+  document
+    .getElementById("resultOverlay")
+    .classList.remove("show");
 }
 
 function updatePenaltyField(){
@@ -1504,17 +1332,6 @@ function updatePenaltyField(){
     s1 === s2
     ? "block"
     : "none";
-
-}
-
-function closeResult(){
-
-  resultMatchId = null;
-
-  document.getElementById(
-    "resultOverlay"
-  ).classList.remove("show");
-
 }
 
 function saveResult(){
@@ -1524,11 +1341,7 @@ function saveResult(){
       x => x.id === resultMatchId
     );
 
-  if(!m){
-
-    return;
-
-  }
+  if(!m) return;
 
   const s1 =
     Number(
@@ -1545,33 +1358,22 @@ function saveResult(){
     );
 
   if(s1 < 0 || s2 < 0){
-
-    alert(
-      "Scores cannot be negative."
-    );
-
+    alert("Scores cannot be negative.");
     return;
-
   }
 
   let winner = null;
-
   let penalties = null;
-
 
   if(s1 > s2){
 
     winner = m.p1;
 
-  }
-
-  else if(s2 > s1){
+  }else if(s2 > s1){
 
     winner = m.p2;
 
-  }
-
-  else{
+  }else{
 
     winner =
       document.getElementById(
@@ -1585,7 +1387,6 @@ function saveResult(){
       );
 
       return;
-
     }
 
     const p1pen =
@@ -1604,306 +1405,67 @@ function saveResult(){
       p1pen === null ||
       p2pen === null
     ){
-
       return;
-
     }
 
     penalties =
       `${p1pen}-${p2pen}`;
-
   }
 
-
   m.score1 = s1;
-
   m.score2 = s2;
-
   m.winner = winner;
-
   m.penalties = penalties;
-
   m.played = true;
 
-
   propagateWinner(m);
-
 
   saveState();
 
   closeResult();
 
   render();
-
 }
-
-
-/* =========================================================
-   MATCH CARD
-========================================================= */
-
-function matchCard(m){
-
-  const el =
-    document.createElement(
-      "article"
-    );
-
-  el.className =
-    "match";
-
-
-  const finished =
-    m.played && m.winner;
-
-  const p1Win =
-    finished &&
-    m.winner === m.p1;
-
-  const p2Win =
-    finished &&
-    m.winner === m.p2;
-
-
-  let status =
-    m.played
-    ?
-    (
-      m.penalties
-      ?
-      `Penalties ${escapeHtml(m.penalties)}`
-      :
-      "Final"
-    )
-    :
-    "Not played";
-
-
-  if(
-    m.id === "r8" &&
-    !m.played
-  ){
-
-    status =
-      "Winner of Kush Soni vs Kabir";
-
-  }
-
-
-  el.innerHTML = `
-
-    <div class="time">
-      ${m.time || "--:--"}
-    </div>
-
-
-    <div
-      class="
-        player
-        ${p1Win ? "winner" : ""}
-        ${finished && !p1Win ? "loser" : ""}
-      "
-    >
-
-      ${displayPlayer(m.p1)}
-
-      <span class="score">
-        ${m.score1 ?? "–"}
-      </span>
-
-    </div>
-
-
-    <div
-      class="
-        player
-        ${p2Win ? "winner" : ""}
-        ${finished && !p2Win ? "loser" : ""}
-      "
-    >
-
-      ${displayPlayer(m.p2)}
-
-      <span class="score">
-        ${m.score2 ?? "–"}
-      </span>
-
-    </div>
-
-
-    <div class="match-foot">
-
-      <span class="status">
-        ${status}
-      </span>
-
-      ${
-        m.p1 &&
-        m.p2
-        ?
-        `
-          <button
-            class="result-btn"
-            data-result="${m.id}"
-          >
-            ${m.played
-              ? "Edit Result"
-              : "Enter Result"}
-          </button>
-        `
-        :
-        ""
-      }
-
-    </div>
-
-  `;
-
-
-  const btn =
-    el.querySelector(
-      "[data-result]"
-    );
-
-  if(btn){
-
-    btn.onclick = () =>
-      openResult(m.id);
-
-  }
-
-
-  return el;
-
-}
-
-
-/* =========================================================
-   RENDER
-========================================================= */
-
-function render(){
-
-  scheduleMatches();
-
-
-  document.getElementById(
-    "startBadge"
-  ).textContent =
-    settings.startTime;
-
-
-  document.getElementById(
-    "durationBadge"
-  ).textContent =
-    (
-      Number(settings.halfMinutes) * 2
-    )
-    +
-    " min";
-
-
-  const root =
-    document.getElementById(
-      "bracket"
-    );
-
-
-  root.innerHTML = "";
-
-
-  for(const s of stages){
-
-    const col =
-      document.createElement(
-        "section"
-      );
-
-    col.className =
-      "stage " + s.id;
-
-
-    col.innerHTML = `
-      <h2>${s.label}</h2>
-      <div class="stage-list"></div>
-    `;
-
-
-    const list =
-      col.querySelector(
-        ".stage-list"
-      );
-
-
-    matches
-      .filter(
-        m => m.stage === s.id
-      )
-      .forEach(
-        m =>
-          list.appendChild(
-            matchCard(m)
-          )
-      );
-
-
-    root.appendChild(col);
-
-  }
-
-}
-
 
 /* =========================================================
    EDITOR
 ========================================================= */
 
+let editSnapshot = null;
+
 function openEditor(){
 
   editSnapshot = {
-
-    matches:
-      clone(matches),
-
-    settings:
-      clone(settings)
-
+    matches:clone(matches),
+    settings:clone(settings)
   };
-
 
   document.getElementById(
     "startTime"
   ).value =
     settings.startTime;
 
-
   document.getElementById(
     "halfMinutes"
   ).value =
     settings.halfMinutes;
-
 
   document.getElementById(
     "gapMinutes"
   ).value =
     settings.gapMinutes;
 
-
   renderEditor();
 
-
-  document.getElementById(
-    "editPanel"
-  ).classList.add("show");
-
+  document
+    .getElementById("editPanel")
+    .classList.add("show");
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
-
 }
-
 
 function renderEditor(){
 
@@ -1912,59 +1474,40 @@ function renderEditor(){
       "editGrid"
     );
 
-
   grid.innerHTML = "";
-
 
   for(const m of matches){
 
     const box =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     box.className =
       "edit-match";
 
-
     box.innerHTML = `
-
       <div class="stage-label">
-
         ${m.stage} · ${m.id}
-
       </div>
 
-
-      <label>
-        Player 1
-      </label>
+      <label>Player 1</label>
 
       <select
         data-mid="${m.id}"
         data-slot="p1"
       ></select>
 
-
-      <label>
-        Player 2
-      </label>
+      <label>Player 2</label>
 
       <select
         data-mid="${m.id}"
         data-slot="p2"
       ></select>
-
     `;
-
 
     grid.appendChild(box);
 
-
     for(
-      const slot of
-      ["p1","p2"]
+      const slot of ["p1","p2"]
     ){
 
       const select =
@@ -1972,39 +1515,30 @@ function renderEditor(){
           `[data-slot="${slot}"]`
         );
 
-
       select.innerHTML =
         `
-          <option value="">
-            TBD / Empty
-          </option>
+        <option value="">
+          TBD / Empty
+        </option>
         `
         +
-        PLAYERS
-          .map(
-            p =>
-              `
-                <option
-                  value="${escapeHtml(p[0])}"
-                >
-                  ${escapeHtml(p[0])}
-                  ${
-                    p[1]
-                    ?
-                    " — " +
-                    escapeHtml(p[1])
-                    :
-                    ""
-                  }
-                </option>
-              `
-          )
-          .join("");
-
+        PLAYERS.map(
+          p =>
+            `
+            <option value="${escapeHtml(p[0])}">
+              ${escapeHtml(p[0])}
+              ${
+                p[1]
+                ? " — " +
+                  escapeHtml(p[1])
+                : ""
+              }
+            </option>
+            `
+        ).join("");
 
       select.value =
         m[slot] || "";
-
 
       select.onchange = () => {
 
@@ -2012,50 +1546,32 @@ function renderEditor(){
           select.value || null;
 
         m.played = false;
-
         m.winner = null;
-
         m.score1 = null;
-
         m.score2 = null;
-
         m.penalties = null;
-
       };
-
     }
-
   }
-
 
   document.getElementById(
     "playerPool"
   ).innerHTML =
-
-    PLAYERS
-      .map(
-        p =>
-          `
-            <span class="pool-item">
-
-              ${escapeHtml(p[0])}
-
-              ${
-                p[1]
-                ?
-                " · " +
-                escapeHtml(p[1])
-                :
-                ""
-              }
-
-            </span>
-          `
-      )
-      .join("");
-
+    PLAYERS.map(
+      p =>
+        `
+        <span class="pool-item">
+          ${escapeHtml(p[0])}
+          ${
+            p[1]
+            ? " · " +
+              escapeHtml(p[1])
+            : ""
+          }
+        </span>
+        `
+    ).join("");
 }
-
 
 function closeEditor(){
 
@@ -2066,30 +1582,24 @@ function closeEditor(){
 
     settings =
       editSnapshot.settings;
-
   }
 
-
-  document.getElementById(
-    "editPanel"
-  ).classList.remove("show");
-
+  document
+    .getElementById("editPanel")
+    .classList.remove("show");
 
   editSnapshot = null;
 
-
   render();
-
 }
-
 
 function saveEditor(){
 
   settings.startTime =
     document.getElementById(
       "startTime"
-    ).value || "07:30";
-
+    ).value ||
+    "07:30";
 
   settings.halfMinutes =
     Math.max(
@@ -2101,7 +1611,6 @@ function saveEditor(){
       ) || 6
     );
 
-
   settings.gapMinutes =
     Math.max(
       0,
@@ -2112,25 +1621,18 @@ function saveEditor(){
       ) || 0
     );
 
-
   scheduleMatches();
-
 
   saveState();
 
-
   editSnapshot = null;
 
-
-  document.getElementById(
-    "editPanel"
-  ).classList.remove("show");
-
+  document
+    .getElementById("editPanel")
+    .classList.remove("show");
 
   render();
-
 }
-
 
 /* =========================================================
    RESET
@@ -2143,33 +1645,22 @@ function resetTournament(){
       "Reset the whole tournament? This clears all scores, winners and manual bracket changes."
     )
   ){
-
     return;
-
   }
-
 
   matches =
     clone(DEFAULT_MATCHES);
 
-
   settings = {
-
     startTime:"07:30",
-
     halfMinutes:6,
-
     gapMinutes:0
-
   };
-
 
   saveState();
 
   render();
-
 }
-
 
 /* =========================================================
    EVENTS
@@ -2180,36 +1671,30 @@ document.getElementById(
 ).onclick =
   openEditor;
 
-
 document.getElementById(
   "cancelEdit"
 ).onclick =
   closeEditor;
-
 
 document.getElementById(
   "saveEdit"
 ).onclick =
   saveEditor;
 
-
 document.getElementById(
   "closeResult"
 ).onclick =
   closeResult;
-
 
 document.getElementById(
   "saveResult"
 ).onclick =
   saveResult;
 
-
 document.getElementById(
   "resetBtn"
 ).onclick =
   resetTournament;
-
 
 document.getElementById(
   "score1"
@@ -2218,18 +1703,12 @@ document.getElementById(
   updatePenaltyField
 );
 
-
 document.getElementById(
   "score2"
 ).addEventListener(
   "input",
   updatePenaltyField
 );
-
-
-/* =========================================================
-   START
-========================================================= */
 
 render();
 
