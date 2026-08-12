@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>FIFA 26 Tournament — Admin</title>
 
 <style>
+
 :root{
   --bg:#061b14;
   --panel:#0b2b21;
@@ -32,7 +38,9 @@ body{
   min-height:100vh;
 }
 
-button,input,select{
+button,
+input,
+select{
   font:inherit;
 }
 
@@ -41,25 +49,27 @@ button{
 }
 
 .topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
   background:#071f18;
   border-bottom:1px solid var(--line);
-  padding:14px 18px;
+  padding:12px 18px;
   display:flex;
-  justify-content:space-between;
+  gap:12px;
   align-items:center;
-  gap:15px;
-  flex-wrap:wrap;
+  justify-content:space-between;
 }
 
-h1{
+.title-wrap h1{
   margin:0;
-  font-size:20px;
+  font-size:18px;
 }
 
-.subtitle{
+.title-wrap p{
+  margin:4px 0 0;
   color:var(--muted);
   font-size:12px;
-  margin-top:4px;
 }
 
 .actions{
@@ -90,24 +100,20 @@ h1{
   border-color:#7d3535;
 }
 
-.container{
-  max-width:1500px;
-  margin:auto;
-  padding:18px;
-}
-
 .info{
+  max-width:1500px;
+  margin:12px auto 0;
+  padding:0 18px;
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  margin-bottom:15px;
 }
 
 .badge{
   border:1px solid var(--line);
   background:#09251c;
   color:var(--muted);
-  padding:7px 10px;
+  padding:6px 9px;
   border-radius:5px;
   font-size:11px;
 }
@@ -116,29 +122,208 @@ h1{
   color:var(--text);
 }
 
-.admin-box{
+
+/* =========================================================
+   BRACKET
+========================================================= */
+
+#bracket{
+  width:max-content;
+  min-width:100%;
+  padding:18px;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(230px,1fr));
+  gap:28px;
+  align-items:start;
+}
+
+.stage h2{
+  margin:0 0 10px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:1.2px;
+  color:#45c98a;
+}
+
+.stage-list{
+  display:flex;
+  flex-direction:column;
+}
+
+.match{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:8px;
+  box-shadow:var(--shadow);
+}
+
+.match + .match{
+  margin-top:16px;
+}
+
+.match .time{
+  font-size:10px;
+  color:var(--accent2);
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.player{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  min-height:25px;
+  border-bottom:1px solid #153f31;
+  padding:3px 2px;
+  font-size:11px;
+}
+
+.player:last-of-type{
+  border-bottom:0;
+}
+
+.player .name{
+  flex:1;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.roll{
+  color:#71998b;
+  font-size:9px;
+  margin-left:3px;
+}
+
+.score{
+  min-width:25px;
+  text-align:center;
+  font-weight:bold;
+  background:#082119;
+  border-radius:3px;
+  padding:3px 4px;
+}
+
+.player.winner{
+  color:#fff;
+  font-weight:bold;
+}
+
+.player.winner .score{
+  background:#175b40;
+}
+
+.player.loser{
+  opacity:.58;
+}
+
+.match-foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:7px;
+}
+
+.status{
+  font-size:9px;
+  color:var(--muted);
+}
+
+.result-btn{
+  border:0;
+  background:#116d46;
+  color:white;
+  padding:5px 7px;
+  border-radius:4px;
+  font-size:10px;
+}
+
+.result-btn:hover{
+  background:#168957;
+}
+
+.empty{
+  color:#5d8074;
+  font-style:italic;
+}
+
+.stage.prelim .match{
+  min-height:105px;
+}
+
+.stage.r16 .match{
+  margin-top:30px;
+}
+
+.stage.qf .match{
+  margin-top:104px;
+}
+
+.stage.sf .match{
+  margin-top:255px;
+}
+
+.stage.final .match{
+  margin-top:510px;
+}
+
+.stage.r16 .match + .match{
+  margin-top:30px;
+}
+
+.stage.qf .match + .match{
+  margin-top:155px;
+}
+
+.stage.sf .match + .match{
+  margin-top:470px;
+}
+
+.stage.final .match + .match{
+  margin-top:0;
+}
+
+
+/* =========================================================
+   EDIT PANEL
+========================================================= */
+
+.edit-panel{
+  max-width:1500px;
+  margin:12px auto;
+  padding:0 18px;
+  display:none;
+}
+
+.edit-panel.show{
+  display:block;
+}
+
+.edit-box{
   background:#09251c;
   border:1px solid var(--line);
   border-radius:8px;
-  padding:15px;
-  margin-bottom:18px;
+  padding:14px;
 }
 
-.admin-box h2{
-  margin:0 0 12px;
-  font-size:15px;
+.edit-box h3{
+  margin:0 0 10px;
+  font-size:13px;
 }
 
 .settings{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,minmax(150px,1fr));
   gap:10px;
+  margin-bottom:12px;
 }
 
 .field label{
   display:block;
-  color:var(--muted);
   font-size:10px;
+  color:var(--muted);
   margin-bottom:4px;
 }
 
@@ -154,30 +339,30 @@ h1{
 
 .edit-grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(220px,1fr));
+  grid-template-columns:
+    repeat(3,minmax(220px,1fr));
   gap:10px;
-  margin-top:15px;
 }
 
 .edit-match{
   border:1px solid var(--line);
   background:#071f18;
   border-radius:6px;
-  padding:10px;
+  padding:9px;
 }
 
-.stage-label{
-  color:#45c98a;
+.edit-match .stage-label{
   font-size:9px;
+  color:#45c98a;
   text-transform:uppercase;
-  margin-bottom:7px;
+  margin-bottom:6px;
 }
 
 .edit-match label{
-  display:block;
-  color:var(--muted);
   font-size:9px;
-  margin:5px 0 3px;
+  color:var(--muted);
+  display:block;
+  margin:4px 0;
 }
 
 .edit-match select{
@@ -185,129 +370,30 @@ h1{
   background:#061b14;
   color:var(--text);
   border:1px solid var(--line);
-  padding:7px;
+  padding:6px;
   border-radius:4px;
 }
 
-.bracket{
-  display:grid;
-  grid-template-columns:repeat(5,minmax(220px,1fr));
-  gap:25px;
-  overflow-x:auto;
-}
-
-.stage h2{
-  text-align:center;
-  font-size:11px;
-  letter-spacing:1.2px;
-  color:#45c98a;
-  margin:0 0 10px;
-}
-
-.match{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:7px;
-  padding:8px;
-  margin-bottom:15px;
-  box-shadow:var(--shadow);
-}
-
-.time{
-  color:var(--accent2);
-  font-size:10px;
-  font-weight:bold;
-  margin-bottom:5px;
-}
-
-.player{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  min-height:28px;
-  border-bottom:1px solid #153f31;
+.player-pool{
+  margin-top:12px;
+  border-top:1px solid var(--line);
+  padding-top:10px;
+  color:var(--muted);
   font-size:11px;
 }
 
-.player:last-of-type{
-  border-bottom:0;
-}
-
-.name{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.roll{
-  color:#71998b;
-  font-size:9px;
-  margin-left:4px;
-}
-
-.score{
-  background:#082119;
-  border-radius:3px;
-  padding:3px 6px;
-  font-weight:bold;
-}
-
-.match-foot{
+.pool-list{
   display:flex;
-  justify-content:space-between;
-  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
   margin-top:7px;
 }
 
-.status{
-  color:var(--muted);
-  font-size:9px;
-}
-
-.result-btn{
-  border:0;
-  background:#116d46;
-  color:white;
-  padding:5px 8px;
-  border-radius:4px;
-  font-size:10px;
-}
-
-.result-btn:hover{
-  background:#168957;
-}
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.72);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  z-index:100;
-}
-
-.overlay.show{
-  display:flex;
-}
-
-.modal{
-  width:min(500px,100%);
-  background:#09251c;
+.pool-item{
+  padding:5px 7px;
+  background:#0d3328;
   border:1px solid var(--line);
-  border-radius:9px;
-  padding:18px;
-}
-
-.modal h3{
-  margin:0 0 15px;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+  border-radius:4px;
 }
 
 .modal-actions{
@@ -317,55 +403,102 @@ h1{
   margin-top:15px;
 }
 
-.note{
-  color:var(--muted);
-  font-size:11px;
-  margin-top:15px;
+
+/* =========================================================
+   RESULT MODAL
+========================================================= */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
 }
+
+.overlay.show{
+  display:flex;
+}
+
+.modal{
+  width:min(760px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#09251c;
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+.modal h3{
+  margin:0 0 14px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1000px){
 
-  .settings{
-    grid-template-columns:1fr;
+  .topbar{
+    position:static;
+  }
+
+  #bracket{
+    grid-template-columns:repeat(5,250px);
+    overflow-x:auto;
   }
 
   .edit-grid{
     grid-template-columns:1fr;
   }
 
-  .bracket{
-    grid-template-columns:repeat(5,250px);
+  .settings{
+    grid-template-columns:1fr;
   }
 
 }
+
 </style>
+
 </head>
 
 <body>
 
+
 <header class="topbar">
 
-  <div>
+  <div class="title-wrap">
 
-    <h1>FIFA 26 Tournament — ADMIN</h1>
+    <h1>FIFA 26 Tournament — Admin</h1>
 
-    <div class="subtitle">
+    <p>
+      Tournament control panel •
       Single match • 6 minutes each half •
-      Draws → penalties • No Best of 3
-    </div>
+      Draws go to penalties • No Best of 3
+    </p>
 
   </div>
-
 
   <div class="actions">
 
     <button
       class="btn"
-      onclick="window.open('index.html','_blank')"
+      id="editBtn"
     >
-      View Public Page
+      Edit Brackets
     </button>
-
 
     <button
       class="btn danger"
@@ -379,71 +512,53 @@ h1{
 </header>
 
 
-<div class="container">
+<div class="info">
 
-
-  <!-- INFORMATION -->
-
-  <div class="info">
-
-    <div class="badge">
-
-      Start:
-      <strong id="startBadge">
-        07:30
-      </strong>
-
-    </div>
-
-
-    <div class="badge">
-
-      Match:
-      <strong id="durationBadge">
-        12 min
-      </strong>
-
-    </div>
-
-
-    <div class="badge">
-
-      Draw:
-      <strong>
-        Penalty Shootout
-      </strong>
-
-    </div>
-
-
-    <div class="badge">
-
-      Storage:
-      <strong>
-        Browser LocalStorage
-      </strong>
-
-    </div>
-
+  <div class="badge">
+    Start:
+    <strong id="startBadge">07:30</strong>
   </div>
 
+  <div class="badge">
+    Match length:
+    <strong id="durationBadge">12 min</strong>
+  </div>
 
-  <!-- TIMING -->
+  <div class="badge">
+    Draw:
+    <strong>Penalty shootout</strong>
+  </div>
 
-  <div class="admin-box">
+  <div class="badge">
+    Rule:
+    <strong>26-only matches first</strong>
+  </div>
 
-    <h2>
-      Tournament Timings
-    </h2>
+</div>
+
+
+<!-- =====================================================
+     EDIT PANEL
+===================================================== -->
+
+<section
+  class="edit-panel"
+  id="editPanel"
+>
+
+  <div class="edit-box">
+
+    <h3>
+      Manual Bracket Setup
+    </h3>
 
 
     <div class="settings">
 
-
       <div class="field">
 
         <label>
-          Starting Time
+          Starting time
         </label>
 
         <input
@@ -458,7 +573,7 @@ h1{
       <div class="field">
 
         <label>
-          Minutes Per Half
+          Minutes per half
         </label>
 
         <input
@@ -475,7 +590,7 @@ h1{
       <div class="field">
 
         <label>
-          Gap Between Matches
+          Extra gap between matches
         </label>
 
         <input
@@ -488,30 +603,7 @@ h1{
 
       </div>
 
-
     </div>
-
-
-    <br>
-
-
-    <button
-      class="btn primary"
-      id="saveSettings"
-    >
-      Save Timings
-    </button>
-
-  </div>
-
-
-  <!-- BRACKET EDITOR -->
-
-  <div class="admin-box">
-
-    <h2>
-      Manual Bracket Setup
-    </h2>
 
 
     <div
@@ -520,39 +612,49 @@ h1{
     ></div>
 
 
-    <br>
+    <div class="player-pool">
+
+      <strong>
+        Player pool
+      </strong>
+
+      <div
+        class="pool-list"
+        id="playerPool"
+      ></div>
+
+    </div>
 
 
-    <button
-      class="btn primary"
-      id="saveBracket"
-    >
-      Save Bracket
-    </button>
+    <div class="modal-actions">
+
+      <button
+        class="btn"
+        id="cancelEdit"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="btn primary"
+        id="saveEdit"
+      >
+        Save Brackets & Timings
+      </button>
+
+    </div>
 
   </div>
 
-
-  <!-- ADMIN BRACKET -->
-
-  <div
-    class="bracket"
-    id="bracket"
-  ></div>
+</section>
 
 
-  <div class="note">
-
-    This page is the tournament control panel.
-    Scores, winners, timings and bracket positions
-    are stored in this browser's LocalStorage.
-
-  </div>
-
-</div>
+<main id="bracket"></main>
 
 
-<!-- RESULT MODAL -->
+<!-- =====================================================
+     RESULT MODAL
+===================================================== -->
 
 <div
   class="overlay"
@@ -567,7 +669,6 @@ h1{
 
 
     <div class="form-grid">
-
 
       <div class="field">
 
@@ -600,7 +701,6 @@ h1{
 
       </div>
 
-
     </div>
 
 
@@ -611,7 +711,7 @@ h1{
     >
 
       <label>
-        Penalty Winner
+        Penalty winner
       </label>
 
       <select id="penaltyWinner"></select>
@@ -627,7 +727,6 @@ h1{
       >
         Cancel
       </button>
-
 
       <button
         class="btn primary"
@@ -666,32 +765,29 @@ const PLAYERS = [
   ["Abhilash Naskar","MBA26004"],
   ["Siddhant Singh","MBA25180"],
   ["Kush Soni","MBA25119"],
-  ["Jay Mishra","MBATM26037"],
+  ["Kabir","MBA25212"],
+  ["Jay Mishra","MBATm26037"],
   ["Hemant Agrawal","MBA25188"],
   ["Varun Rathi","MBA25230"],
-  ["kartikay sharma","MBATM26016"],
-  ["Meet Gowsawmi","MBA25111"],
+  ["kartikay sharma","mbatm26016"],
+  ["Meet Gowsawmi",""],
   ["Chaitanya Wankhande","MBA25062"],
-  ["RajVardhan","MBA25176"],
-  ["Adhiraj","MBA25053"],
-  ["Arush","MBA25217"]
+  ["RajVardhan","25003"],
+  ["Adhiraj","25053"],
+  ["Arush","25005"]
 
 ];
 
 
-
-const byName =
-  Object.fromEntries(
-    PLAYERS.map(
-      p => [
-        p[0],
-        {
-          name:p[0],
-          roll:p[1]
-        }
-      ]
-    )
-  );
+const byName = Object.fromEntries(
+  PLAYERS.map(p => [
+    p[0],
+    {
+      name:p[0],
+      roll:p[1]
+    }
+  ])
+);
 
 
 /* =========================================================
@@ -729,7 +825,7 @@ const stages = [
 
 
 /* =========================================================
-   MATCH
+   MATCH CREATOR
 ========================================================= */
 
 function makeMatch(
@@ -772,7 +868,7 @@ function makeMatch(
 
 
 /* =========================================================
-   DEFAULT BRACKET
+   DEFAULT MATCHES
 ========================================================= */
 
 const DEFAULT_MATCHES = [
@@ -847,11 +943,28 @@ const DEFAULT_MATCHES = [
     "Arush"
   ),
 
+  /* KUSH VS KABIR
+     WINNER → VARUN RATHI
+  */
+
+  makeMatch(
+    "p9",
+    "prelim",
+    "Kush Soni",
+    "Kabir",
+    "r8",
+    1
+  ),
+
+
+  /* =====================================================
+     ROUND OF 16
+  ===================================================== */
 
   makeMatch(
     "r1",
     "r16",
-    "Kush Soni",
+    null,
     null,
     "q1",
     0
@@ -911,6 +1024,8 @@ const DEFAULT_MATCHES = [
     0
   ),
 
+  /* VARUN RATHI VS WINNER KUSH/KABIR */
+
   makeMatch(
     "r8",
     "r16",
@@ -918,9 +1033,13 @@ const DEFAULT_MATCHES = [
     null,
     "q4",
     1,
-    true
+    false
   ),
 
+
+  /* =====================================================
+     QUARTERFINALS
+  ===================================================== */
 
   makeMatch(
     "q1",
@@ -959,6 +1078,10 @@ const DEFAULT_MATCHES = [
   ),
 
 
+  /* =====================================================
+     SEMIFINALS
+  ===================================================== */
+
   makeMatch(
     "s1",
     "sf",
@@ -977,6 +1100,10 @@ const DEFAULT_MATCHES = [
     1
   ),
 
+
+  /* =====================================================
+     FINAL
+  ===================================================== */
 
   makeMatch(
     "f1",
@@ -998,7 +1125,6 @@ function clone(x){
 
 }
 
-
 function loadState(){
 
   const saved =
@@ -1011,7 +1137,6 @@ function loadState(){
     : clone(DEFAULT_MATCHES);
 
 }
-
 
 function loadSettings(){
 
@@ -1030,18 +1155,6 @@ function loadSettings(){
 
 }
 
-
-let matches = loadState();
-
-let settings = loadSettings();
-
-let resultMatchId = null;
-
-
-/* =========================================================
-   SAVE
-========================================================= */
-
 function saveState(){
 
   localStorage.setItem(
@@ -1056,6 +1169,14 @@ function saveState(){
 
 }
 
+let matches = loadState();
+
+let settings = loadSettings();
+
+let resultMatchId = null;
+
+let editSnapshot = null;
+
 
 /* =========================================================
    HELPERS
@@ -1068,7 +1189,6 @@ function player(name){
     : null;
 
 }
-
 
 function escapeHtml(s){
 
@@ -1085,25 +1205,19 @@ function escapeHtml(s){
 
 }
 
-
 function displayPlayer(name){
 
   if(!name){
 
-    return '<span style="color:#5d8074">TBD</span>';
+    return '<span class="empty">TBD</span>';
 
   }
 
-
-  const p =
-    player(name);
-
+  const p = player(name);
 
   return `
     <span class="name">
-
       ${escapeHtml(p?.name || name)}
-
       ${
         p?.roll
         ?
@@ -1113,12 +1227,10 @@ function displayPlayer(name){
         :
         ""
       }
-
     </span>
   `;
 
 }
-
 
 function minutesFromTime(t){
 
@@ -1128,7 +1240,6 @@ function minutesFromTime(t){
   return h * 60 + m;
 
 }
-
 
 function timeString(total){
 
@@ -1153,7 +1264,7 @@ function timeString(total){
 
 
 /* =========================================================
-   SCHEDULING
+   SCHEDULE
 ========================================================= */
 
 function scheduleMatches(){
@@ -1162,7 +1273,6 @@ function scheduleMatches(){
     matches.filter(
       m => m.stage === "prelim"
     );
-
 
   const both26 = m => {
 
@@ -1178,7 +1288,6 @@ function scheduleMatches(){
     );
 
   };
-
 
   const only25 = m => {
 
@@ -1196,7 +1305,6 @@ function scheduleMatches(){
     );
 
   };
-
 
   const order = [
 
@@ -1228,16 +1336,12 @@ function scheduleMatches(){
 
   ];
 
-
   let cursor =
     minutesFromTime(
       settings.startTime
     );
 
-
-  const minAfter745 =
-    466;
-
+  const minAfter745 = 466;
 
   for(const m of order){
 
@@ -1246,20 +1350,54 @@ function scheduleMatches(){
       cursor < minAfter745
     ){
 
-      cursor =
-        minAfter745;
+      cursor = minAfter745;
 
     }
 
-
     m.time =
       timeString(cursor);
-
 
     cursor +=
       Number(settings.halfMinutes) * 2
       +
       Number(settings.gapMinutes);
+
+  }
+
+}
+
+
+/* =========================================================
+   PROPAGATE WINNER
+========================================================= */
+
+function propagateWinner(m){
+
+  if(!m.winner || !m.nextMatch){
+
+    return;
+
+  }
+
+  const next =
+    matches.find(
+      x => x.id === m.nextMatch
+    );
+
+  if(!next){
+
+    return;
+
+  }
+
+  if(m.nextSlot === 0){
+
+    next.p1 = m.winner;
+
+  }
+  else{
+
+    next.p2 = m.winner;
 
   }
 
@@ -1274,54 +1412,50 @@ function openResult(id){
 
   resultMatchId = id;
 
-
   const m =
     matches.find(
       x => x.id === id
     );
 
+  if(!m || !m.p1 || !m.p2){
+
+    return;
+
+  }
 
   document.getElementById(
     "resultTitle"
   ).textContent =
     `${m.p1} vs ${m.p2}`;
 
-
   document.getElementById(
     "p1Label"
   ).textContent =
     m.p1;
-
 
   document.getElementById(
     "p2Label"
   ).textContent =
     m.p2;
 
-
   document.getElementById(
     "score1"
   ).value =
     m.score1 ?? 0;
-
 
   document.getElementById(
     "score2"
   ).value =
     m.score2 ?? 0;
 
-
   updatePenaltyField();
-
 
   const select =
     document.getElementById(
       "penaltyWinner"
     );
 
-
   select.innerHTML = `
-
     <option value="">
       Select penalty winner
     </option>
@@ -1333,9 +1467,7 @@ function openResult(id){
     <option value="${escapeHtml(m.p2)}">
       ${escapeHtml(m.p2)}
     </option>
-
   `;
-
 
   if(m.winner){
 
@@ -1344,13 +1476,11 @@ function openResult(id){
 
   }
 
-
   document.getElementById(
     "resultOverlay"
   ).classList.add("show");
 
 }
-
 
 function updatePenaltyField(){
 
@@ -1361,7 +1491,6 @@ function updatePenaltyField(){
       ).value
     );
 
-
   const s2 =
     Number(
       document.getElementById(
@@ -1369,18 +1498,14 @@ function updatePenaltyField(){
       ).value
     );
 
-
   document.getElementById(
     "penaltyField"
   ).style.display =
     s1 === s2
-    ?
-    "block"
-    :
-    "none";
+    ? "block"
+    : "none";
 
 }
-
 
 function closeResult(){
 
@@ -1392,44 +1517,6 @@ function closeResult(){
 
 }
 
-
-function propagateWinner(m){
-
-  if(
-    !m.winner ||
-    !m.nextMatch
-  ){
-
-    return;
-
-  }
-
-
-  const next =
-    matches.find(
-      x => x.id === m.nextMatch
-    );
-
-
-  if(!next) return;
-
-
-  if(m.nextSlot === 0){
-
-    next.p1 =
-      m.winner;
-
-  }
-  else{
-
-    next.p2 =
-      m.winner;
-
-  }
-
-}
-
-
 function saveResult(){
 
   const m =
@@ -1437,9 +1524,11 @@ function saveResult(){
       x => x.id === resultMatchId
     );
 
+  if(!m){
 
-  if(!m) return;
+    return;
 
+  }
 
   const s1 =
     Number(
@@ -1448,7 +1537,6 @@ function saveResult(){
       ).value
     );
 
-
   const s2 =
     Number(
       document.getElementById(
@@ -1456,11 +1544,7 @@ function saveResult(){
       ).value
     );
 
-
-  if(
-    s1 < 0 ||
-    s2 < 0
-  ){
+  if(s1 < 0 || s2 < 0){
 
     alert(
       "Scores cannot be negative."
@@ -1470,7 +1554,6 @@ function saveResult(){
 
   }
 
-
   let winner = null;
 
   let penalties = null;
@@ -1478,15 +1561,13 @@ function saveResult(){
 
   if(s1 > s2){
 
-    winner =
-      m.p1;
+    winner = m.p1;
 
   }
 
   else if(s2 > s1){
 
-    winner =
-      m.p2;
+    winner = m.p2;
 
   }
 
@@ -1496,7 +1577,6 @@ function saveResult(){
       document.getElementById(
         "penaltyWinner"
       ).value;
-
 
     if(!winner){
 
@@ -1508,20 +1588,17 @@ function saveResult(){
 
     }
 
-
     const p1pen =
       prompt(
         `Penalty score for ${m.p1}:`,
         "4"
       );
 
-
     const p2pen =
       prompt(
         `Penalty score for ${m.p2}:`,
         "3"
       );
-
 
     if(
       p1pen === null ||
@@ -1532,31 +1609,21 @@ function saveResult(){
 
     }
 
-
     penalties =
       `${p1pen}-${p2pen}`;
 
   }
 
 
-  m.score1 =
-    s1;
+  m.score1 = s1;
 
+  m.score2 = s2;
 
-  m.score2 =
-    s2;
+  m.winner = winner;
 
+  m.penalties = penalties;
 
-  m.winner =
-    winner;
-
-
-  m.penalties =
-    penalties;
-
-
-  m.played =
-    true;
+  m.played = true;
 
 
   propagateWinner(m);
@@ -1582,20 +1649,16 @@ function matchCard(m){
       "article"
     );
 
-
   el.className =
     "match";
 
 
   const finished =
-    m.played &&
-    m.winner;
-
+    m.played && m.winner;
 
   const p1Win =
     finished &&
     m.winner === m.p1;
-
 
   const p2Win =
     finished &&
@@ -1613,13 +1676,7 @@ function matchCard(m){
       "Final"
     )
     :
-    (
-      m.bye
-      ?
-      "BYE"
-      :
-      "Not played"
-    );
+    "Not played";
 
 
   if(
@@ -1628,7 +1685,7 @@ function matchCard(m){
   ){
 
     status =
-      "Varun Rathi gets a bye";
+      "Winner of Kush Soni vs Kabir";
 
   }
 
@@ -1641,9 +1698,11 @@ function matchCard(m){
 
 
     <div
-      class="player
-      ${p1Win ? "winner" : ""}
-      ${finished && !p1Win ? "loser" : ""}"
+      class="
+        player
+        ${p1Win ? "winner" : ""}
+        ${finished && !p1Win ? "loser" : ""}
+      "
     >
 
       ${displayPlayer(m.p1)}
@@ -1656,9 +1715,11 @@ function matchCard(m){
 
 
     <div
-      class="player
-      ${p2Win ? "winner" : ""}
-      ${finished && !p2Win ? "loser" : ""}"
+      class="
+        player
+        ${p2Win ? "winner" : ""}
+        ${finished && !p2Win ? "loser" : ""}
+      "
     >
 
       ${displayPlayer(m.p2)}
@@ -1676,19 +1737,19 @@ function matchCard(m){
         ${status}
       </span>
 
-
       ${
         m.p1 &&
-        m.p2 &&
-        !m.bye
+        m.p2
         ?
         `
-        <button
-          class="result-btn"
-          onclick="openResult('${m.id}')"
-        >
-          ${m.played ? "Edit Result" : "Enter Result"}
-        </button>
+          <button
+            class="result-btn"
+            data-result="${m.id}"
+          >
+            ${m.played
+              ? "Edit Result"
+              : "Enter Result"}
+          </button>
         `
         :
         ""
@@ -1697,6 +1758,19 @@ function matchCard(m){
     </div>
 
   `;
+
+
+  const btn =
+    el.querySelector(
+      "[data-result]"
+    );
+
+  if(btn){
+
+    btn.onclick = () =>
+      openResult(m.id);
+
+  }
 
 
   return el;
@@ -1722,7 +1796,9 @@ function render(){
   document.getElementById(
     "durationBadge"
   ).textContent =
-    Number(settings.halfMinutes) * 2
+    (
+      Number(settings.halfMinutes) * 2
+    )
     +
     " min";
 
@@ -1742,7 +1818,6 @@ function render(){
       document.createElement(
         "section"
       );
-
 
     col.className =
       "stage " + s.id;
@@ -1780,8 +1855,55 @@ function render(){
 
 
 /* =========================================================
-   MANUAL BRACKET EDITOR
+   EDITOR
 ========================================================= */
+
+function openEditor(){
+
+  editSnapshot = {
+
+    matches:
+      clone(matches),
+
+    settings:
+      clone(settings)
+
+  };
+
+
+  document.getElementById(
+    "startTime"
+  ).value =
+    settings.startTime;
+
+
+  document.getElementById(
+    "halfMinutes"
+  ).value =
+    settings.halfMinutes;
+
+
+  document.getElementById(
+    "gapMinutes"
+  ).value =
+    settings.gapMinutes;
+
+
+  renderEditor();
+
+
+  document.getElementById(
+    "editPanel"
+  ).classList.add("show");
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
 
 function renderEditor(){
 
@@ -1809,7 +1931,9 @@ function renderEditor(){
     box.innerHTML = `
 
       <div class="stage-label">
+
         ${m.stage} · ${m.id}
+
       </div>
 
 
@@ -1839,7 +1963,8 @@ function renderEditor(){
 
 
     for(
-      const slot of ["p1","p2"]
+      const slot of
+      ["p1","p2"]
     ){
 
       const select =
@@ -1848,42 +1973,33 @@ function renderEditor(){
         );
 
 
-      select.innerHTML = `
-        <option value="">
-          TBD / Empty
-        </option>
-      `;
-
-
-      PLAYERS.forEach(p => {
-
-        const option =
-          document.createElement(
-            "option"
-          );
-
-
-        option.value =
-          p[0];
-
-
-        option.textContent =
-          p[0]
-          +
-          (
-            p[1]
-            ?
-            " — " + p[1]
-            :
-            ""
-          );
-
-
-        select.appendChild(
-          option
-        );
-
-      });
+      select.innerHTML =
+        `
+          <option value="">
+            TBD / Empty
+          </option>
+        `
+        +
+        PLAYERS
+          .map(
+            p =>
+              `
+                <option
+                  value="${escapeHtml(p[0])}"
+                >
+                  ${escapeHtml(p[0])}
+                  ${
+                    p[1]
+                    ?
+                    " — " +
+                    escapeHtml(p[1])
+                    :
+                    ""
+                  }
+                </option>
+              `
+          )
+          .join("");
 
 
       select.value =
@@ -1895,21 +2011,15 @@ function renderEditor(){
         m[slot] =
           select.value || null;
 
+        m.played = false;
 
-        m.played =
-          false;
+        m.winner = null;
 
-        m.winner =
-          null;
+        m.score1 = null;
 
-        m.score1 =
-          null;
+        m.score2 = null;
 
-        m.score2 =
-          null;
-
-        m.penalties =
-          null;
+        m.penalties = null;
 
       };
 
@@ -1917,16 +2027,63 @@ function renderEditor(){
 
   }
 
+
+  document.getElementById(
+    "playerPool"
+  ).innerHTML =
+
+    PLAYERS
+      .map(
+        p =>
+          `
+            <span class="pool-item">
+
+              ${escapeHtml(p[0])}
+
+              ${
+                p[1]
+                ?
+                " · " +
+                escapeHtml(p[1])
+                :
+                ""
+              }
+
+            </span>
+          `
+      )
+      .join("");
+
 }
 
 
-/* =========================================================
-   SAVE TIMINGS
-========================================================= */
+function closeEditor(){
 
-document.getElementById(
-  "saveSettings"
-).onclick = () => {
+  if(editSnapshot){
+
+    matches =
+      editSnapshot.matches;
+
+    settings =
+      editSnapshot.settings;
+
+  }
+
+
+  document.getElementById(
+    "editPanel"
+  ).classList.remove("show");
+
+
+  editSnapshot = null;
+
+
+  render();
+
+}
+
+
+function saveEditor(){
 
   settings.startTime =
     document.getElementById(
@@ -1958,57 +2115,34 @@ document.getElementById(
 
   scheduleMatches();
 
-  saveState();
-
-  render();
-
-  alert(
-    "Tournament timings updated."
-  );
-
-};
-
-
-/* =========================================================
-   SAVE BRACKET
-========================================================= */
-
-document.getElementById(
-  "saveBracket"
-).onclick = () => {
-
-  scheduleMatches();
 
   saveState();
 
+
+  editSnapshot = null;
+
+
+  document.getElementById(
+    "editPanel"
+  ).classList.remove("show");
+
+
   render();
 
-  renderEditor();
-
-  alert(
-    "Bracket updated successfully."
-  );
-
-};
+}
 
 
 /* =========================================================
    RESET
 ========================================================= */
 
-document.getElementById(
-  "resetBtn"
-).onclick = () => {
+function resetTournament(){
 
-  const confirmed =
-    confirm(
-      "Reset the WHOLE tournament?\n\n" +
-      "This clears all scores, winners, " +
-      "bracket changes and timings."
-    );
-
-
-  if(!confirmed){
+  if(
+    !confirm(
+      "Reset the whole tournament? This clears all scores, winners and manual bracket changes."
+    )
+  ){
 
     return;
 
@@ -2034,37 +2168,30 @@ document.getElementById(
 
   render();
 
-  renderEditor();
-
-
-  document.getElementById(
-    "startTime"
-  ).value =
-    settings.startTime;
-
-
-  document.getElementById(
-    "halfMinutes"
-  ).value =
-    settings.halfMinutes;
-
-
-  document.getElementById(
-    "gapMinutes"
-  ).value =
-    settings.gapMinutes;
-
-
-  alert(
-    "Tournament has been reset."
-  );
-
-};
+}
 
 
 /* =========================================================
-   MODAL
+   EVENTS
 ========================================================= */
+
+document.getElementById(
+  "editBtn"
+).onclick =
+  openEditor;
+
+
+document.getElementById(
+  "cancelEdit"
+).onclick =
+  closeEditor;
+
+
+document.getElementById(
+  "saveEdit"
+).onclick =
+  saveEditor;
+
 
 document.getElementById(
   "closeResult"
@@ -2076,6 +2203,12 @@ document.getElementById(
   "saveResult"
 ).onclick =
   saveResult;
+
+
+document.getElementById(
+  "resetBtn"
+).onclick =
+  resetTournament;
 
 
 document.getElementById(
@@ -2095,32 +2228,10 @@ document.getElementById(
 
 
 /* =========================================================
-   INITIALISE
+   START
 ========================================================= */
 
-document.getElementById(
-  "startTime"
-).value =
-  settings.startTime;
-
-
-document.getElementById(
-  "halfMinutes"
-).value =
-  settings.halfMinutes;
-
-
-document.getElementById(
-  "gapMinutes"
-).value =
-  settings.gapMinutes;
-
-
-scheduleMatches();
-
 render();
-
-renderEditor();
 
 </script>
 
