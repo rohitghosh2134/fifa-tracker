@@ -196,18 +196,11 @@ button{
 
 .player{
   display:flex;
-
   align-items:center;
-
   gap:7px;
-
   min-height:25px;
-
-  border-bottom:
-    1px solid #153f31;
-
+  border-bottom:1px solid #153f31;
   padding:3px 2px;
-
   font-size:11px;
 }
 
@@ -217,11 +210,8 @@ button{
 
 .player .name{
   flex:1;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
-
   white-space:nowrap;
 }
 
@@ -233,16 +223,18 @@ button{
 
 .score{
   min-width:25px;
-
   text-align:center;
-
   font-weight:bold;
-
   background:#082119;
-
   border-radius:3px;
-
   padding:3px 4px;
+}
+
+.series-score{
+  color:#d8a934;
+  font-size:10px;
+  font-weight:bold;
+  margin-left:4px;
 }
 
 .player.winner{
@@ -260,14 +252,11 @@ button{
 
 .match-foot{
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
   margin-top:7px;
-
   min-height:20px;
+  gap:8px;
 }
 
 .status{
@@ -277,15 +266,10 @@ button{
 
 .result-btn{
   border:0;
-
   background:#116d46;
-
   color:white;
-
   padding:5px 7px;
-
   border-radius:4px;
-
   font-size:10px;
 }
 
@@ -336,164 +320,114 @@ button{
 
 .edit-panel{
   max-width:1500px;
-
   margin:12px auto;
-
   padding:0 18px;
 }
 
 .edit-box{
   background:#09251c;
-
   border:1px solid var(--line);
-
   border-radius:8px;
-
   padding:14px;
 }
 
 .edit-box h3{
   margin:0 0 10px;
-
   font-size:13px;
 }
 
 .settings{
   display:grid;
-
   grid-template-columns:
     repeat(3,minmax(150px,1fr));
-
   gap:10px;
-
   margin-bottom:12px;
 }
 
 .field label{
   display:block;
-
   font-size:10px;
-
   color:var(--muted);
-
   margin-bottom:4px;
 }
 
 .field input,
 .field select{
   width:100%;
-
   background:#061b14;
-
   color:var(--text);
-
   border:1px solid var(--line);
-
   border-radius:5px;
-
   padding:8px;
 }
 
 .edit-grid{
   display:grid;
-
   grid-template-columns:
     repeat(3,minmax(220px,1fr));
-
   gap:10px;
 }
 
 .edit-match{
   border:1px solid var(--line);
-
   background:#071f18;
-
   border-radius:6px;
-
   padding:9px;
 }
 
 .edit-match .stage-label{
   font-size:9px;
-
   color:#45c98a;
-
   text-transform:uppercase;
-
   margin-bottom:6px;
 }
 
 .edit-match label{
   font-size:9px;
-
   color:var(--muted);
-
   display:block;
-
   margin:4px 0;
 }
 
 .edit-match select{
   width:100%;
-
   background:#061b14;
-
   color:var(--text);
-
   border:1px solid var(--line);
-
   padding:6px;
-
   border-radius:4px;
 }
 
 .player-pool{
   margin-top:12px;
-
   border-top:1px solid var(--line);
-
   padding-top:10px;
-
   color:var(--muted);
-
   font-size:11px;
 }
 
 .pool-list{
   display:flex;
-
   gap:6px;
-
   flex-wrap:wrap;
-
   margin-top:7px;
 }
 
 .pool-item{
   padding:5px 7px;
-
   background:#0d3328;
-
   border:1px solid var(--line);
-
   border-radius:4px;
 }
 
 .overlay{
   position:fixed;
-
   inset:0;
-
   background:rgba(0,0,0,.72);
-
   z-index:100;
-
   display:none;
-
   align-items:center;
-
   justify-content:center;
-
   padding:18px;
 }
 
@@ -502,117 +436,165 @@ button{
 }
 
 .modal{
-  width:min(760px,100%);
-
-  max-height:90vh;
-
+  width:min(820px,100%);
+  max-height:92vh;
   overflow:auto;
-
   background:#09251c;
-
   border:1px solid var(--line);
-
   border-radius:9px;
-
   padding:18px;
-
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.5);
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 
 .modal h3{
   margin:0 0 14px;
 }
 
+.modal-subtitle{
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:14px;
+}
+
 .form-grid{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:10px;
 }
 
-.modal-actions{
-  display:flex;
-
-  justify-content:flex-end;
-
-  gap:8px;
-
-  margin-top:15px;
+.series-info{
+  margin-top:14px;
+  padding:12px;
+  background:#071f18;
+  border:1px solid var(--line);
+  border-radius:6px;
 }
 
-.series-info{
-  margin-top:12px;
+.series-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
 
-  padding:10px;
+.series-header strong{
+  font-size:12px;
+}
 
-  background:#071f18;
-
-  border:1px solid var(--line);
-
-  border-radius:6px;
-
-  color:var(--muted);
-
-  font-size:11px;
+.series-score-live{
+  font-size:14px;
+  color:var(--accent);
+  font-weight:bold;
 }
 
 .series-games{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:8px;
-
-  margin-top:10px;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
 }
 
 .game-box{
   border:1px solid var(--line);
-
   background:#061b14;
-
-  padding:8px;
-
+  padding:10px;
   border-radius:5px;
+}
+
+.game-box.completed{
+  border-color:#246f52;
 }
 
 .game-box strong{
   display:block;
-
   font-size:10px;
-
-  margin-bottom:5px;
-
+  margin-bottom:8px;
   color:#45c98a;
 }
 
-.game-box input{
+.game-score-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.game-score-grid label{
+  font-size:8px;
+  color:var(--muted);
+  display:block;
+  margin-bottom:3px;
+}
+
+.game-score-grid input{
   width:100%;
-
   background:#09251c;
-
   color:var(--text);
-
   border:1px solid var(--line);
-
   padding:7px;
-
   border-radius:4px;
+}
+
+.game-winner{
+  margin-top:8px;
+  padding:6px;
+  background:#09251c;
+  border-radius:4px;
+  font-size:9px;
+  color:var(--muted);
+}
+
+.game-winner strong{
+  display:inline;
+  color:var(--text);
+}
+
+.game-penalty{
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px solid var(--line);
+}
+
+.game-penalty label{
+  display:block;
+  font-size:8px;
+  color:var(--muted);
+  margin-bottom:3px;
+}
+
+.game-penalty input{
+  width:100%;
+  background:#09251c;
+  color:var(--text);
+  border:1px solid var(--line);
+  padding:6px;
+  border-radius:4px;
+}
+
+.series-result{
+  margin-top:10px;
+  padding:9px;
+  border-radius:5px;
+  background:#09251c;
+  border:1px solid var(--line);
+  font-size:10px;
+}
+
+.series-result strong{
+  color:var(--accent);
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:15px;
 }
 
 .note{
   max-width:1500px;
-
   margin:0 auto 20px;
-
   padding:0 18px;
-
   color:var(--muted);
-
   font-size:11px;
 }
 
@@ -623,9 +605,7 @@ button{
   }
 
   #bracket{
-    grid-template-columns:
-      repeat(5,250px);
-
+    grid-template-columns:repeat(5,250px);
     overflow-x:auto;
   }
 
@@ -637,14 +617,16 @@ button{
     grid-template-columns:1fr;
   }
 
+  .series-games{
+    grid-template-columns:1fr;
+  }
+
 }
 
 </style>
 </head>
 
-
 <body>
-
 
 <header class="topbar">
 
@@ -660,17 +642,11 @@ button{
 
   <div class="actions">
 
-    <button
-      class="btn"
-      id="editBtn"
-    >
+    <button class="btn" id="editBtn">
       Edit Brackets
     </button>
 
-    <button
-      class="btn danger"
-      id="resetBtn"
-    >
+    <button class="btn danger" id="resetBtn">
       Reset Tournament
     </button>
 
@@ -683,37 +659,27 @@ button{
 
   <div class="badge">
     Start:
-    <strong id="startBadge">
-      07:30
-    </strong>
+    <strong id="startBadge">07:30</strong>
   </div>
 
   <div class="badge">
     Match length:
-    <strong id="durationBadge">
-      12 min
-    </strong>
+    <strong id="durationBadge">12 min</strong>
   </div>
 
   <div class="badge">
     Normal:
-    <strong>
-      Single Match
-    </strong>
+    <strong>Single Match</strong>
   </div>
 
   <div class="badge">
     Semifinals:
-    <strong>
-      Best of 3
-    </strong>
+    <strong>Best of 3</strong>
   </div>
 
   <div class="badge">
     Final:
-    <strong>
-      Best of 3
-    </strong>
+    <strong>Best of 3</strong>
   </div>
 
 </div>
@@ -723,97 +689,44 @@ button{
 
   <div class="edit-box">
 
-    <h3>
-      Manual Bracket Setup
-    </h3>
-
+    <h3>Manual Bracket Setup</h3>
 
     <div class="settings">
 
       <div class="field">
-
-        <label>
-          Starting time
-        </label>
-
-        <input
-          id="startTime"
-          type="time"
-          value="07:30"
-        >
-
+        <label>Starting time</label>
+        <input id="startTime" type="time" value="07:30">
       </div>
 
-
       <div class="field">
-
-        <label>
-          Minutes per half
-        </label>
-
-        <input
-          id="halfMinutes"
-          type="number"
-          min="1"
-          max="30"
-          value="6"
-        >
-
+        <label>Minutes per half</label>
+        <input id="halfMinutes" type="number" min="1" max="30" value="6">
       </div>
 
-
       <div class="field">
-
-        <label>
-          Extra gap between matches
-        </label>
-
-        <input
-          id="gapMinutes"
-          type="number"
-          min="0"
-          max="60"
-          value="0"
-        >
-
+        <label>Extra gap between matches</label>
+        <input id="gapMinutes" type="number" min="0" max="60" value="0">
       </div>
 
     </div>
 
-
-    <div
-      class="edit-grid"
-      id="editGrid"
-    ></div>
-
+    <div class="edit-grid" id="editGrid"></div>
 
     <div class="player-pool">
 
-      <strong>
-        Player Pool
-      </strong>
+      <strong>Player Pool</strong>
 
-      <div
-        class="pool-list"
-        id="playerPool"
-      ></div>
+      <div class="pool-list" id="playerPool"></div>
 
     </div>
 
-
     <div class="modal-actions">
 
-      <button
-        class="btn"
-        id="cancelEdit"
-      >
+      <button class="btn" id="cancelEdit">
         Cancel
       </button>
 
-      <button
-        class="btn primary"
-        id="saveEdit"
-      >
+      <button class="btn primary" id="saveEdit">
         Save Brackets & Timings
       </button>
 
@@ -829,15 +742,17 @@ button{
 
 <div class="note">
 
-  Use this page to enter and edit results.
-
   Normal matches are single-match games.
-
-  Semifinals and Final are Best of 3.
 
   Draws in normal matches go to penalties.
 
-  Future opponents remain TBD until their previous match is completed.
+  Semifinals and Final are Best of 3.
+
+  Each game of the Best of 3 has its own score and
+  penalty shootout if required.
+
+  The series winner is automatically determined after
+  one player reaches two game wins.
 
 </div>
 
@@ -846,10 +761,7 @@ button{
      RESULT MODAL
 ===================================================== -->
 
-<div
-  class="overlay"
-  id="resultOverlay"
->
+<div class="overlay" id="resultOverlay">
 
   <div class="modal">
 
@@ -857,63 +769,72 @@ button{
       Enter Result
     </h3>
 
+    <div class="modal-subtitle" id="resultSubtitle"></div>
 
-    <div class="form-grid">
 
-      <div class="field">
+    <!-- NORMAL MATCH -->
 
-        <label id="p1Label">
-          Player 1
-        </label>
+    <div id="normalResultSection">
 
-        <input
-          id="score1"
-          type="number"
-          min="0"
-          value=""
-        >
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label id="p1Label">
+            Player 1
+          </label>
+
+          <input
+            id="score1"
+            type="number"
+            min="0"
+            inputmode="numeric"
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label id="p2Label">
+            Player 2
+          </label>
+
+          <input
+            id="score2"
+            type="number"
+            min="0"
+            inputmode="numeric"
+          >
+
+        </div>
 
       </div>
 
 
-      <div class="field">
+      <div
+        class="field"
+        id="penaltyField"
+        style="display:none;margin-top:10px"
+      >
 
-        <label id="p2Label">
-          Player 2
+        <label>
+          Penalty Winner
         </label>
 
-        <input
-          id="score2"
-          type="number"
-          min="0"
-          value=""
-        >
+        <select id="penaltyWinner">
+
+          <option value="">
+            Select penalty winner
+          </option>
+
+        </select>
 
       </div>
 
     </div>
 
 
-    <div
-      class="field"
-      id="penaltyField"
-      style="display:none;margin-top:10px"
-    >
-
-      <label>
-        Penalty Winner
-      </label>
-
-      <select id="penaltyWinner">
-
-        <option value="">
-          Select penalty winner
-        </option>
-
-      </select>
-
-    </div>
-
+    <!-- BEST OF 3 -->
 
     <div
       class="series-info"
@@ -921,53 +842,249 @@ button{
       style="display:none"
     >
 
-      <strong>
-        Best of 3
-      </strong>
+      <div class="series-header">
+
+        <strong>
+          BEST OF 3 SERIES
+        </strong>
+
+        <span
+          class="series-score-live"
+          id="seriesScoreLive"
+        >
+          0 - 0
+        </span>
+
+      </div>
+
 
       <div class="series-games">
 
-        <div class="game-box">
+
+        <!-- GAME 1 -->
+
+        <div class="game-box" id="gameBox1">
 
           <strong>
-            Game 1
+            GAME 1
           </strong>
 
-          <input
-            id="game1Winner"
-            placeholder="Winner"
+          <div class="game-score-grid">
+
+            <div>
+
+              <label id="g1p1Label">
+                Player 1
+              </label>
+
+              <input
+                id="g1p1Score"
+                type="number"
+                min="0"
+                inputmode="numeric"
+              >
+
+            </div>
+
+            <div>
+
+              <label id="g1p2Label">
+                Player 2
+              </label>
+
+              <input
+                id="g1p2Score"
+                type="number"
+                min="0"
+                inputmode="numeric"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="game-penalty"
+            id="g1Penalty"
+            style="display:none"
           >
+
+            <label>
+              Penalty score
+            </label>
+
+            <input
+              id="g1PenaltyScore"
+              placeholder="Example: 4-3"
+            >
+
+          </div>
+
+
+          <div
+            class="game-winner"
+            id="g1WinnerDisplay"
+          >
+            Winner:
+            <strong>TBD</strong>
+          </div>
 
         </div>
 
 
-        <div class="game-box">
+        <!-- GAME 2 -->
+
+        <div class="game-box" id="gameBox2">
 
           <strong>
-            Game 2
+            GAME 2
           </strong>
 
-          <input
-            id="game2Winner"
-            placeholder="Winner"
+          <div class="game-score-grid">
+
+            <div>
+
+              <label id="g2p1Label">
+                Player 1
+              </label>
+
+              <input
+                id="g2p1Score"
+                type="number"
+                min="0"
+                inputmode="numeric"
+              >
+
+            </div>
+
+            <div>
+
+              <label id="g2p2Label">
+                Player 2
+              </label>
+
+              <input
+                id="g2p2Score"
+                type="number"
+                min="0"
+                inputmode="numeric"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="game-penalty"
+            id="g2Penalty"
+            style="display:none"
           >
+
+            <label>
+              Penalty score
+            </label>
+
+            <input
+              id="g2PenaltyScore"
+              placeholder="Example: 4-3"
+            >
+
+          </div>
+
+
+          <div
+            class="game-winner"
+            id="g2WinnerDisplay"
+          >
+            Winner:
+            <strong>TBD</strong>
+          </div>
 
         </div>
 
 
-        <div class="game-box">
+        <!-- GAME 3 -->
+
+        <div class="game-box" id="gameBox3">
 
           <strong>
-            Game 3
+            GAME 3
           </strong>
 
-          <input
-            id="game3Winner"
-            placeholder="Winner"
+          <div class="game-score-grid">
+
+            <div>
+
+              <label id="g3p1Label">
+                Player 1
+              </label>
+
+              <input
+                id="g3p1Score"
+                type="number"
+                min="0"
+                inputmode="numeric"
+              >
+
+            </div>
+
+            <div>
+
+              <label id="g3p2Label">
+                Player 2
+              </label>
+
+              <input
+                id="g3p2Score"
+                type="number"
+                min="0"
+                inputmode="numeric"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="game-penalty"
+            id="g3Penalty"
+            style="display:none"
           >
+
+            <label>
+              Penalty score
+            </label>
+
+            <input
+              id="g3PenaltyScore"
+              placeholder="Example: 4-3"
+            >
+
+          </div>
+
+
+          <div
+            class="game-winner"
+            id="g3WinnerDisplay"
+          >
+            Winner:
+            <strong>TBD</strong>
+          </div>
 
         </div>
 
+      </div>
+
+
+      <div
+        class="series-result"
+        id="seriesResult"
+      >
+        Series winner:
+        <strong>TBD</strong>
       </div>
 
     </div>
@@ -1033,19 +1150,18 @@ const PLAYERS = [
 ];
 
 
-const byName = Object.fromEntries(
-
-  PLAYERS.map(
-    p => [
-      p[0],
-      {
-        name:p[0],
-        roll:p[1]
-      }
-    ]
-  )
-
-);
+const byName =
+  Object.fromEntries(
+    PLAYERS.map(
+      p => [
+        p[0],
+        {
+          name:p[0],
+          roll:p[1]
+        }
+      ]
+    )
+  );
 
 
 /* =========================================================
@@ -1098,27 +1214,23 @@ function makeMatch(
 
   return {
 
-    id:id,
-
-    stage:stage,
+    id,
+    stage,
 
     p1:a,
-
     p2:b,
 
     score1:null,
-
     score2:null,
 
     penalties:null,
 
     winner:null,
 
-    nextMatch:nextMatch,
+    nextMatch,
+    nextSlot,
 
-    nextSlot:nextSlot,
-
-    bye:bye,
+    bye,
 
     time:null,
 
@@ -1128,11 +1240,24 @@ function makeMatch(
       stage === "sf" ||
       stage === "final",
 
-    game1:null,
+    /*
+      Best-of-3 game data.
 
-    game2:null,
+      Each game stores:
 
-    game3:null
+      {
+        score1,
+        score2,
+        penalties,
+        winner
+      }
+    */
+
+    games:[
+      null,
+      null,
+      null
+    ]
 
   };
 
@@ -1230,10 +1355,6 @@ const DEFAULT_MATCHES = [
   /*
     ROUND OF 16
 
-    Exactly 8 matches.
-
-    No extra Anirban bye.
-
     1. Winner Anirban/Robert vs TBD
     2. Winner Prakul/RajVardhan vs PARIMAL
     3. Winner Abhilash/Adhiraj vs Siddhant
@@ -1243,7 +1364,6 @@ const DEFAULT_MATCHES = [
     7. Winner Jay/Kartikay vs Shubham
     8. Varun vs Winner Kush/Kabir
   */
-
 
   makeMatch(
     "r1",
@@ -1389,7 +1509,7 @@ const DEFAULT_MATCHES = [
 
 
 /* =========================================================
-   STATE
+   CLONE
 ========================================================= */
 
 function clone(x){
@@ -1401,12 +1521,106 @@ function clone(x){
 }
 
 
+/* =========================================================
+   NORMALIZE OLD LOCAL STORAGE
+========================================================= */
+
+function normalizeMatch(m){
+
+  const normalized = {
+    ...m
+  };
+
+
+  normalized.bestOf3 =
+    Boolean(
+      m.bestOf3 ??
+      (
+        m.stage === "sf" ||
+        m.stage === "final"
+      )
+    );
+
+
+  /*
+    Convert old game1/game2/game3
+    format if it exists.
+
+    Old format only stored winner names.
+
+    We preserve them as winner-only
+    data so old results are not lost.
+  */
+
+  if(
+    Array.isArray(m.games)
+  ){
+
+    normalized.games =
+      [
+        m.games[0] || null,
+        m.games[1] || null,
+        m.games[2] || null
+      ];
+
+  }else{
+
+    normalized.games = [
+
+      m.game1
+      ?
+      {
+        score1:null,
+        score2:null,
+        penalties:null,
+        winner:m.game1
+      }
+      :
+      null,
+
+      m.game2
+      ?
+      {
+        score1:null,
+        score2:null,
+        penalties:null,
+        winner:m.game2
+      }
+      :
+      null,
+
+      m.game3
+      ?
+      {
+        score1:null,
+        score2:null,
+        penalties:null,
+        winner:m.game3
+      }
+      :
+      null
+
+    ];
+
+  }
+
+
+  return normalized;
+
+}
+
+
+/* =========================================================
+   LOAD STATE
+========================================================= */
+
 function loadState(){
 
   const saved =
     localStorage.getItem(
       "fifa26TournamentMatches"
     );
+
 
   if(!saved){
 
@@ -1416,35 +1630,16 @@ function loadState(){
 
   }
 
+
   try{
 
     const loaded =
       JSON.parse(saved);
 
-    /*
-      Make sure newly-added fields
-      exist when an older localStorage
-      version is loaded.
-    */
 
-    return loaded.map(m => ({
-
-      ...m,
-
-      bestOf3:
-        m.bestOf3 ??
-        (
-          m.stage === "sf" ||
-          m.stage === "final"
-        ),
-
-      game1:m.game1 ?? null,
-
-      game2:m.game2 ?? null,
-
-      game3:m.game3 ?? null
-
-    }));
+    return loaded.map(
+      normalizeMatch
+    );
 
   }catch(e){
 
@@ -1457,6 +1652,10 @@ function loadState(){
 }
 
 
+/* =========================================================
+   LOAD SETTINGS
+========================================================= */
+
 function loadSettings(){
 
   const saved =
@@ -1464,15 +1663,21 @@ function loadSettings(){
       "fifa26TournamentSettings"
     );
 
+
   if(!saved){
 
     return {
+
       startTime:"07:30",
+
       halfMinutes:6,
+
       gapMinutes:0
+
     };
 
   }
+
 
   try{
 
@@ -1481,9 +1686,13 @@ function loadSettings(){
   }catch(e){
 
     return {
+
       startTime:"07:30",
+
       halfMinutes:6,
+
       gapMinutes:0
+
     };
 
   }
@@ -1567,8 +1776,10 @@ function displayPlayer(name){
 
   }
 
+
   const p =
     player(name);
+
 
   return `
     <span class="name">
@@ -1735,28 +1946,21 @@ function scheduleMatches(){
       timeString(cursor);
 
 
-    const matchMinutes =
+    const normalDuration =
       Number(settings.halfMinutes) * 2;
 
 
     /*
-      Semifinals and final are
-      Best of 3.
-
-      Reserve three-game duration
-      for scheduling.
+      Best-of-3 gets three match
+      slots for scheduling.
     */
 
     const duration =
       m.bestOf3
       ?
-      matchMinutes * 3
+      normalDuration * 3
       :
-      matchMinutes;
-
-
-    m.time =
-      timeString(cursor);
+      normalDuration;
 
 
     cursor +=
@@ -1797,9 +2001,7 @@ function propagateWinner(m){
   }
 
 
-  if(
-    m.nextSlot === 0
-  ){
+  if(m.nextSlot === 0){
 
     next.p1 =
       m.winner;
@@ -1813,8 +2015,9 @@ function propagateWinner(m){
 
 
   /*
-    Future matches should remain
-    TBD until their opponent is known.
+    Reset the downstream result.
+
+    The opponent may have changed.
   */
 
   next.played =
@@ -1829,31 +2032,14 @@ function propagateWinner(m){
   next.penalties =
     null;
 
-  next.game1 =
-    null;
-
-  next.game2 =
-    null;
-
-  next.game3 =
-    null;
-
   next.winner =
     null;
 
-}
-
-
-/* =========================================================
-   RESULT BUTTON
-========================================================= */
-
-function canEnterResult(m){
-
-  return Boolean(
-    m.p1 &&
-    m.p2
-  );
+  next.games = [
+    null,
+    null,
+    null
+  ];
 
 }
 
@@ -1893,20 +2079,38 @@ function matchCard(m){
     "Not played";
 
 
-  if(m.played){
+  if(m.bestOf3){
 
-    if(m.bestOf3){
+    if(m.played){
+
+      const series =
+        getSeriesScore(m);
+
 
       status =
-        `Series: ${
-          m.game1 || "-"
-        } / ${
-          m.game2 || "-"
-        } / ${
-          m.game3 || "-"
-        }`;
+        `Series ${series.p1} - ${series.p2}`;
 
     }else{
+
+      const live =
+        getSeriesScore(m);
+
+
+      if(
+        live.p1 > 0 ||
+        live.p2 > 0
+      ){
+
+        status =
+          `Series ${live.p1} - ${live.p2}`;
+
+      }
+
+    }
+
+  }else{
+
+    if(m.played){
 
       status =
         m.penalties
@@ -1920,12 +2124,26 @@ function matchCard(m){
   }
 
 
+  const p1Series =
+    m.bestOf3
+    ?
+    getSeriesScore(m).p1
+    :
+    null;
+
+
+  const p2Series =
+    m.bestOf3
+    ?
+    getSeriesScore(m).p2
+    :
+    null;
+
+
   el.innerHTML = `
 
     <div class="time">
-
       ${m.time || "--:--"}
-
     </div>
 
 
@@ -1956,24 +2174,21 @@ function matchCard(m){
 
       ${displayPlayer(m.p1)}
 
-      <span class="score">
-
-        ${
-          m.bestOf3
-          ?
-          (
-            m.p1 && m.game1
-            ? ""
-            : "–"
-          )
-          :
-          (
-            m.score1 ??
-            "–"
-          )
-        }
-
-      </span>
+      ${
+        m.bestOf3
+        ?
+        `
+          <span class="series-score">
+            ${p1Series}W
+          </span>
+        `
+        :
+        `
+          <span class="score">
+            ${m.score1 ?? "–"}
+          </span>
+        `
+      }
 
     </div>
 
@@ -1992,20 +2207,21 @@ function matchCard(m){
 
       ${displayPlayer(m.p2)}
 
-      <span class="score">
-
-        ${
-          m.bestOf3
-          ?
-          "–"
-          :
-          (
-            m.score2 ??
-            "–"
-          )
-        }
-
-      </span>
+      ${
+        m.bestOf3
+        ?
+        `
+          <span class="series-score">
+            ${p2Series}W
+          </span>
+        `
+        :
+        `
+          <span class="score">
+            ${m.score2 ?? "–"}
+          </span>
+        `
+      }
 
     </div>
 
@@ -2013,14 +2229,12 @@ function matchCard(m){
     <div class="match-foot">
 
       <span class="status">
-
         ${status}
-
       </span>
 
 
       ${
-        canEnterResult(m)
+        m.p1 && m.p2
         ?
         `
           <button
@@ -2053,13 +2267,59 @@ function matchCard(m){
 
   if(btn){
 
-    btn.onclick = () =>
-      openResult(m.id);
+    btn.onclick =
+      () => openResult(m.id);
 
   }
 
 
   return el;
+
+}
+
+
+/* =========================================================
+   SERIES SCORE
+========================================================= */
+
+function getSeriesScore(m){
+
+  let p1 = 0;
+  let p2 = 0;
+
+
+  for(
+    const game of
+    (m.games || [])
+  ){
+
+    if(!game || !game.winner){
+
+      continue;
+
+    }
+
+
+    if(game.winner === m.p1){
+
+      p1++;
+
+    }
+
+
+    if(game.winner === m.p2){
+
+      p2++;
+
+    }
+
+  }
+
+
+  return {
+    p1,
+    p2
+  };
 
 }
 
@@ -2093,7 +2353,8 @@ function render(){
     );
 
 
-  root.innerHTML = "";
+  root.innerHTML =
+    "";
 
 
   for(const s of stages){
@@ -2114,9 +2375,7 @@ function render(){
         ${s.label}
       </h2>
 
-      <div
-        class="stage-list"
-      ></div>
+      <div class="stage-list"></div>
 
     `;
 
@@ -2128,12 +2387,10 @@ function render(){
 
 
     matches
-
       .filter(
         m =>
           m.stage === s.id
       )
-
       .forEach(
         m =>
           list.appendChild(
@@ -2152,59 +2409,484 @@ function render(){
 
 
 /* =========================================================
-   PENALTY FIELD
+   GAME WINNER CALCULATION
 ========================================================= */
 
-function updatePenaltyField(){
+function calculateGameWinner(
+  score1,
+  score2,
+  penalty
+){
 
-  const score1 =
-    document.getElementById(
-      "score1"
-    );
+  if(
+    score1 === "" ||
+    score2 === ""
+  ){
 
-  const score2 =
-    document.getElementById(
-      "score2"
-    );
+    return null;
 
-  const penaltyField =
-    document.getElementById(
-      "penaltyField"
-    );
+  }
+
+
+  const s1 =
+    Number(score1);
+
+
+  const s2 =
+    Number(score2);
 
 
   if(
-    !score1 ||
-    !score2 ||
-    !penaltyField
+    Number.isNaN(s1) ||
+    Number.isNaN(s2)
   ){
+
+    return null;
+
+  }
+
+
+  if(s1 < 0 || s2 < 0){
+
+    return null;
+
+  }
+
+
+  if(s1 > s2){
+
+    return "p1";
+
+  }
+
+
+  if(s2 > s1){
+
+    return "p2";
+
+  }
+
+
+  /*
+    Draw requires penalties.
+  */
+
+  if(!penalty){
+
+    return null;
+
+  }
+
+
+  const parts =
+    penalty
+      .split("-")
+      .map(
+        x => Number(
+          x.trim()
+        )
+      );
+
+
+  if(
+    parts.length !== 2 ||
+    parts.some(
+      Number.isNaN
+    )
+  ){
+
+    return null;
+
+  }
+
+
+  if(
+    parts[0] < 0 ||
+    parts[1] < 0 ||
+    parts[0] === parts[1]
+  ){
+
+    return null;
+
+  }
+
+
+  return parts[0] > parts[1]
+    ? "p1"
+    : "p2";
+
+}
+
+
+/* =========================================================
+   READ GAME FROM MODAL
+========================================================= */
+
+function readGameFromModal(
+  number
+){
+
+  const s1 =
+    document.getElementById(
+      `g${number}p1Score`
+    ).value;
+
+
+  const s2 =
+    document.getElementById(
+      `g${number}p2Score`
+    ).value;
+
+
+  const penalty =
+    document.getElementById(
+      `g${number}PenaltyScore`
+    ).value.trim();
+
+
+  const winnerPosition =
+    calculateGameWinner(
+      s1,
+      s2,
+      penalty
+    );
+
+
+  return {
+
+    score1:
+      s1 === ""
+      ? null
+      : Number(s1),
+
+    score2:
+      s2 === ""
+      ? null
+      : Number(s2),
+
+    penalties:
+      penalty || null,
+
+    winnerPosition
+
+  };
+
+}
+
+
+/* =========================================================
+   DISPLAY GAME PREVIEW
+========================================================= */
+
+function updateGamePreview(
+  number
+){
+
+  const game =
+    readGameFromModal(
+      number
+    );
+
+
+  const display =
+    document.getElementById(
+      `g${number}WinnerDisplay`
+    );
+
+
+  const box =
+    document.getElementById(
+      `gameBox${number}`
+    );
+
+
+  const winnerPosition =
+    game.winnerPosition;
+
+
+  let text =
+    "TBD";
+
+
+  if(winnerPosition === "p1"){
+
+    text =
+      document.getElementById(
+        "resultTitle"
+      ).dataset.p1;
+
+  }
+
+
+  if(winnerPosition === "p2"){
+
+    text =
+      document.getElementById(
+        "resultTitle"
+      ).dataset.p2;
+
+  }
+
+
+  display.innerHTML =
+    `
+      Winner:
+      <strong>
+        ${escapeHtml(text)}
+      </strong>
+    `;
+
+
+  box.classList.toggle(
+    "completed",
+    Boolean(winnerPosition)
+  );
+
+
+  updateSeriesPreview();
+
+}
+
+
+/* =========================================================
+   UPDATE SERIES PREVIEW
+========================================================= */
+
+function updateSeriesPreview(){
+
+  const m =
+    matches.find(
+      x =>
+        x.id === resultMatchId
+    );
+
+
+  if(!m){
 
     return;
 
   }
 
 
+  let p1Wins = 0;
+  let p2Wins = 0;
+
+
+  for(let i=1;i<=3;i++){
+
+    const game =
+      readGameFromModal(i);
+
+
+    if(
+      game.winnerPosition === "p1"
+    ){
+
+      p1Wins++;
+
+    }
+
+
+    if(
+      game.winnerPosition === "p2"
+    ){
+
+      p2Wins++;
+
+    }
+
+  }
+
+
+  document.getElementById(
+    "seriesScoreLive"
+  ).textContent =
+    `${p1Wins} - ${p2Wins}`;
+
+
+  const result =
+    document.getElementById(
+      "seriesResult"
+    );
+
+
+  if(p1Wins >= 2){
+
+    result.innerHTML =
+      `
+        Series winner:
+        <strong>
+          ${escapeHtml(m.p1)}
+        </strong>
+        — Final Series Score:
+        <strong>
+          ${p1Wins} - ${p2Wins}
+        </strong>
+      `;
+
+  }
+
+  else if(p2Wins >= 2){
+
+    result.innerHTML =
+      `
+        Series winner:
+        <strong>
+          ${escapeHtml(m.p2)}
+        </strong>
+        — Final Series Score:
+        <strong>
+          ${p1Wins} - ${p2Wins}
+        </strong>
+      `;
+
+  }
+
+  else{
+
+    result.innerHTML =
+      `
+        Series winner:
+        <strong>
+          TBD
+        </strong>
+        — Current Score:
+        <strong>
+          ${p1Wins} - ${p2Wins}
+        </strong>
+      `;
+
+  }
+
+
   /*
-    Empty fields must NOT be treated
-    as a 0-0 draw.
+    Game 3 is only necessary if
+    Games 1 and 2 are 1-1.
   */
 
+  const game3 =
+    document.getElementById(
+      "gameBox3"
+    );
+
+
   if(
-    score1.value !== "" &&
-    score2.value !== "" &&
-    Number(score1.value) ===
-    Number(score2.value)
+    p1Wins >= 2 ||
+    p2Wins >= 2
   ){
 
-    penaltyField.style.display =
+    game3.style.opacity =
+      ".45";
+
+  }else{
+
+    game3.style.opacity =
+      "1";
+
+  }
+
+}
+
+
+/* =========================================================
+   UPDATE PENALTY VISIBILITY
+========================================================= */
+
+function updateGamePenalty(
+  number
+){
+
+  const s1 =
+    document.getElementById(
+      `g${number}p1Score`
+    ).value;
+
+
+  const s2 =
+    document.getElementById(
+      `g${number}p2Score`
+    ).value;
+
+
+  const penalty =
+    document.getElementById(
+      `g${number}Penalty`
+    );
+
+
+  if(
+    s1 !== "" &&
+    s2 !== "" &&
+    Number(s1) === Number(s2)
+  ){
+
+    penalty.style.display =
       "block";
 
   }else{
 
-    penaltyField.style.display =
+    penalty.style.display =
       "none";
 
+    document.getElementById(
+      `g${number}PenaltyScore`
+    ).value =
+      "";
+
   }
+
+
+  updateGamePreview(
+    number
+  );
+
+}
+
+
+/* =========================================================
+   LOAD GAME INTO MODAL
+========================================================= */
+
+function loadGame(
+  number,
+  game
+){
+
+  if(!game){
+
+    document.getElementById(
+      `g${number}p1Score`
+    ).value = "";
+
+    document.getElementById(
+      `g${number}p2Score`
+    ).value = "";
+
+    document.getElementById(
+      `g${number}PenaltyScore`
+    ).value = "";
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    `g${number}p1Score`
+  ).value =
+    game.score1 ?? "";
+
+
+  document.getElementById(
+    `g${number}p2Score`
+  ).value =
+    game.score2 ?? "";
+
+
+  document.getElementById(
+    `g${number}PenaltyScore`
+  ).value =
+    game.penalties ?? "";
 
 }
 
@@ -2221,7 +2903,8 @@ function openResult(id){
 
   const m =
     matches.find(
-      x => x.id === id
+      x =>
+        x.id === id
     );
 
 
@@ -2232,43 +2915,41 @@ function openResult(id){
   }
 
 
+  const title =
+    document.getElementById(
+      "resultTitle"
+    );
+
+
+  title.textContent =
+    `${m.p1} vs ${m.p2}`;
+
+
+  title.dataset.p1 =
+    m.p1;
+
+
+  title.dataset.p2 =
+    m.p2;
+
+
   document.getElementById(
-    "resultTitle"
+    "resultSubtitle"
   ).textContent =
-    `${m.p1 || "TBD"} vs ${
-      m.p2 || "TBD"
-    }`;
+    m.bestOf3
+    ?
+    "Enter the score for each game. A drawn game requires a penalty shootout."
+    :
+    "Enter the final score. A draw requires a penalty shootout.";
 
 
-  document.getElementById(
-    "p1Label"
-  ).textContent =
-    m.p1 ||
-    "Player 1";
+  const normal =
+    document.getElementById(
+      "normalResultSection"
+    );
 
 
-  document.getElementById(
-    "p2Label"
-  ).textContent =
-    m.p2 ||
-    "Player 2";
-
-
-  document.getElementById(
-    "score1"
-  ).value =
-    m.score1 ??
-    "";
-
-
-  document.getElementById(
-    "score2"
-  ).value =
-    m.score2 ??
-    "";
-
-
-  const seriesInfo =
+  const series =
     document.getElementById(
       "seriesInfo"
     );
@@ -2276,68 +2957,130 @@ function openResult(id){
 
   if(m.bestOf3){
 
-    seriesInfo.style.display =
+    normal.style.display =
+      "none";
+
+    series.style.display =
       "block";
 
 
     document.getElementById(
-      "game1Winner"
-    ).value =
-      m.game1 || "";
+      "g1p1Label"
+    ).textContent =
+      m.p1;
 
 
     document.getElementById(
-      "game2Winner"
-    ).value =
-      m.game2 || "";
+      "g1p2Label"
+    ).textContent =
+      m.p2;
 
 
     document.getElementById(
-      "game3Winner"
-    ).value =
-      m.game3 || "";
+      "g2p1Label"
+    ).textContent =
+      m.p1;
+
+
+    document.getElementById(
+      "g2p2Label"
+    ).textContent =
+      m.p2;
+
+
+    document.getElementById(
+      "g3p1Label"
+    ).textContent =
+      m.p1;
+
+
+    document.getElementById(
+      "g3p2Label"
+    ).textContent =
+      m.p2;
+
+
+    for(let i=1;i<=3;i++){
+
+      loadGame(
+        i,
+        m.games?.[i-1]
+      );
+
+      updateGamePenalty(
+        i
+      );
+
+    }
 
 
   }else{
 
-    seriesInfo.style.display =
+    normal.style.display =
+      "block";
+
+    series.style.display =
       "none";
 
-  }
 
-
-  const penaltyWinner =
     document.getElementById(
-      "penaltyWinner"
-    );
+      "p1Label"
+    ).textContent =
+      m.p1;
 
 
-  penaltyWinner.innerHTML = `
-
-    <option value="">
-      Select penalty winner
-    </option>
-
-    <option value="${escapeHtml(m.p1)}">
-      ${escapeHtml(m.p1)}
-    </option>
-
-    <option value="${escapeHtml(m.p2)}">
-      ${escapeHtml(m.p2)}
-    </option>
-
-  `;
+    document.getElementById(
+      "p2Label"
+    ).textContent =
+      m.p2;
 
 
-  if(m.winner){
+    document.getElementById(
+      "score1"
+    ).value =
+      m.score1 ?? "";
 
-    penaltyWinner.value =
-      m.winner;
+
+    document.getElementById(
+      "score2"
+    ).value =
+      m.score2 ?? "";
+
+
+    const penaltyWinner =
+      document.getElementById(
+        "penaltyWinner"
+      );
+
+
+    penaltyWinner.innerHTML = `
+
+      <option value="">
+        Select penalty winner
+      </option>
+
+      <option value="${escapeHtml(m.p1)}">
+        ${escapeHtml(m.p1)}
+      </option>
+
+      <option value="${escapeHtml(m.p2)}">
+        ${escapeHtml(m.p2)}
+      </option>
+
+    `;
+
+
+    if(m.winner){
+
+      penaltyWinner.value =
+        m.winner;
+
+    }
+
+
+    updateNormalPenalty();
 
   }
-
-
-  updatePenaltyField();
 
 
   document.getElementById(
@@ -2346,40 +3089,48 @@ function openResult(id){
     "show"
   );
 
+}
 
-  /*
-    IMPORTANT FIX:
 
-    Do NOT call render() here.
+/* =========================================================
+   NORMAL PENALTY
+========================================================= */
 
-    The modal remains intact and
-    the input elements are not destroyed.
-  */
+function updateNormalPenalty(){
 
-  setTimeout(
-    () => {
+  const s1 =
+    document.getElementById(
+      "score1"
+    ).value;
 
-      if(m.bestOf3){
 
-        document
-          .getElementById(
-            "game1Winner"
-          )
-          .focus();
+  const s2 =
+    document.getElementById(
+      "score2"
+    ).value;
 
-      }else{
 
-        document
-          .getElementById(
-            "score1"
-          )
-          .focus();
+  const field =
+    document.getElementById(
+      "penaltyField"
+    );
 
-      }
 
-    },
-    50
-  );
+  if(
+    s1 !== "" &&
+    s2 !== "" &&
+    Number(s1) === Number(s2)
+  ){
+
+    field.style.display =
+      "block";
+
+  }else{
+
+    field.style.display =
+      "none";
+
+  }
 
 }
 
@@ -2409,20 +3160,21 @@ function closeResult(){
 
 function saveNormalResult(m){
 
-  const score1Input =
+  const s1Input =
     document.getElementById(
       "score1"
     );
 
-  const score2Input =
+
+  const s2Input =
     document.getElementById(
       "score2"
     );
 
 
   if(
-    score1Input.value === "" ||
-    score2Input.value === ""
+    s1Input.value === "" ||
+    s2Input.value === ""
   ){
 
     alert(
@@ -2435,11 +3187,11 @@ function saveNormalResult(m){
 
 
   const s1 =
-    Number(score1Input.value);
+    Number(s1Input.value);
 
 
   const s2 =
-    Number(score2Input.value);
+    Number(s2Input.value);
 
 
   if(
@@ -2471,14 +3223,12 @@ function saveNormalResult(m){
 
   }
 
-
   else if(s2 > s1){
 
     winner =
       m.p2;
 
   }
-
 
   else{
 
@@ -2499,40 +3249,18 @@ function saveNormalResult(m){
     }
 
 
-    const p1pen =
-      prompt(
-        `Penalty score for ${m.p1}:`,
-        "4"
-      );
-
-
-    if(
-      p1pen === null
-    ){
-
-      return false;
-
-    }
-
-
-    const p2pen =
-      prompt(
-        `Penalty score for ${m.p2}:`,
-        "3"
-      );
-
-
-    if(
-      p2pen === null
-    ){
-
-      return false;
-
-    }
-
-
     penalties =
-      `${p1pen}-${p2pen}`;
+      prompt(
+        `Penalty score for ${m.p1} vs ${m.p2}`,
+        "4-3"
+      );
+
+
+    if(penalties === null){
+
+      return false;
+
+    }
 
   }
 
@@ -2545,12 +3273,12 @@ function saveNormalResult(m){
     s2;
 
 
-  m.winner =
-    winner;
-
-
   m.penalties =
     penalties;
+
+
+  m.winner =
+    winner;
 
 
   m.played =
@@ -2573,37 +3301,30 @@ function saveNormalResult(m){
 
 function saveBestOf3(m){
 
-  const g1 =
-    document.getElementById(
-      "game1Winner"
-    ).value.trim();
+  const games = [];
 
 
-  const g2 =
-    document.getElementById(
-      "game2Winner"
-    ).value.trim();
+  for(let i=1;i<=3;i++){
+
+    const game =
+      readGameFromModal(i);
 
 
-  const g3 =
-    document.getElementById(
-      "game3Winner"
-    ).value.trim();
+    games.push(
+      game
+    );
+
+  }
 
 
-  const valid = [
-    m.p1,
-    m.p2
-  ];
+  /*
+    Game 1 is mandatory.
+  */
 
-
-  if(
-    !valid.includes(g1) ||
-    !valid.includes(g2)
-  ){
+  if(!games[0].winnerPosition){
 
     alert(
-      "Game 1 and Game 2 must have a valid winner."
+      "Game 1 must have a valid result."
     );
 
     return false;
@@ -2611,48 +3332,68 @@ function saveBestOf3(m){
   }
 
 
-  let p1Wins = 0;
-  let p2Wins = 0;
+  /*
+    Game 2 is mandatory.
+  */
 
+  if(!games[1].winnerPosition){
 
-  if(g1 === m.p1){
+    alert(
+      "Game 2 must have a valid result."
+    );
 
-    p1Wins++;
-
-  }else{
-
-    p2Wins++;
-
-  }
-
-
-  if(g2 === m.p1){
-
-    p1Wins++;
-
-  }else{
-
-    p2Wins++;
+    return false;
 
   }
 
 
   /*
-    If already decided after
-    two games, Game 3 is optional.
+    Count first two games.
   */
 
-  if(
-    p1Wins < 2 &&
-    p2Wins < 2
+  let p1Wins = 0;
+  let p2Wins = 0;
+
+
+  for(
+    const game of
+    games.slice(0,2)
   ){
 
     if(
-      !valid.includes(g3)
+      game.winnerPosition === "p1"
+    ){
+
+      p1Wins++;
+
+    }
+
+    else if(
+      game.winnerPosition === "p2"
+    ){
+
+      p2Wins++;
+
+    }
+
+  }
+
+
+  /*
+    If 1-1, Game 3 is mandatory.
+  */
+
+  if(
+    p1Wins === 1 &&
+    p2Wins === 1
+  ){
+
+    if(
+      !games[2].winnerPosition
     ){
 
       alert(
-        "Game 3 winner is required because the series is tied 1-1."
+        "The series is 1-1. Game 3 is required."
       );
 
       return false;
@@ -2660,7 +3401,9 @@ function saveBestOf3(m){
     }
 
 
-    if(g3 === m.p1){
+    if(
+      games[2].winnerPosition === "p1"
+    ){
 
       p1Wins++;
 
@@ -2673,10 +3416,18 @@ function saveBestOf3(m){
   }
 
 
-  if(p1Wins === p2Wins){
+  /*
+    If someone won Games 1 and 2,
+    Game 3 must NOT be entered.
+  */
+
+  if(
+    p1Wins >= 2 &&
+    games[2].winnerPosition
+  ){
 
     alert(
-      "A Best of 3 series cannot finish tied."
+      "Player 1 already won the first two games. Game 3 should be empty."
     );
 
     return false;
@@ -2684,38 +3435,113 @@ function saveBestOf3(m){
   }
 
 
-  m.game1 =
-    g1;
+  if(
+    p2Wins >= 2 &&
+    games[2].winnerPosition
+  ){
+
+    alert(
+      "Player 2 already won the first two games. Game 3 should be empty."
+    );
+
+    return false;
+
+  }
 
 
-  m.game2 =
-    g2;
+  if(
+    p1Wins < 2 &&
+    p2Wins < 2
+  ){
+
+    alert(
+      "The Best of 3 series is not complete."
+    );
+
+    return false;
+
+  }
 
 
-  m.game3 =
-    g3 || null;
+  const winner =
+    p1Wins >= 2
+    ?
+    m.p1
+    :
+    m.p2;
 
 
-  m.winner =
-    p1Wins > p2Wins
-    ? m.p1
-    : m.p2;
+  /*
+    Save all three game results.
+
+    Empty Game 3 stays null for a 2-0.
+  */
+
+  m.games = [
+
+    {
+      score1:games[0].score1,
+      score2:games[0].score2,
+      penalties:games[0].penalties,
+      winner:
+        games[0].winnerPosition === "p1"
+        ? m.p1
+        : m.p2
+    },
+
+    {
+      score1:games[1].score1,
+      score2:games[1].score2,
+      penalties:games[1].penalties,
+      winner:
+        games[1].winnerPosition === "p1"
+        ? m.p1
+        : m.p2
+    },
+
+    games[2].winnerPosition
+    ?
+    {
+      score1:games[2].score1,
+      score2:games[2].score2,
+      penalties:games[2].penalties,
+      winner:
+        games[2].winnerPosition === "p1"
+        ? m.p1
+        : m.p2
+    }
+    :
+    null
+
+  ];
 
 
-  m.played =
-    true;
+  /*
+    Store series score as the
+    overall score1 / score2.
 
+    Therefore the public page can
+    display 2-1, 2-0 etc.
+  */
 
   m.score1 =
-    null;
+    p1Wins;
 
 
   m.score2 =
-    null;
+    p2Wins;
+
+
+  m.winner =
+    winner;
 
 
   m.penalties =
     null;
+
+
+  m.played =
+    true;
 
 
   propagateWinner(
@@ -2736,7 +3562,8 @@ function saveResult(){
 
   const m =
     matches.find(
-      x => x.id === resultMatchId
+      x =>
+        x.id === resultMatchId
     );
 
 
@@ -2774,12 +3601,6 @@ function saveResult(){
 
   }
 
-
-  /*
-    ONLY NOW do we save and render.
-
-    This is the important fix.
-  */
 
   saveState();
 
@@ -2867,9 +3688,9 @@ function renderEditor(){
 
       <div class="stage-label">
 
-        ${m.stage}
+        ${escapeHtml(m.stage)}
         ·
-        ${m.id}
+        ${escapeHtml(m.id)}
 
         ${
           m.bestOf3
@@ -2887,7 +3708,7 @@ function renderEditor(){
       </label>
 
       <select
-        data-mid="${m.id}"
+        data-mid="${escapeHtml(m.id)}"
         data-slot="p1"
       ></select>
 
@@ -2897,7 +3718,7 @@ function renderEditor(){
       </label>
 
       <select
-        data-mid="${m.id}"
+        data-mid="${escapeHtml(m.id)}"
         data-slot="p2"
       ></select>
 
@@ -2955,14 +3776,6 @@ function renderEditor(){
         "";
 
 
-      /*
-        Changing the bracket does NOT
-        call render().
-
-        Therefore the editor remains
-        stable while making selections.
-      */
-
       sel.addEventListener(
         "change",
         function(){
@@ -2992,16 +3805,11 @@ function renderEditor(){
             null;
 
 
-          m.game1 =
-            null;
-
-
-          m.game2 =
-            null;
-
-
-          m.game3 =
-            null;
+          m.games = [
+            null,
+            null,
+            null
+          ];
 
         }
       );
@@ -3053,13 +3861,6 @@ function closeEditor(){
       editSnapshot.settings;
 
   }
-
-
-  document.getElementById(
-    "editPanel"
-  ).scrollIntoView({
-    behavior:"smooth"
-  });
 
 
   editSnapshot =
@@ -3220,22 +4021,14 @@ document.getElementById(
 
 
 /*
-  IMPORTANT:
-
-  These listeners ONLY update the
-  penalty display.
-
-  They NEVER call render().
-
-  Therefore the score input cannot
-  disappear while typing.
+  Normal match score listeners.
 */
 
 document.getElementById(
   "score1"
 ).addEventListener(
   "input",
-  updatePenaltyField
+  updateNormalPenalty
 );
 
 
@@ -3243,13 +4036,57 @@ document.getElementById(
   "score2"
 ).addEventListener(
   "input",
-  updatePenaltyField
+  updateNormalPenalty
 );
 
 
 /*
-  Prevent accidental modal closure
-  when clicking inside it.
+  Best-of-3 game listeners.
+
+  IMPORTANT:
+
+  These only update the modal.
+
+  They NEVER call render().
+
+  Therefore typing scores will NOT
+  destroy the input elements.
+*/
+
+for(let i=1;i<=3;i++){
+
+  document.getElementById(
+    `g${i}p1Score`
+  ).addEventListener(
+    "input",
+    () =>
+      updateGamePenalty(i)
+  );
+
+
+  document.getElementById(
+    `g${i}p2Score`
+  ).addEventListener(
+    "input",
+    () =>
+      updateGamePenalty(i)
+  );
+
+
+  document.getElementById(
+    `g${i}PenaltyScore`
+  ).addEventListener(
+    "input",
+    () =>
+      updateGamePreview(i)
+  );
+
+}
+
+
+/*
+  Close modal only when clicking
+  outside the modal.
 */
 
 document
