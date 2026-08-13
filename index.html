@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>FIFA 26 Tournament Bracket</title>
 
 <style>
@@ -82,8 +83,11 @@ body{
   width:max-content;
   min-width:100%;
   padding:18px;
+
   display:grid;
-  grid-template-columns:repeat(5,minmax(230px,1fr));
+  grid-template-columns:
+    repeat(5,minmax(230px,1fr));
+
   gap:28px;
   align-items:start;
 }
@@ -119,6 +123,15 @@ body{
   color:var(--accent2);
   font-weight:bold;
   margin-bottom:6px;
+}
+
+.match-type{
+  font-size:9px;
+  color:#45c98a;
+  margin-bottom:5px;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  font-weight:bold;
 }
 
 .player{
@@ -176,43 +189,56 @@ body{
   align-items:center;
   margin-top:7px;
   min-height:20px;
+  gap:8px;
 }
 
 .status{
   font-size:9px;
   color:var(--muted);
+  line-height:1.4;
+}
+
+.series-score{
+  color:var(--accent);
+  font-weight:bold;
+}
+
+.penalty-text{
+  color:var(--accent2);
+}
+
+.game-results{
+  margin-top:7px;
+  padding-top:7px;
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:4px;
+}
+
+.game-result{
+  background:#071f18;
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:4px;
+  text-align:center;
+  font-size:8px;
+  color:var(--muted);
+}
+
+.game-result .game-label{
+  color:#45c98a;
+  font-weight:bold;
+  margin-bottom:2px;
+}
+
+.game-result.won{
+  color:var(--text);
 }
 
 .empty{
   color:#5d8074;
   font-style:italic;
-}
-
-.bo3-results{
-  margin-top:8px;
-  border-top:1px solid #153f31;
-  padding-top:5px;
-}
-
-.bo3-title{
-  font-size:9px;
-  color:#45c98a;
-  margin-bottom:4px;
-  font-weight:bold;
-}
-
-.bo3-game{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:3px 2px;
-  font-size:9px;
-  color:var(--muted);
-}
-
-.bo3-game strong{
-  color:var(--text);
-  font-size:10px;
 }
 
 .stage.prelim .match{
@@ -266,10 +292,11 @@ body{
   }
 
   #bracket{
-    grid-template-columns:repeat(5,250px);
+    grid-template-columns:
+      repeat(5,250px);
+
     overflow-x:auto;
   }
-
 }
 </style>
 </head>
@@ -284,7 +311,7 @@ body{
 
     <p>
       Single match • 6 minutes each half •
-      Draws go to penalties • No Best of 3 except Semifinals & Final
+      Draws go to penalties • Semifinals & Final Best of 3
     </p>
 
   </div>
@@ -296,7 +323,7 @@ body{
 
   <div class="badge">
     Start:
-    <strong id="startBadge">07:30</strong>
+    <strong id="startBadge">20:30</strong>
   </div>
 
   <div class="badge">
@@ -327,10 +354,12 @@ body{
 
 <div class="note">
 
-  Nima is paired with Arush.
-  Varun Rathi receives the Round-of-16 position against the
-  winner of Kush Soni vs Kabir.
-  Any incomplete progression is displayed as <b>TBD</b>.
+  Results are controlled from the admin page.
+  Future opponents are shown as TBD until the previous
+  match is completed.
+
+  Semifinal and Final series display every individual game,
+  including penalty shootouts where applicable.
 
 </div>
 
@@ -371,15 +400,19 @@ const PLAYERS = [
 
 ];
 
-const byName = Object.fromEntries(
-  PLAYERS.map(p => [
-    p[0],
-    {
-      name:p[0],
-      roll:p[1]
-    }
-  ])
-);
+
+const byName =
+  Object.fromEntries(
+    PLAYERS.map(
+      p => [
+        p[0],
+        {
+          name:p[0],
+          roll:p[1]
+        }
+      ]
+    )
+  );
 
 
 /* =========================================================
@@ -441,12 +474,6 @@ function makeMatch(
     score1:null,
     score2:null,
 
-    games:[
-      {p1:null,p2:null},
-      {p1:null,p2:null},
-      {p1:null,p2:null}
-    ],
-
     penalties:null,
 
     winner:null,
@@ -458,7 +485,15 @@ function makeMatch(
 
     time:null,
 
-    played:false
+    played:false,
+
+    bestOf3:
+      stage === "sf" ||
+      stage === "final",
+
+    game1:null,
+    game2:null,
+    game3:null
 
   };
 
@@ -466,12 +501,10 @@ function makeMatch(
 
 
 /* =========================================================
-   DEFAULT MATCHES
+   DEFAULT BRACKET
 ========================================================= */
 
 const DEFAULT_MATCHES = [
-
-  /* ---------- PRELIMINARY ---------- */
 
   makeMatch(
     "p1",
@@ -539,22 +572,23 @@ const DEFAULT_MATCHES = [
   makeMatch(
     "p8",
     "prelim",
-    "Nima",
-    "Arush"
-  ),
-
-  /* Kush/Kabir feeds the Varun R16 position */
-  makeMatch(
-    "p9",
-    "prelim",
     "Kush Soni",
     "Kabir",
     "r8",
     1
   ),
 
+  makeMatch(
+    "p9",
+    "prelim",
+    "Nima",
+    "Arush"
+  ),
 
-  /* ---------- ROUND OF 16 ---------- */
+
+  /* =========================
+     ROUND OF 16
+  ========================= */
 
   makeMatch(
     "r1",
@@ -629,7 +663,9 @@ const DEFAULT_MATCHES = [
   ),
 
 
-  /* ---------- QUARTERFINALS ---------- */
+  /* =========================
+     QUARTERFINALS
+  ========================= */
 
   makeMatch(
     "q1",
@@ -668,7 +704,9 @@ const DEFAULT_MATCHES = [
   ),
 
 
-  /* ---------- SEMIFINALS ---------- */
+  /* =========================
+     SEMIFINALS — BEST OF 3
+  ========================= */
 
   makeMatch(
     "s1",
@@ -689,7 +727,9 @@ const DEFAULT_MATCHES = [
   ),
 
 
-  /* ---------- FINAL ---------- */
+  /* =========================
+     FINAL — BEST OF 3
+  ========================= */
 
   makeMatch(
     "f1",
@@ -712,6 +752,78 @@ function clone(x){
 }
 
 
+function cleanGame(game){
+
+  if(!game){
+    return null;
+  }
+
+  if(
+    typeof game === "string"
+  ){
+
+    /*
+      Old version stored only
+      the winner string.
+
+      Do not trust that old data.
+      It cannot safely represent the
+      actual score, so it is discarded.
+    */
+
+    return null;
+
+  }
+
+  return {
+
+    score1:
+      game.score1 ?? null,
+
+    score2:
+      game.score2 ?? null,
+
+    penalty1:
+      game.penalty1 ?? null,
+
+    penalty2:
+      game.penalty2 ?? null,
+
+    winner:
+      game.winner ?? null
+
+  };
+
+}
+
+
+function normalizeMatch(m){
+
+  const x = {
+    ...m
+  };
+
+  x.bestOf3 =
+    x.bestOf3 ??
+    (
+      x.stage === "sf" ||
+      x.stage === "final"
+    );
+
+  x.game1 =
+    cleanGame(x.game1);
+
+  x.game2 =
+    cleanGame(x.game2);
+
+  x.game3 =
+    cleanGame(x.game3);
+
+  return x;
+
+}
+
+
 function loadState(){
 
   const saved =
@@ -719,9 +831,38 @@ function loadState(){
       "fifa26TournamentMatches"
     );
 
-  return saved
-    ? JSON.parse(saved)
-    : clone(DEFAULT_MATCHES);
+  if(!saved){
+
+    return clone(
+      DEFAULT_MATCHES
+    );
+
+  }
+
+  try{
+
+    const loaded =
+      JSON.parse(saved);
+
+    if(!Array.isArray(loaded)){
+
+      return clone(
+        DEFAULT_MATCHES
+      );
+
+    }
+
+    return loaded.map(
+      normalizeMatch
+    );
+
+  }catch(e){
+
+    return clone(
+      DEFAULT_MATCHES
+    );
+
+  }
 
 }
 
@@ -733,50 +874,56 @@ function loadSettings(){
       "fifa26TournamentSettings"
     );
 
-  return saved
-    ? JSON.parse(saved)
-    : {
-        startTime:"07:30",
-        halfMinutes:6,
-        gapMinutes:0
-      };
+  if(!saved){
+
+    return {
+      startTime:"20:30",
+      halfMinutes:6,
+      gapMinutes:0
+    };
+
+  }
+
+  try{
+
+    return JSON.parse(saved);
+
+  }catch(e){
+
+    return {
+      startTime:"20:30",
+      halfMinutes:6,
+      gapMinutes:0
+    };
+
+  }
 
 }
 
 
-let matches = loadState();
+let matches =
+  loadState();
 
-let settings = loadSettings();
+
+let settings =
+  loadSettings();
 
 
 /* =========================================================
-   IMPORTANT MIGRATION
+   STORAGE
 ========================================================= */
 
-function normalizeState(){
+function saveState(){
 
-  for(const m of matches){
+  localStorage.setItem(
+    "fifa26TournamentMatches",
+    JSON.stringify(matches)
+  );
 
-    if(!Array.isArray(m.games)){
-
-      m.games = [
-        {p1:null,p2:null},
-        {p1:null,p2:null},
-        {p1:null,p2:null}
-      ];
-
-    }
-
-    while(m.games.length < 3){
-
-      m.games.push({
-        p1:null,
-        p2:null
-      });
-
-    }
-
-  }
+  localStorage.setItem(
+    "fifa26TournamentSettings",
+    JSON.stringify(settings)
+  );
 
 }
 
@@ -794,55 +941,56 @@ function player(name){
 }
 
 
-function displayPlayer(name){
-
-  /*
-     IMPORTANT:
-     Never show "Winner X".
-     Any unresolved position is simply TBD.
-  */
-
-  if(!name){
-
-    return '<span class="empty">TBD</span>';
-
-  }
-
-  const p = player(name);
-
-  return `
-    <span class="name">
-
-      ${escapeHtml(p?.name || name)}
-
-      ${
-        p?.roll
-        ?
-        `<span class="roll">
-          ${escapeHtml(p.roll)}
-        </span>`
-        :
-        ""
-      }
-
-    </span>
-  `;
-
-}
-
-
 function escapeHtml(s){
 
   return String(s).replace(
     /[&<>"']/g,
     c => ({
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      '"':'&quot;',
-      "'":'&#039;'
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
     }[c])
   );
+
+}
+
+
+function displayPlayer(name){
+
+  if(!name){
+
+    return `
+      <span class="empty">
+        TBD
+      </span>
+    `;
+
+  }
+
+  const p =
+    player(name);
+
+  return `
+    <span class="name">
+      ${escapeHtml(
+        p?.name || name
+      )}
+
+      ${
+        p?.roll
+        ?
+        `
+          <span class="roll">
+            ${escapeHtml(p.roll)}
+          </span>
+        `
+        :
+        ""
+      }
+    </span>
+  `;
 
 }
 
@@ -879,16 +1027,6 @@ function timeString(total){
 }
 
 
-function isBestOf3(m){
-
-  return (
-    m.stage === "sf" ||
-    m.stage === "final"
-  );
-
-}
-
-
 /* =========================================================
    SCHEDULE
 ========================================================= */
@@ -899,7 +1037,6 @@ function scheduleMatches(){
     matches.filter(
       m => m.stage === "prelim"
     );
-
 
   const both26 = m => {
 
@@ -915,7 +1052,6 @@ function scheduleMatches(){
     );
 
   };
-
 
   const only25 = m => {
 
@@ -933,7 +1069,6 @@ function scheduleMatches(){
     );
 
   };
-
 
   const order = [
 
@@ -965,15 +1100,12 @@ function scheduleMatches(){
 
   ];
 
-
   let cursor =
     minutesFromTime(
       settings.startTime
     );
 
-
   const minAfter745 = 466;
-
 
   for(const m of order){
 
@@ -982,18 +1114,26 @@ function scheduleMatches(){
       cursor < minAfter745
     ){
 
-      cursor = minAfter745;
+      cursor =
+        minAfter745;
 
     }
-
 
     m.time =
       timeString(cursor);
 
+    const normalDuration =
+      Number(settings.halfMinutes) * 2;
+
+    const duration =
+      m.bestOf3
+      ?
+      normalDuration * 3
+      :
+      normalDuration;
 
     cursor +=
-      Number(settings.halfMinutes) * 2
-      +
+      duration +
       Number(settings.gapMinutes);
 
   }
@@ -1002,79 +1142,50 @@ function scheduleMatches(){
 
 
 /* =========================================================
-   BEST OF 3 DISPLAY
+   GAME DISPLAY
 ========================================================= */
 
-function bo3Display(m){
+function gameDisplay(game, p1, p2){
 
-  const games =
-    m.games || [
-      {p1:null,p2:null},
-      {p1:null,p2:null},
-      {p1:null,p2:null}
-    ];
+  if(!game){
 
+    return `
+      <div class="game-result">
+        <div class="game-label">
+          GAME
+        </div>
+        —
+      </div>
+    `;
+
+  }
+
+  let result =
+    `${game.score1}-${game.score2}`;
+
+  if(
+    game.penalty1 !== null &&
+    game.penalty2 !== null
+  ){
+
+    result +=
+      ` (${game.penalty1}-${game.penalty2} pens)`;
+
+  }
 
   return `
+    <div class="
+      game-result
+      ${game.winner ? "won" : ""}
+    ">
 
-    <div class="bo3-results">
-
-      <div class="bo3-title">
-        BEST OF 3
+      <div class="game-label">
+        GAME
       </div>
 
-      <div class="bo3-game">
-
-        <span>Game 1</span>
-
-        <strong>
-          ${games[0].p1 ?? "–"}
-          -
-          ${games[0].p2 ?? "–"}
-        </strong>
-
-      </div>
-
-
-      <div class="bo3-game">
-
-        <span>Game 2</span>
-
-        <strong>
-          ${games[1].p1 ?? "–"}
-          -
-          ${games[1].p2 ?? "–"}
-        </strong>
-
-      </div>
-
-
-      ${
-        games[2].p1 !== null ||
-        games[2].p2 !== null
-        ?
-
-        `
-        <div class="bo3-game">
-
-          <span>Game 3</span>
-
-          <strong>
-            ${games[2].p1 ?? "–"}
-            -
-            ${games[2].p2 ?? "–"}
-          </strong>
-
-        </div>
-        `
-
-        :
-
-        ""
-      }
+      ${escapeHtml(result)}
 
     </div>
-
   `;
 
 }
@@ -1091,18 +1202,18 @@ function matchCard(m){
       "article"
     );
 
-
-  el.className = "match";
-
+  el.className =
+    "match";
 
   const finished =
-    m.played && m.winner;
-
+    Boolean(
+      m.played &&
+      m.winner
+    );
 
   const p1Win =
     finished &&
     m.winner === m.p1;
-
 
   const p2Win =
     finished &&
@@ -1110,35 +1221,50 @@ function matchCard(m){
 
 
   let status =
-    m.played
-    ?
-    (
-      m.penalties
-      ?
-      `Penalties ${escapeHtml(m.penalties)}`
-      :
-      "Final"
-    )
-    :
     "Not played";
 
 
-  if(
-    m.bye
-  ){
+  if(m.bestOf3){
 
-    status = "BYE";
+    if(finished){
 
-  }
+      const p1Series =
+        [m.game1,m.game2,m.game3]
+          .filter(Boolean)
+          .filter(
+            g => g.winner === m.p1
+          ).length;
 
+      const p2Series =
+        [m.game1,m.game2,m.game3]
+          .filter(Boolean)
+          .filter(
+            g => g.winner === m.p2
+          ).length;
 
-  let scoreArea = "";
+      status = `
+        <span class="series-score">
+          Series ${p1Series}-${p2Series}
+        </span>
+      `;
 
+    }else{
 
-  if(isBestOf3(m)){
+      status =
+        "Best of 3 — Not played";
 
-    scoreArea =
-      bo3Display(m);
+    }
+
+  }else if(m.played){
+
+    status =
+      m.penalties
+      ?
+      `<span class="penalty-text">
+        Penalties ${escapeHtml(m.penalties)}
+      </span>`
+      :
+      "Final";
 
   }
 
@@ -1149,58 +1275,98 @@ function matchCard(m){
       ${m.time || "--:--"}
     </div>
 
+    ${
+      m.bestOf3
+      ?
+      `
+        <div class="match-type">
+          BEST OF 3
+        </div>
+      `
+      :
+      ""
+    }
 
-    <div
-      class="
-        player
-        ${p1Win ? "winner" : ""}
-        ${finished && !p1Win ? "loser" : ""}
-      "
-    >
+    <div class="
+      player
+      ${p1Win ? "winner" : ""}
+      ${
+        finished && !p1Win
+        ? "loser"
+        : ""
+      }
+    ">
 
       ${displayPlayer(m.p1)}
 
-      ${
-        !isBestOf3(m)
-        ?
-        `
-        <span class="score">
-          ${m.score1 ?? "–"}
-        </span>
-        `
-        :
-        ""
-      }
+      <span class="score">
+
+        ${
+          m.bestOf3
+          ?
+          "—"
+          :
+          (m.score1 ?? "–")
+        }
+
+      </span>
 
     </div>
 
 
-    <div
-      class="
-        player
-        ${p2Win ? "winner" : ""}
-        ${finished && !p2Win ? "loser" : ""}
-      "
-    >
+    <div class="
+      player
+      ${p2Win ? "winner" : ""}
+      ${
+        finished && !p2Win
+        ? "loser"
+        : ""
+      }
+    ">
 
       ${displayPlayer(m.p2)}
 
-      ${
-        !isBestOf3(m)
-        ?
-        `
-        <span class="score">
-          ${m.score2 ?? "–"}
-        </span>
-        `
-        :
-        ""
-      }
+      <span class="score">
+
+        ${
+          m.bestOf3
+          ?
+          "—"
+          :
+          (m.score2 ?? "–")
+        }
+
+      </span>
 
     </div>
 
 
-    ${scoreArea}
+    ${
+      m.bestOf3
+      ?
+      `
+        <div class="game-results">
+
+          <div class="game-result">
+            <div class="game-label">GAME 1</div>
+            ${formatGame(m.game1)}
+          </div>
+
+          <div class="game-result">
+            <div class="game-label">GAME 2</div>
+            ${formatGame(m.game2)}
+          </div>
+
+          <div class="game-result">
+            <div class="game-label">GAME 3</div>
+            ${formatGame(m.game3)}
+          </div>
+
+        </div>
+      `
+      :
+      ""
+    }
 
 
     <div class="match-foot">
@@ -1213,8 +1379,33 @@ function matchCard(m){
 
   `;
 
-
   return el;
+
+}
+
+
+function formatGame(game){
+
+  if(!game){
+
+    return "—";
+
+  }
+
+  let text =
+    `${game.score1}-${game.score2}`;
+
+  if(
+    game.penalty1 !== null &&
+    game.penalty2 !== null
+  ){
+
+    text +=
+      ` (${game.penalty1}-${game.penalty2})`;
+
+  }
+
+  return escapeHtml(text);
 
 }
 
@@ -1225,35 +1416,26 @@ function matchCard(m){
 
 function render(){
 
-  normalizeState();
-
   scheduleMatches();
-
 
   document.getElementById(
     "startBadge"
   ).textContent =
     settings.startTime;
 
-
   document.getElementById(
     "durationBadge"
   ).textContent =
-    (
-      Number(settings.halfMinutes) * 2
-    )
+    Number(settings.halfMinutes) * 2
     +
     " min";
-
 
   const root =
     document.getElementById(
       "bracket"
     );
 
-
   root.innerHTML = "";
-
 
   for(const s of stages){
 
@@ -1262,25 +1444,23 @@ function render(){
         "section"
       );
 
-
     col.className =
       "stage " + s.id;
 
-
     col.innerHTML = `
+      <h2>
+        ${s.label}
+      </h2>
 
-      <h2>${s.label}</h2>
-
-      <div class="stage-list"></div>
-
+      <div
+        class="stage-list"
+      ></div>
     `;
-
 
     const list =
       col.querySelector(
         ".stage-list"
       );
-
 
     matches
       .filter(
@@ -1294,7 +1474,6 @@ function render(){
           )
       );
 
-
     root.appendChild(col);
 
   }
@@ -1303,104 +1482,40 @@ function render(){
 
 
 /* =========================================================
-   INITIALIZE
+   CROSS-TAB UPDATE
 ========================================================= */
 
-normalizeState();
-
-render();
-
-
-/*
-   Refresh periodically so that if the admin page is open
-   in another tab on the SAME DEVICE, changes appear.
-*/
-setInterval(() => {
-
-  const latest =
-    localStorage.getItem(
-      "fifa26TournamentMatches"
-    );
-
-  if(!latest) return;
-
-  try{
-
-    const parsed =
-      JSON.parse(latest);
+window.addEventListener(
+  "storage",
+  function(e){
 
     if(
-      JSON.stringify(parsed)
-      !==
-      JSON.stringify(matches)
+      e.key ===
+      "fifa26TournamentMatches"
+      ||
+      e.key ===
+      "fifa26TournamentSettings"
     ){
 
-      matches = parsed;
+      matches =
+        loadState();
+
+      settings =
+        loadSettings();
 
       render();
 
     }
 
-  }catch(e){}
-
-}, 1000);
-
-
-/*
-   Also react immediately to storage changes from
-   another tab/window on the same browser.
-*/
-window.addEventListener(
-  "storage",
-  event => {
-
-    if(
-      event.key ===
-      "fifa26TournamentMatches"
-    ){
-
-      if(event.newValue){
-
-        try{
-
-          matches =
-            JSON.parse(
-              event.newValue
-            );
-
-          render();
-
-        }catch(e){}
-
-      }
-
-    }
-
-
-    if(
-      event.key ===
-      "fifa26TournamentSettings"
-    ){
-
-      if(event.newValue){
-
-        try{
-
-          settings =
-            JSON.parse(
-              event.newValue
-            );
-
-          render();
-
-        }catch(e){}
-
-      }
-
-    }
-
   }
 );
+
+
+/* =========================================================
+   START
+========================================================= */
+
+render();
 
 </script>
 
