@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FIFA 26 Admin</title>
+<title>FIFA 26 Tournament Admin</title>
 
 <style>
 
@@ -33,17 +32,13 @@ body{
 }
 
 .topbar{
-
   background:#071f18;
   border-bottom:1px solid var(--line);
-
   padding:14px 18px;
-
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:12px;
-
+  align-items:center;
+  gap:10px;
 }
 
 h1{
@@ -52,9 +47,9 @@ h1{
 }
 
 .subtitle{
+  margin-top:4px;
   color:var(--muted);
   font-size:11px;
-  margin-top:4px;
 }
 
 .actions{
@@ -64,25 +59,15 @@ h1{
 }
 
 button{
-
   cursor:pointer;
-  font:inherit;
-
 }
 
 .btn{
-
   border:1px solid var(--line);
   background:#0d3328;
   color:var(--text);
-
   padding:8px 12px;
   border-radius:6px;
-
-}
-
-.btn:hover{
-  background:#124332;
 }
 
 .btn.primary{
@@ -96,349 +81,199 @@ button{
 }
 
 .container{
-
   max-width:1500px;
   margin:auto;
   padding:18px;
-
-}
-
-.info{
-
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:18px;
-
-}
-
-.badge{
-
-  border:1px solid var(--line);
-  background:#09251c;
-
-  color:var(--muted);
-
-  padding:6px 9px;
-  border-radius:5px;
-
-  font-size:11px;
-
-}
-
-.badge strong{
-  color:var(--text);
-}
-
-.section{
-
-  background:#09251c;
-  border:1px solid var(--line);
-
-  border-radius:8px;
-
-  padding:14px;
-  margin-bottom:15px;
-
-}
-
-.section h2{
-
-  margin:0 0 12px;
-
-  font-size:14px;
-
 }
 
 .settings{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,minmax(180px,1fr));
-
-  gap:10px;
-
+  background:#09251c;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:14px;
+  margin-bottom:15px;
 }
 
-.field label{
+.settings h2{
+  margin:0 0 12px;
+  font-size:13px;
+}
 
+.settings-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(150px,1fr));
+  gap:10px;
+}
+
+label{
   display:block;
-
+  color:var(--muted);
   font-size:10px;
-  color:var(--muted);
-
   margin-bottom:5px;
-
 }
 
-.field input,
-.field select{
-
+input,
+select{
   width:100%;
-
   background:#061b14;
   color:var(--text);
-
   border:1px solid var(--line);
-
   border-radius:5px;
-
   padding:8px;
-
 }
 
-.bracket-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,minmax(250px,1fr));
-
-  gap:10px;
-
-}
-
-.edit-match{
-
-  border:1px solid var(--line);
-
-  background:#071f18;
-
-  border-radius:6px;
-
-  padding:10px;
-
-}
-
-.stage-label{
-
-  font-size:9px;
-
+.section-title{
+  margin:20px 0 10px;
   color:#45c98a;
-
-  text-transform:uppercase;
-
-  margin-bottom:8px;
-
+  font-size:13px;
+  letter-spacing:1px;
 }
 
-.edit-match label{
-
-  display:block;
-
-  font-size:9px;
-
-  color:var(--muted);
-
-  margin:5px 0;
-
-}
-
-.edit-match select{
-
-  width:100%;
-
-  background:#061b14;
-  color:var(--text);
-
-  border:1px solid var(--line);
-
-  padding:6px;
-
-  border-radius:4px;
-
-}
-
-.result-grid{
-
+.match-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(300px,1fr));
-
+  grid-template-columns:repeat(3,minmax(250px,1fr));
   gap:12px;
-
 }
 
-.result-card{
-
+.match{
+  background:var(--panel);
   border:1px solid var(--line);
-
-  background:#071f18;
-
-  border-radius:7px;
-
+  border-radius:8px;
   padding:12px;
-
 }
 
-.result-title{
-
-  font-weight:bold;
-  font-size:12px;
-
-  margin-bottom:8px;
-
+.match-header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
 }
 
-.result-format{
-
+.match-id{
   color:#45c98a;
-  font-size:9px;
-  margin-bottom:8px;
+  font-size:10px;
+  text-transform:uppercase;
+}
 
+.match-time{
+  color:var(--accent2);
+  font-size:10px;
+  font-weight:bold;
+}
+
+.players{
+  margin-bottom:10px;
+}
+
+.player-name{
+  padding:7px;
+  background:#071f18;
+  border:1px solid #153f31;
+  margin-bottom:5px;
+  border-radius:4px;
+  font-size:11px;
+}
+
+.result-area{
+  border-top:1px solid var(--line);
+  padding-top:10px;
+}
+
+.single-result{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.bo3{
+  border-top:1px solid var(--line);
+  padding-top:8px;
+}
+
+.bo3-title{
+  color:#45c98a;
+  font-size:10px;
+  font-weight:bold;
+  margin-bottom:8px;
 }
 
 .game{
-
-  border-top:1px solid var(--line);
-
-  padding-top:9px;
-  margin-top:9px;
-
-}
-
-.game-title{
-
-  font-size:10px;
-  color:var(--accent2);
-
+  background:#071f18;
+  border:1px solid #153f31;
+  border-radius:5px;
+  padding:8px;
   margin-bottom:7px;
-
-  font-weight:bold;
-
 }
 
-.score-grid{
+.game-label{
+  color:var(--muted);
+  font-size:9px;
+  margin-bottom:6px;
+}
 
+.game-grid{
   display:grid;
-
-  grid-template-columns:
-    1fr 60px 60px;
-
-  gap:6px;
-
-  align-items:center;
-
-}
-
-.score-grid span{
-
-  font-size:10px;
-
-}
-
-.score-grid input{
-
-  width:100%;
-
-  background:#061b14;
-  color:white;
-
-  border:1px solid var(--line);
-
-  border-radius:4px;
-
-  padding:6px;
-
-  text-align:center;
-
-}
-
-.penalty-row{
-
-  margin-top:7px;
-
-}
-
-.penalty-row select{
-
-  width:100%;
-
-  background:#061b14;
-  color:white;
-
-  border:1px solid var(--line);
-
-  border-radius:4px;
-
-  padding:6px;
-
-}
-
-.result-actions{
-
-  display:flex;
-
-  justify-content:flex-end;
-
+  grid-template-columns:1fr 1fr;
   gap:7px;
+}
 
-  margin-top:10px;
-
+.game-grid input{
+  text-align:center;
 }
 
 .status{
-
+  margin-top:8px;
   color:var(--muted);
   font-size:9px;
+}
 
+.save-row{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:9px;
 }
 
 .pool{
+  margin-top:20px;
+  background:#09251c;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:12px;
+}
 
-  color:var(--muted);
-
-  font-size:10px;
-
-  margin-top:12px;
-
+.pool-title{
+  font-size:11px;
+  color:#45c98a;
+  margin-bottom:8px;
 }
 
 .pool-list{
-
   display:flex;
-  gap:6px;
   flex-wrap:wrap;
-
-  margin-top:7px;
-
+  gap:6px;
 }
 
 .pool-item{
-
   padding:5px 7px;
-
-  background:#0d3328;
-
   border:1px solid var(--line);
-
+  background:#0d3328;
   border-radius:4px;
-
+  font-size:9px;
+  color:var(--muted);
 }
 
-@media(max-width:900px){
+@media(max-width:1000px){
 
-  .settings,
-  .bracket-grid,
-  .result-grid{
-
+  .match-grid{
     grid-template-columns:1fr;
-
   }
 
-  .topbar{
-
-    align-items:flex-start;
-    flex-direction:column;
-
+  .settings-grid{
+    grid-template-columns:1fr;
   }
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -450,9 +285,7 @@ button{
     <h1>FIFA 26 Tournament — Admin</h1>
 
     <div class="subtitle">
-
-      Bracket control • Results • Best of 3 semifinals/final
-
+      Results, bracket progression and tournament timing
     </div>
 
   </div>
@@ -463,7 +296,7 @@ button{
       class="btn"
       onclick="location.href='index.html'"
     >
-      View Tournament
+      Public Bracket
     </button>
 
     <button
@@ -477,60 +310,42 @@ button{
 
 </header>
 
+
 <div class="container">
-
-  <div class="info">
-
-    <div class="badge">
-      Start:
-      <strong id="startBadge">20:30</strong>
-    </div>
-
-    <div class="badge">
-      Normal Match:
-      <strong>12 min</strong>
-    </div>
-
-    <div class="badge">
-      Semifinals:
-      <strong>Best of 3</strong>
-    </div>
-
-    <div class="badge">
-      Final:
-      <strong>Best of 3</strong>
-    </div>
-
-  </div>
 
 
   <!-- SETTINGS -->
 
-  <section class="section">
+  <section class="settings">
 
-    <h2>Tournament Timing</h2>
+    <h2>Tournament Settings</h2>
 
-    <div class="settings">
+    <div class="settings-grid">
 
-      <div class="field">
+      <div>
 
-        <label>Starting Time</label>
+        <label>
+          Starting Time
+        </label>
 
         <input
-          type="time"
           id="startTime"
-          value="20:30"
+          type="time"
+          value="07:30"
         >
 
       </div>
 
-      <div class="field">
 
-        <label>Minutes Per Half</label>
+      <div>
+
+        <label>
+          Minutes Per Half
+        </label>
 
         <input
-          type="number"
           id="halfMinutes"
+          type="number"
           min="1"
           max="30"
           value="6"
@@ -538,13 +353,16 @@ button{
 
       </div>
 
-      <div class="field">
 
-        <label>Gap Between Matches</label>
+      <div>
+
+        <label>
+          Gap Between Matches
+        </label>
 
         <input
-          type="number"
           id="gapMinutes"
+          type="number"
           min="0"
           max="60"
           value="0"
@@ -554,61 +372,37 @@ button{
 
     </div>
 
-    <br>
 
-    <button
-      class="btn primary"
-      id="saveSettings"
-    >
-      Save Timing
-    </button>
+    <div class="save-row">
 
-  </section>
-
-
-  <!-- BRACKET EDITOR -->
-
-  <section class="section">
-
-    <h2>Manual Bracket Setup</h2>
-
-    <div
-      class="bracket-grid"
-      id="bracketGrid"
-    ></div>
-
-    <div class="pool">
-
-      Player Pool
-
-      <div
-        class="pool-list"
-        id="playerPool"
-      ></div>
+      <button
+        class="btn primary"
+        id="saveSettings"
+      >
+        Save Timing
+      </button>
 
     </div>
 
-    <br>
-
-    <button
-      class="btn primary"
-      id="saveBracket"
-    >
-      Save Bracket
-    </button>
-
   </section>
 
 
-  <!-- RESULTS -->
+  <!-- MATCHES -->
 
-  <section class="section">
+  <div id="matchesContainer"></div>
 
-    <h2>Enter / Edit Results</h2>
+
+  <!-- PLAYER POOL -->
+
+  <section class="pool">
+
+    <div class="pool-title">
+      Player Pool
+    </div>
 
     <div
-      class="result-grid"
-      id="resultGrid"
+      class="pool-list"
+      id="playerPool"
     ></div>
 
   </section>
@@ -618,7 +412,11 @@ button{
 
 <script>
 
-const PLAYERS=[
+/* =========================================================
+   PLAYERS
+========================================================= */
+
+const PLAYERS = [
 
   ["Prakul Mishra","MBATM25025"],
   ["Tushar Singh","MBA25181"],
@@ -648,13 +446,20 @@ const PLAYERS=[
 
 ];
 
-const stages=[
-  {id:"prelim",label:"PRELIMINARY"},
-  {id:"r16",label:"ROUND OF 16"},
-  {id:"qf",label:"QUARTERFINALS"},
-  {id:"sf",label:"SEMIFINALS"},
-  {id:"final",label:"FINAL"}
-];
+const byName = Object.fromEntries(
+  PLAYERS.map(p => [
+    p[0],
+    {
+      name:p[0],
+      roll:p[1]
+    }
+  ])
+);
+
+
+/* =========================================================
+   MATCHES
+========================================================= */
 
 function makeMatch(
   id,
@@ -662,7 +467,8 @@ function makeMatch(
   a=null,
   b=null,
   nextMatch=null,
-  nextSlot=null
+  nextSlot=null,
+  bye=false
 ){
 
   return {
@@ -675,6 +481,13 @@ function makeMatch(
 
     score1:null,
     score2:null,
+
+    games:[
+      {p1:null,p2:null},
+      {p1:null,p2:null},
+      {p1:null,p2:null}
+    ],
+
     penalties:null,
 
     winner:null,
@@ -682,263 +495,274 @@ function makeMatch(
     nextMatch,
     nextSlot,
 
+    bye,
+
     time:null,
-    played:false,
 
-    bye:false,
-
-    bestOf3:
-      stage==="sf" ||
-      stage==="final",
-
-    games:[
-
-      {
-        score1:null,
-        score2:null,
-        winner:null,
-        penalties:null
-      },
-
-      {
-        score1:null,
-        score2:null,
-        winner:null,
-        penalties:null
-      },
-
-      {
-        score1:null,
-        score2:null,
-        winner:null,
-        penalties:null
-      }
-
-    ]
+    played:false
 
   };
 
 }
 
-const DEFAULT_MATCHES=[
+
+const DEFAULT_MATCHES = [
 
   makeMatch(
-    "p1","prelim",
+    "p1",
+    "prelim",
     "Anirban Guha",
     "Robert Gupta",
-    "r1",1
+    "r1",
+    0
   ),
 
   makeMatch(
-    "p2","prelim",
+    "p2",
+    "prelim",
     "Prakul Mishra",
     "RajVardhan",
-    "r2",0
+    "r2",
+    0
   ),
 
   makeMatch(
-    "p3","prelim",
+    "p3",
+    "prelim",
     "Abhilash Naskar",
     "Adhiraj",
-    "r3",0
+    "r3",
+    0
   ),
 
   makeMatch(
-    "p4","prelim",
+    "p4",
+    "prelim",
     "Karanbir Singh Dhoul",
     "Rieshi Rao",
-    "r4",0
+    "r4",
+    0
   ),
 
   makeMatch(
-    "p5","prelim",
+    "p5",
+    "prelim",
     "Meet Gowsawmi",
     "Adhyan Kumar",
-    "r5",0
+    "r5",
+    0
   ),
 
   makeMatch(
-    "p6","prelim",
+    "p6",
+    "prelim",
     "Chaitanya Wankhande",
     "Shubh Wadhwa",
-    "r6",0
+    "r6",
+    0
   ),
 
   makeMatch(
-    "p7","prelim",
+    "p7",
+    "prelim",
     "Jay Mishra",
     "kartikay sharma",
-    "r7",0
+    "r7",
+    0
   ),
 
   makeMatch(
-    "p8","prelim",
+    "p8",
+    "prelim",
     "Nima",
-    "Arush",
-    "r1",0
+    "Arush"
   ),
 
   makeMatch(
-    "p9","prelim",
+    "p9",
+    "prelim",
     "Kush Soni",
     "Kabir",
-    "r8",1
+    "r8",
+    1
+  ),
+
+
+  /* R16 */
+
+  makeMatch(
+    "r1",
+    "r16",
+    null,
+    null,
+    "q1",
+    0
   ),
 
   makeMatch(
-    "r1","r16",
-    null,
-    null,
-    "q1",0
-  ),
-
-  makeMatch(
-    "r2","r16",
+    "r2",
+    "r16",
     null,
     "PARIMAL MISHRA",
-    "q1",1
+    "q1",
+    1
   ),
 
   makeMatch(
-    "r3","r16",
+    "r3",
+    "r16",
     null,
     "Siddhant Singh",
-    "q2",0
+    "q2",
+    0
   ),
 
   makeMatch(
-    "r4","r16",
+    "r4",
+    "r16",
     null,
     "Tushar Singh",
-    "q2",1
+    "q2",
+    1
   ),
 
   makeMatch(
-    "r5","r16",
+    "r5",
+    "r16",
     null,
     "Aryaman Singh",
-    "q3",0
+    "q3",
+    0
   ),
 
   makeMatch(
-    "r6","r16",
+    "r6",
+    "r16",
     null,
     "Hemant Agrawal",
-    "q3",1
+    "q3",
+    1
   ),
 
   makeMatch(
-    "r7","r16",
+    "r7",
+    "r16",
     null,
     "Shubham Kashyap",
-    "q4",0
+    "q4",
+    0
   ),
 
   makeMatch(
-    "r8","r16",
+    "r8",
+    "r16",
     "Varun Rathi",
     null,
-    "q4",1
+    "q4",
+    1
+  ),
+
+
+  /* QF */
+
+  makeMatch(
+    "q1",
+    "qf",
+    null,
+    null,
+    "s1",
+    0
   ),
 
   makeMatch(
-    "q1","qf",
-    null,null,
-    "s1",0
+    "q2",
+    "qf",
+    null,
+    null,
+    "s1",
+    1
   ),
 
   makeMatch(
-    "q2","qf",
-    null,null,
-    "s1",1
+    "q3",
+    "qf",
+    null,
+    null,
+    "s2",
+    0
   ),
 
   makeMatch(
-    "q3","qf",
-    null,null,
-    "s2",0
+    "q4",
+    "qf",
+    null,
+    null,
+    "s2",
+    1
+  ),
+
+
+  /* SEMIFINALS */
+
+  makeMatch(
+    "s1",
+    "sf",
+    null,
+    null,
+    "f1",
+    0
   ),
 
   makeMatch(
-    "q4","qf",
-    null,null,
-    "s2",1
+    "s2",
+    "sf",
+    null,
+    null,
+    "f1",
+    1
   ),
 
-  makeMatch(
-    "s1","sf",
-    null,null,
-    "f1",0
-  ),
+
+  /* FINAL */
 
   makeMatch(
-    "s2","sf",
-    null,null,
-    "f1",1
-  ),
-
-  makeMatch(
-    "f1","final"
+    "f1",
+    "final"
   )
 
 ];
 
+
+/* =========================================================
+   STATE
+========================================================= */
+
 function clone(x){
-  return JSON.parse(JSON.stringify(x));
+
+  return JSON.parse(
+    JSON.stringify(x)
+  );
+
 }
 
-function loadMatches(){
 
-  const saved=
+function loadState(){
+
+  const saved =
     localStorage.getItem(
       "fifa26TournamentMatches"
     );
 
-  if(!saved)
-    return clone(DEFAULT_MATCHES);
-
-  const data=JSON.parse(saved);
-
-  data.forEach(m=>{
-
-    m.bestOf3=
-      m.stage==="sf" ||
-      m.stage==="final";
-
-    if(!Array.isArray(m.games)){
-
-      m.games=[
-        {
-          score1:m.score1,
-          score2:m.score2,
-          winner:m.winner,
-          penalties:m.penalties
-        },
-        {
-          score1:null,
-          score2:null,
-          winner:null,
-          penalties:null
-        },
-        {
-          score1:null,
-          score2:null,
-          winner:null,
-          penalties:null
-        }
-      ];
-
-    }
-
-  });
-
-  return data;
+  return saved
+    ? JSON.parse(saved)
+    : clone(DEFAULT_MATCHES);
 
 }
 
+
 function loadSettings(){
 
-  const saved=
+  const saved =
     localStorage.getItem(
       "fifa26TournamentSettings"
     );
@@ -946,21 +770,1235 @@ function loadSettings(){
   return saved
     ? JSON.parse(saved)
     : {
-        startTime:"20:30",
+        startTime:"07:30",
         halfMinutes:6,
         gapMinutes:0
       };
 
 }
 
-let matches=loadMatches();
-let settings=loadSettings();
+
+let matches = loadState();
+
+let settings = loadSettings();
+
+
+function normalizeState(){
+
+  for(const m of matches){
+
+    if(!Array.isArray(m.games)){
+
+      m.games = [
+        {p1:null,p2:null},
+        {p1:null,p2:null},
+        {p1:null,p2:null}
+      ];
+
+    }
+
+    while(m.games.length < 3){
+
+      m.games.push({
+        p1:null,
+        p2:null
+      });
+
+    }
+
+  }
+
+}
+
+
+function saveState(){
+
+  localStorage.setItem(
+    "fifa26TournamentMatches",
+    JSON.stringify(matches)
+  );
+
+  localStorage.setItem(
+    "fifa26TournamentSettings",
+    JSON.stringify(settings)
+  );
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function isBestOf3(m){
+
+  return (
+    m.stage === "sf" ||
+    m.stage === "final"
+  );
+
+}
+
+
+function calculateBO3Winner(m){
+
+  let p1Wins = 0;
+  let p2Wins = 0;
+
+
+  const games =
+    m.games || [];
+
+
+  for(const game of games){
+
+    if(
+      game.p1 === null ||
+      game.p2 === null
+    ){
+
+      continue;
+
+    }
+
+
+    const a =
+      Number(game.p1);
+
+    const b =
+      Number(game.p2);
+
+
+    if(a > b){
+
+      p1Wins++;
+
+    }
+    else if(b > a){
+
+      p2Wins++;
+
+    }
+
+  }
+
+
+  if(p1Wins >= 2){
+
+    return m.p1;
+
+  }
+
+
+  if(p2Wins >= 2){
+
+    return m.p2;
+
+  }
+
+
+  return null;
+
+}
+
+
+function propagateWinner(m){
+
+  if(
+    !m.winner ||
+    !m.nextMatch
+  ){
+
+    return;
+
+  }
+
+
+  const next =
+    matches.find(
+      x =>
+        x.id === m.nextMatch
+    );
+
+
+  if(!next){
+
+    return;
+
+  }
+
+
+  if(m.nextSlot === 0){
+
+    next.p1 =
+      m.winner;
+
+  }
+  else{
+
+    next.p2 =
+      m.winner;
+
+  }
+
+}
+
+
+/* =========================================================
+   SCHEDULE
+========================================================= */
+
+function minutesFromTime(t){
+
+  const [h,m] =
+    t.split(":").map(Number);
+
+  return h * 60 + m;
+
+}
+
+
+function timeString(total){
+
+  total =
+    (total + 1440) % 1440;
+
+  const h =
+    Math.floor(total / 60);
+
+  const m =
+    total % 60;
+
+  return (
+    String(h).padStart(2,"0")
+    +
+    ":"
+    +
+    String(m).padStart(2,"0")
+  );
+
+}
+
+
+function scheduleMatches(){
+
+  const prelim =
+    matches.filter(
+      m =>
+        m.stage === "prelim"
+    );
+
+
+  const both26 = m => {
+
+    const a =
+      byName[m.p1]?.roll || "";
+
+    const b =
+      byName[m.p2]?.roll || "";
+
+    return (
+      a.includes("26") &&
+      b.includes("26")
+    );
+
+  };
+
+
+  const only25 = m => {
+
+    const a =
+      byName[m.p1]?.roll || "";
+
+    const b =
+      byName[m.p2]?.roll || "";
+
+    return (
+      a &&
+      b &&
+      !a.includes("26") &&
+      !b.includes("26")
+    );
+
+  };
+
+
+  const order = [
+
+    ...prelim.filter(both26),
+
+    ...prelim.filter(
+      m =>
+        !both26(m) &&
+        !only25(m)
+    ),
+
+    ...prelim.filter(only25),
+
+    ...matches.filter(
+      m =>
+        m.stage === "r16"
+    ),
+
+    ...matches.filter(
+      m =>
+        m.stage === "qf"
+    ),
+
+    ...matches.filter(
+      m =>
+        m.stage === "sf"
+    ),
+
+    ...matches.filter(
+      m =>
+        m.stage === "final"
+    )
+
+  ];
+
+
+  let cursor =
+    minutesFromTime(
+      settings.startTime
+    );
+
+
+  const minAfter745 = 466;
+
+
+  for(const m of order){
+
+    if(
+      only25(m) &&
+      cursor < minAfter745
+    ){
+
+      cursor =
+        minAfter745;
+
+    }
+
+
+    m.time =
+      timeString(cursor);
+
+
+    cursor +=
+      Number(settings.halfMinutes) * 2
+      +
+      Number(settings.gapMinutes);
+
+  }
+
+}
+
+
+/* =========================================================
+   RESULT EDITOR
+========================================================= */
+
+function renderSingleResult(m){
+
+  return `
+
+    <div class="single-result">
+
+      <div>
+
+        <label>
+          ${escapeHtml(m.p1 || "TBD")} Score
+        </label>
+
+        <input
+          type="number"
+          min="0"
+          id="score1-${m.id}"
+          value="${m.score1 ?? ""}"
+        >
+
+      </div>
+
+
+      <div>
+
+        <label>
+          ${escapeHtml(m.p2 || "TBD")} Score
+        </label>
+
+        <input
+          type="number"
+          min="0"
+          id="score2-${m.id}"
+          value="${m.score2 ?? ""}"
+        >
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function renderBO3Result(m){
+
+  const games =
+    m.games || [
+      {p1:null,p2:null},
+      {p1:null,p2:null},
+      {p1:null,p2:null}
+    ];
+
+
+  let html = `
+
+    <div class="bo3">
+
+      <div class="bo3-title">
+        BEST OF 3 — SEMIFINAL / FINAL
+      </div>
+
+  `;
+
+
+  for(let i=0;i<3;i++){
+
+    html += `
+
+      <div class="game">
+
+        <div class="game-label">
+          Game ${i+1}
+        </div>
+
+        <div class="game-grid">
+
+          <input
+            type="number"
+            min="0"
+            id="game-${m.id}-${i}-p1"
+            placeholder="${escapeHtml(m.p1 || "TBD")}"
+            value="${games[i].p1 ?? ""}"
+          >
+
+          <input
+            type="number"
+            min="0"
+            id="game-${m.id}-${i}-p2"
+            placeholder="${escapeHtml(m.p2 || "TBD")}"
+            value="${games[i].p2 ?? ""}"
+          >
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  html += `
+
+      <div class="status">
+        Winner is automatically decided after one player
+        wins 2 games.
+      </div>
+
+    </div>
+
+  `;
+
+
+  return html;
+
+}
+
+
+/* =========================================================
+   SAVE SINGLE RESULT
+========================================================= */
+
+function saveSingleResult(id){
+
+  const m =
+    matches.find(
+      x => x.id === id
+    );
+
+
+  if(!m) return;
+
+
+  if(
+    !m.p1 ||
+    !m.p2
+  ){
+
+    alert(
+      "This match is not ready yet."
+    );
+
+    return;
+
+  }
+
+
+  const s1 =
+    Number(
+      document.getElementById(
+        `score1-${id}`
+      ).value
+    );
+
+
+  const s2 =
+    Number(
+      document.getElementById(
+        `score2-${id}`
+      ).value
+    );
+
+
+  if(
+    isNaN(s1) ||
+    isNaN(s2) ||
+    s1 < 0 ||
+    s2 < 0
+  ){
+
+    alert(
+      "Enter valid scores."
+    );
+
+    return;
+
+  }
+
+
+  m.score1 = s1;
+  m.score2 = s2;
+
+
+  m.winner = null;
+  m.penalties = null;
+
+
+  if(s1 > s2){
+
+    m.winner =
+      m.p1;
+
+  }
+  else if(s2 > s1){
+
+    m.winner =
+      m.p2;
+
+  }
+  else{
+
+    const penalty1 =
+      prompt(
+        `Penalty score for ${m.p1}:`,
+        "4"
+      );
+
+
+    if(penalty1 === null)
+      return;
+
+
+    const penalty2 =
+      prompt(
+        `Penalty score for ${m.p2}:`,
+        "3"
+      );
+
+
+    if(penalty2 === null)
+      return;
+
+
+    const p1 =
+      Number(penalty1);
+
+    const p2 =
+      Number(penalty2);
+
+
+    if(
+      isNaN(p1) ||
+      isNaN(p2) ||
+      p1 === p2
+    ){
+
+      alert(
+        "Penalty scores must be valid and cannot be equal."
+      );
+
+      return;
+
+    }
+
+
+    m.penalties =
+      `${p1}-${p2}`;
+
+
+    m.winner =
+      p1 > p2
+      ? m.p1
+      : m.p2;
+
+  }
+
+
+  m.played = true;
+
+
+  propagateWinner(m);
+
+
+  saveState();
+
+  renderAdmin();
+
+}
+
+
+/* =========================================================
+   SAVE BEST OF 3
+========================================================= */
+
+function saveBO3Result(id){
+
+  const m =
+    matches.find(
+      x => x.id === id
+    );
+
+
+  if(!m) return;
+
+
+  if(
+    !m.p1 ||
+    !m.p2
+  ){
+
+    alert(
+      "This match is not ready yet."
+    );
+
+    return;
+
+  }
+
+
+  const games = [];
+
+
+  for(let i=0;i<3;i++){
+
+    const v1 =
+      document.getElementById(
+        `game-${id}-${i}-p1`
+      ).value;
+
+
+    const v2 =
+      document.getElementById(
+        `game-${id}-${i}-p2`
+      ).value;
+
+
+    games.push({
+
+      p1:
+        v1 === ""
+        ? null
+        : Number(v1),
+
+      p2:
+        v2 === ""
+        ? null
+        : Number(v2)
+
+    });
+
+  }
+
+
+  m.games =
+    games;
+
+
+  const winner =
+    calculateBO3Winner(m);
+
+
+  if(!winner){
+
+    m.winner = null;
+    m.played = false;
+
+    /*
+      If the series is incomplete, do NOT propagate
+      anything. The next match remains TBD.
+    */
+
+  }
+  else{
+
+    m.winner =
+      winner;
+
+    m.played =
+      true;
+
+    propagateWinner(m);
+
+  }
+
+
+  saveState();
+
+  renderAdmin();
+
+}
+
+
+/* =========================================================
+   CLEAR RESULT
+========================================================= */
+
+function clearResult(id){
+
+  const m =
+    matches.find(
+      x => x.id === id
+    );
+
+
+  if(!m) return;
+
+
+  if(
+    !confirm(
+      "Clear this match result?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  m.score1 = null;
+  m.score2 = null;
+
+  m.games = [
+    {p1:null,p2:null},
+    {p1:null,p2:null},
+    {p1:null,p2:null}
+  ];
+
+  m.penalties = null;
+  m.winner = null;
+  m.played = false;
+
+
+  /*
+    Remove this winner from the next match if it
+    came from this match.
+  */
+
+  if(m.nextMatch){
+
+    const next =
+      matches.find(
+        x =>
+          x.id ===
+          m.nextMatch
+      );
+
+
+    if(next){
+
+      if(m.nextSlot === 0){
+
+        next.p1 = null;
+
+      }
+      else{
+
+        next.p2 = null;
+
+      }
+
+      clearDownstream(next);
+
+    }
+
+  }
+
+
+  saveState();
+
+  renderAdmin();
+
+}
+
+
+function clearDownstream(m){
+
+  m.score1 = null;
+  m.score2 = null;
+
+  m.games = [
+    {p1:null,p2:null},
+    {p1:null,p2:null},
+    {p1:null,p2:null}
+  ];
+
+  m.penalties = null;
+  m.winner = null;
+  m.played = false;
+
+
+  if(m.nextMatch){
+
+    const next =
+      matches.find(
+        x =>
+          x.id ===
+          m.nextMatch
+      );
+
+
+    if(next){
+
+      if(m.nextSlot === 0){
+
+        next.p1 = null;
+
+      }
+      else{
+
+        next.p2 = null;
+
+      }
+
+      clearDownstream(next);
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   ADMIN RENDER
+========================================================= */
+
+const STAGES = [
+
+  ["prelim","PRELIMINARY"],
+  ["r16","ROUND OF 16"],
+  ["qf","QUARTERFINALS"],
+  ["sf","SEMIFINALS"],
+  ["final","FINAL"]
+
+];
+
+
+function renderAdmin(){
+
+  normalizeState();
+
+  scheduleMatches();
+
+
+  document.getElementById(
+    "startTime"
+  ).value =
+    settings.startTime;
+
+
+  document.getElementById(
+    "halfMinutes"
+  ).value =
+    settings.halfMinutes;
+
+
+  document.getElementById(
+    "gapMinutes"
+  ).value =
+    settings.gapMinutes;
+
+
+  const container =
+    document.getElementById(
+      "matchesContainer"
+    );
+
+
+  container.innerHTML = "";
+
+
+  for(const [stageId,label] of STAGES){
+
+    const section =
+      document.createElement(
+        "section"
+      );
+
+
+    section.innerHTML = `
+
+      <div class="section-title">
+        ${label}
+      </div>
+
+      <div class="match-grid"></div>
+
+    `;
+
+
+    const grid =
+      section.querySelector(
+        ".match-grid"
+      );
+
+
+    matches
+      .filter(
+        m =>
+          m.stage === stageId
+      )
+      .forEach(
+        m =>
+          grid.appendChild(
+            adminMatchCard(m)
+          )
+      );
+
+
+    container.appendChild(
+      section
+    );
+
+  }
+
+
+  renderPool();
+
+}
+
+
+function adminMatchCard(m){
+
+  const card =
+    document.createElement(
+      "div"
+    );
+
+
+  card.className =
+    "match";
+
+
+  let resultArea = "";
+
+
+  if(
+    m.p1 &&
+    m.p2
+  ){
+
+    if(isBestOf3(m)){
+
+      resultArea =
+        renderBO3Result(m);
+
+    }
+    else{
+
+      resultArea =
+        renderSingleResult(m);
+
+    }
+
+  }
+  else{
+
+    resultArea = `
+
+      <div class="status">
+        This match is not ready yet.
+        Missing players remain TBD.
+      </div>
+
+    `;
+
+  }
+
+
+  card.innerHTML = `
+
+    <div class="match-header">
+
+      <div class="match-id">
+        ${m.stage} · ${m.id}
+      </div>
+
+      <div class="match-time">
+        ${m.time || "--:--"}
+      </div>
+
+    </div>
+
+
+    <div class="players">
+
+      <div class="player-name">
+        ${escapeHtml(m.p1 || "TBD")}
+      </div>
+
+      <div class="player-name">
+        ${escapeHtml(m.p2 || "TBD")}
+      </div>
+
+    </div>
+
+
+    <div class="result-area">
+
+      ${resultArea}
+
+    </div>
+
+  `;
+
+
+  if(
+    m.p1 &&
+    m.p2
+  ){
+
+    const save =
+      document.createElement(
+        "button"
+      );
+
+
+    save.className =
+      "btn primary";
+
+
+    save.textContent =
+      m.played
+      ? "Update Result"
+      : "Save Result";
+
+
+    save.style.marginRight =
+      "6px";
+
+
+    save.onclick = () => {
+
+      if(isBestOf3(m)){
+
+        saveBO3Result(m.id);
+
+      }
+      else{
+
+        saveSingleResult(m.id);
+
+      }
+
+    };
+
+
+    const clear =
+      document.createElement(
+        "button"
+      );
+
+
+    clear.className =
+      "btn danger";
+
+
+    clear.textContent =
+      "Clear";
+
+
+    clear.onclick = () =>
+      clearResult(m.id);
+
+
+    const row =
+      document.createElement(
+        "div"
+      );
+
+
+    row.className =
+      "save-row";
+
+
+    row.appendChild(save);
+    row.appendChild(clear);
+
+
+    card.appendChild(row);
+
+  }
+
+
+  return card;
+
+}
+
+
+/* =========================================================
+   PLAYER POOL
+========================================================= */
+
+function renderPool(){
+
+  const pool =
+    document.getElementById(
+      "playerPool"
+    );
+
+
+  pool.innerHTML =
+    PLAYERS.map(
+      p => `
+
+        <span class="pool-item">
+
+          ${escapeHtml(p[0])}
+
+          ${
+            p[1]
+            ?
+            " · " +
+            escapeHtml(p[1])
+            :
+            ""
+          }
+
+        </span>
+
+      `
+    ).join("");
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+document.getElementById(
+  "saveSettings"
+).onclick = () => {
+
+  settings.startTime =
+    document.getElementById(
+      "startTime"
+    ).value ||
+    "07:30";
+
+
+  settings.halfMinutes =
+    Math.max(
+      1,
+      Number(
+        document.getElementById(
+          "halfMinutes"
+        ).value
+      ) || 6
+    );
+
+
+  settings.gapMinutes =
+    Math.max(
+      0,
+      Number(
+        document.getElementById(
+          "gapMinutes"
+        ).value
+      ) || 0
+    );
+
+
+  scheduleMatches();
+
+  saveState();
+
+  renderAdmin();
+
+};
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+document.getElementById(
+  "resetBtn"
+).onclick = () => {
+
+  if(
+    !confirm(
+      "Reset the entire tournament? All results and progression will be cleared."
+    )
+  ){
+
+    return;
+
+  }
+
+
+  matches =
+    clone(DEFAULT_MATCHES);
+
+
+  settings = {
+
+    startTime:"07:30",
+    halfMinutes:6,
+    gapMinutes:0
+
+  };
+
+
+  saveState();
+
+  renderAdmin();
+
+};
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function escapeHtml(s){
 
   return String(s).replace(
     /[&<>"']/g,
-    c=>({
+    c => ({
       '&':'&amp;',
       '<':'&lt;',
       '>':'&gt;',
@@ -971,849 +2009,110 @@ function escapeHtml(s){
 
 }
 
-function scheduleMatches(){
 
-  const order=[
+/* =========================================================
+   INIT
+========================================================= */
 
-    ...matches.filter(
-      m=>m.stage==="prelim"
-    ),
+normalizeState();
 
-    ...matches.filter(
-      m=>m.stage==="r16"
-    ),
+renderAdmin();
 
-    ...matches.filter(
-      m=>m.stage==="qf"
-    ),
 
-    ...matches.filter(
-      m=>m.stage==="sf"
-    ),
+/*
+   Refresh when index/admin are open in different tabs
+   on the SAME DEVICE.
+*/
 
-    ...matches.filter(
-      m=>m.stage==="final"
-    )
+setInterval(() => {
 
-  ];
-
-  const [h,m]=
-    settings.startTime
-      .split(":")
-      .map(Number);
-
-  let cursor=h*60+m;
-
-  for(const match of order){
-
-    match.time=
-      String(
-        Math.floor(cursor/60)%24
-      ).padStart(2,"0")
-      +
-      ":"
-      +
-      String(cursor%60)
-        .padStart(2,"0");
-
-    cursor +=
-      Number(settings.halfMinutes)*2+
-      Number(settings.gapMinutes);
-
-  }
-
-}
-
-function resetMatchResult(m){
-
-  m.played=false;
-
-  m.winner=null;
-
-  m.score1=null;
-  m.score2=null;
-  m.penalties=null;
-
-  m.games=[
-
-    {
-      score1:null,
-      score2:null,
-      winner:null,
-      penalties:null
-    },
-
-    {
-      score1:null,
-      score2:null,
-      winner:null,
-      penalties:null
-    },
-
-    {
-      score1:null,
-      score2:null,
-      winner:null,
-      penalties:null
-    }
-
-  ];
-
-}
-
-function propagateWinner(m){
-
-  if(!m.winner || !m.nextMatch)
-    return;
-
-  const next=
-    matches.find(
-      x=>x.id===m.nextMatch
+  const latest =
+    localStorage.getItem(
+      "fifa26TournamentMatches"
     );
 
-  if(!next)
-    return;
 
-  if(m.nextSlot===0)
-    next.p1=m.winner;
-  else
-    next.p2=m.winner;
+  if(!latest) return;
 
-}
 
-function calculateSeriesWinner(m){
+  try{
 
-  let p1Wins=0;
-  let p2Wins=0;
+    const parsed =
+      JSON.parse(latest);
 
-  m.games.forEach(g=>{
-
-    if(g.winner===m.p1)
-      p1Wins++;
-
-    if(g.winner===m.p2)
-      p2Wins++;
-
-  });
-
-  if(p1Wins>=2)
-    return m.p1;
-
-  if(p2Wins>=2)
-    return m.p2;
-
-  return null;
-
-}
-
-function saveGame(m,index){
-
-  const game=m.games[index];
-
-  const score1=
-    Number(
-      document.getElementById(
-        `g${m.id}_${index}_1`
-      ).value
-    );
-
-  const score2=
-    Number(
-      document.getElementById(
-        `g${m.id}_${index}_2`
-      ).value
-    );
-
-  if(score1<0 || score2<0){
-
-    alert("Scores cannot be negative.");
-    return;
-
-  }
-
-  let winner=null;
-  let penalties=null;
-
-  if(score1>score2){
-
-    winner=m.p1;
-
-  }
-  else if(score2>score1){
-
-    winner=m.p2;
-
-  }
-  else{
-
-    const penaltySelect=
-      document.getElementById(
-        `p${m.id}_${index}`
-      );
-
-    winner=penaltySelect.value;
-
-    if(!winner){
-
-      alert(
-        "The game is a draw. Select the penalty winner."
-      );
-
-      return;
-
-    }
-
-    const p1pen=
-      prompt(
-        `Penalty score for ${m.p1}:`,
-        "4"
-      );
-
-    const p2pen=
-      prompt(
-        `Penalty score for ${m.p2}:`,
-        "3"
-      );
 
     if(
-      p1pen===null ||
-      p2pen===null
-    )
-      return;
-
-    penalties=
-      `${p1pen}-${p2pen}`;
-
-  }
-
-  game.score1=score1;
-  game.score2=score2;
-  game.winner=winner;
-  game.penalties=penalties;
-
-  const seriesWinner=
-    calculateSeriesWinner(m);
-
-  if(seriesWinner){
-
-    m.winner=seriesWinner;
-    m.played=true;
-
-    propagateWinner(m);
-
-  }
-  else{
-
-    m.winner=null;
-    m.played=false;
-
-  }
-
-  localStorage.setItem(
-    "fifa26TournamentMatches",
-    JSON.stringify(matches)
-  );
-
-  renderResults();
-
-}
-
-function editSingleMatch(m){
-
-  const s1=
-    document.getElementById(
-      `single_${m.id}_1`
-    ).value;
-
-  const s2=
-    document.getElementById(
-      `single_${m.id}_2`
-    ).value;
-
-  const score1=Number(s1);
-  const score2=Number(s2);
-
-  if(score1<0 || score2<0){
-
-    alert("Scores cannot be negative.");
-    return;
-
-  }
-
-  let winner=null;
-  let penalties=null;
-
-  if(score1>score2){
-
-    winner=m.p1;
-
-  }
-  else if(score2>score1){
-
-    winner=m.p2;
-
-  }
-  else{
-
-    const select=
-      document.getElementById(
-        `single_penalty_${m.id}`
-      );
-
-    winner=select.value;
-
-    if(!winner){
-
-      alert(
-        "The match is a draw. Select the penalty winner."
-      );
-
-      return;
-
-    }
-
-    const p1pen=
-      prompt(
-        `Penalty score for ${m.p1}:`,
-        "4"
-      );
-
-    const p2pen=
-      prompt(
-        `Penalty score for ${m.p2}:`,
-        "3"
-      );
-
-    if(
-      p1pen===null ||
-      p2pen===null
-    )
-      return;
-
-    penalties=
-      `${p1pen}-${p2pen}`;
-
-  }
-
-  m.score1=score1;
-  m.score2=score2;
-  m.winner=winner;
-  m.penalties=penalties;
-  m.played=true;
-
-  propagateWinner(m);
-
-  localStorage.setItem(
-    "fifa26TournamentMatches",
-    JSON.stringify(matches)
-  );
-
-  renderResults();
-
-  renderBracketEditor();
-
-}
-
-function renderResults(){
-
-  scheduleMatches();
-
-  const root=
-    document.getElementById(
-      "resultGrid"
-    );
-
-  root.innerHTML="";
-
-  matches.forEach(m=>{
-
-    if(!m.p1 || !m.p2)
-      return;
-
-    const card=
-      document.createElement("div");
-
-    card.className="result-card";
-
-    if(m.bestOf3){
-
-      let gamesHTML="";
-
-      for(let i=0;i<3;i++){
-
-        const g=m.games[i];
-
-        gamesHTML+=`
-
-          <div class="game">
-
-            <div class="game-title">
-              GAME ${i+1}
-            </div>
-
-            <div class="score-grid">
-
-              <span>
-                ${escapeHtml(m.p1)}
-              </span>
-
-              <input
-                id="g${m.id}_${i}_1"
-                type="number"
-                min="0"
-                value="${g.score1 ?? ""}"
-              >
-
-              <input
-                id="g${m.id}_${i}_2"
-                type="number"
-                min="0"
-                value="${g.score2 ?? ""}"
-              >
-
-            </div>
-
-            <div class="score-grid">
-
-              <span>
-                ${escapeHtml(m.p2)}
-              </span>
-
-              <span></span>
-              <span></span>
-
-            </div>
-
-            <div class="penalty-row">
-
-              <select
-                id="p${m.id}_${i}"
-              >
-
-                <option value="">
-                  Penalty winner if draw
-                </option>
-
-                <option
-                  value="${escapeHtml(m.p1)}"
-                  ${g.winner===m.p1?"selected":""}
-                >
-                  ${escapeHtml(m.p1)}
-                </option>
-
-                <option
-                  value="${escapeHtml(m.p2)}"
-                  ${g.winner===m.p2?"selected":""}
-                >
-                  ${escapeHtml(m.p2)}
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="result-actions">
-
-              <button
-                class="btn primary"
-                onclick="saveGame(
-                  matches.find(x=>x.id==='${m.id}'),
-                  ${i}
-                )"
-              >
-                Save Game ${i+1}
-              </button>
-
-            </div>
-
-          </div>
-
-        `;
-
-      }
-
-      card.innerHTML=`
-
-        <div class="result-title">
-          ${escapeHtml(m.p1)}
-          vs
-          ${escapeHtml(m.p2)}
-        </div>
-
-        <div class="result-format">
-          BEST OF 3
-        </div>
-
-        ${gamesHTML}
-
-        <div class="status">
-          ${
-            m.winner
-            ?
-            `Series Winner: ${escapeHtml(m.winner)}`
-            :
-            "Series not completed"
-          }
-        </div>
-
-      `;
-
-    }
-    else{
-
-      card.innerHTML=`
-
-        <div class="result-title">
-
-          ${escapeHtml(m.p1)}
-          vs
-          ${escapeHtml(m.p2)}
-
-        </div>
-
-        <div class="result-format">
-          SINGLE MATCH
-        </div>
-
-        <div class="score-grid">
-
-          <span>
-            ${escapeHtml(m.p1)}
-          </span>
-
-          <input
-            id="single_${m.id}_1"
-            type="number"
-            min="0"
-            value="${m.score1 ?? ""}"
-          >
-
-          <input
-            id="single_${m.id}_2"
-            type="number"
-            min="0"
-            value="${m.score2 ?? ""}"
-          >
-
-        </div>
-
-        <div class="penalty-row">
-
-          <select
-            id="single_penalty_${m.id}"
-          >
-
-            <option value="">
-              Penalty winner if draw
-            </option>
-
-            <option
-              value="${escapeHtml(m.p1)}"
-              ${m.winner===m.p1?"selected":""}
-            >
-              ${escapeHtml(m.p1)}
-            </option>
-
-            <option
-              value="${escapeHtml(m.p2)}"
-              ${m.winner===m.p2?"selected":""}
-            >
-              ${escapeHtml(m.p2)}
-            </option>
-
-          </select>
-
-        </div>
-
-        <div class="result-actions">
-
-          <button
-            class="btn primary"
-            onclick="editSingleMatch(
-              matches.find(x=>x.id==='${m.id}')
-            )"
-          >
-            Save Result
-          </button>
-
-        </div>
-
-        <div class="status">
-
-          ${
-            m.winner
-            ?
-            `Winner: ${escapeHtml(m.winner)}`
-            :
-            "Not played"
-          }
-
-        </div>
-
-      `;
-
-    }
-
-    root.appendChild(card);
-
-  });
-
-}
-
-function renderBracketEditor(){
-
-  const root=
-    document.getElementById(
-      "bracketGrid"
-    );
-
-  root.innerHTML="";
-
-  matches.forEach(m=>{
-
-    const box=
-      document.createElement("div");
-
-    box.className="edit-match";
-
-    box.innerHTML=`
-
-      <div class="stage-label">
-        ${m.stage} · ${m.id}
-      </div>
-
-      <label>Player 1</label>
-
-      <select
-        data-mid="${m.id}"
-        data-slot="p1"
-      ></select>
-
-      <label>Player 2</label>
-
-      <select
-        data-mid="${m.id}"
-        data-slot="p2"
-      ></select>
-
-    `;
-
-    root.appendChild(box);
-
-    for(
-      const slot of ["p1","p2"]
+      JSON.stringify(parsed)
+      !==
+      JSON.stringify(matches)
     ){
 
-      const select=
-        box.querySelector(
-          `[data-slot="${slot}"]`
-        );
+      matches =
+        parsed;
 
-      select.innerHTML=
-        `<option value="">
-          TBD / Empty
-        </option>`
-        +
-        PLAYERS.map(
-          p=>
-          `<option
-            value="${escapeHtml(p[0])}"
-          >
-            ${escapeHtml(p[0])}
-            ${p[1]
-              ? " — "+escapeHtml(p[1])
-              : ""}
-          </option>`
-        ).join("");
-
-      select.value=
-        m[slot] || "";
+      renderAdmin();
 
     }
 
-  });
+  }
+  catch(e){}
 
-  document.getElementById(
-    "playerPool"
-  ).innerHTML=
-    PLAYERS.map(
-      p=>
-      `<span class="pool-item">
-        ${escapeHtml(p[0])}
-        ${p[1]
-          ? " · "+escapeHtml(p[1])
-          : ""}
-      </span>`
-    ).join("");
+},1000);
 
-}
 
-function saveBracket(){
+window.addEventListener(
+  "storage",
+  event => {
 
-  document
-    .querySelectorAll(
-      "#bracketGrid select"
-    )
-    .forEach(select=>{
+    if(
+      event.key ===
+      "fifa26TournamentMatches"
+    ){
 
-      const mid=
-        select.dataset.mid;
+      if(event.newValue){
 
-      const slot=
-        select.dataset.slot;
+        try{
 
-      const match=
-        matches.find(
-          m=>m.id===mid
-        );
+          matches =
+            JSON.parse(
+              event.newValue
+            );
 
-      if(match){
-
-        const old=
-          match[slot];
-
-        match[slot]=
-          select.value || null;
-
-        if(old!==match[slot]){
-
-          resetMatchResult(match);
+          renderAdmin();
 
         }
+        catch(e){}
 
       }
 
-    });
+    }
 
-  scheduleMatches();
 
-  localStorage.setItem(
-    "fifa26TournamentMatches",
-    JSON.stringify(matches)
-  );
+    if(
+      event.key ===
+      "fifa26TournamentSettings"
+    ){
 
-  renderBracketEditor();
-  renderResults();
+      if(event.newValue){
 
-  alert("Bracket saved.");
+        try{
 
-}
+          settings =
+            JSON.parse(
+              event.newValue
+            );
 
-document.getElementById(
-  "saveSettings"
-).onclick=()=>{
+          renderAdmin();
 
-  settings.startTime=
-    document.getElementById(
-      "startTime"
-    ).value || "20:30";
+        }
+        catch(e){}
 
-  settings.halfMinutes=
-    Math.max(
-      1,
-      Number(
-        document.getElementById(
-          "halfMinutes"
-        ).value
-      ) || 6
-    );
+      }
 
-  settings.gapMinutes=
-    Math.max(
-      0,
-      Number(
-        document.getElementById(
-          "gapMinutes"
-        ).value
-      ) || 0
-    );
+    }
 
-  scheduleMatches();
-
-  localStorage.setItem(
-    "fifa26TournamentSettings",
-    JSON.stringify(settings)
-  );
-
-  document.getElementById(
-    "startBadge"
-  ).textContent=
-    settings.startTime;
-
-  alert("Timing saved.");
-
-};
-
-document.getElementById(
-  "resetBtn"
-).onclick=()=>{
-
-  if(
-    !confirm(
-      "Reset the entire tournament? This will remove all scores, winners and bracket changes."
-    )
-  )
-    return;
-
-  matches=
-    clone(DEFAULT_MATCHES);
-
-  settings={
-    startTime:"20:30",
-    halfMinutes:6,
-    gapMinutes:0
-  };
-
-  localStorage.setItem(
-    "fifa26TournamentMatches",
-    JSON.stringify(matches)
-  );
-
-  localStorage.setItem(
-    "fifa26TournamentSettings",
-    JSON.stringify(settings)
-  );
-
-  document.getElementById(
-    "startTime"
-  ).value="20:30";
-
-  document.getElementById(
-    "halfMinutes"
-  ).value=6;
-
-  document.getElementById(
-    "gapMinutes"
-  ).value=0;
-
-  renderBracketEditor();
-  renderResults();
-
-};
-
-document.getElementById(
-  "saveBracket"
-).onclick=saveBracket;
-
-document.getElementById(
-  "startTime"
-).value=settings.startTime;
-
-document.getElementById(
-  "halfMinutes"
-).value=settings.halfMinutes;
-
-document.getElementById(
-  "gapMinutes"
-).value=settings.gapMinutes;
-
-document.getElementById(
-  "startBadge"
-).textContent=
-  settings.startTime;
-
-renderBracketEditor();
-renderResults();
+  }
+);
 
 </script>
 
