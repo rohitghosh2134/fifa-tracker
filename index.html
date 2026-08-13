@@ -9,11 +9,13 @@
 :root{
   --bg:#061b14;
   --panel:#0b2b21;
+  --panel2:#0e3428;
   --line:#174c3a;
   --text:#e6f4ed;
   --muted:#8caea1;
   --accent:#2cc77c;
   --accent2:#d8a934;
+  --danger:#d95757;
   --shadow:0 8px 24px rgba(0,0,0,.22);
 }
 
@@ -35,7 +37,9 @@ body{
   border-bottom:1px solid var(--line);
   padding:12px 18px;
   display:flex;
+  gap:12px;
   align-items:center;
+  justify-content:space-between;
 }
 
 .title-wrap h1{
@@ -68,7 +72,9 @@ body{
   font-size:11px;
 }
 
-.badge strong{color:var(--text)}
+.badge strong{
+  color:var(--text);
+}
 
 #bracket{
   width:max-content;
@@ -102,13 +108,22 @@ body{
   position:relative;
 }
 
-.match + .match{margin-top:16px}
+.match + .match{
+  margin-top:16px;
+}
 
 .match .time{
   font-size:10px;
   color:var(--accent2);
   font-weight:bold;
   margin-bottom:6px;
+}
+
+.match .format{
+  font-size:9px;
+  color:#45c98a;
+  margin-bottom:6px;
+  font-weight:bold;
 }
 
 .player{
@@ -121,7 +136,9 @@ body{
   font-size:11px;
 }
 
-.player:last-of-type{border-bottom:0}
+.player:last-of-type{
+  border-bottom:0;
+}
 
 .player .name{
   flex:1;
@@ -150,8 +167,13 @@ body{
   font-weight:bold;
 }
 
-.player.winner .score{background:#175b40}
-.player.loser{opacity:.58}
+.player.winner .score{
+  background:#175b40;
+}
+
+.player.loser{
+  opacity:.58;
+}
 
 .match-foot{
   display:flex;
@@ -171,16 +193,68 @@ body{
   font-style:italic;
 }
 
-.stage.prelim .match{min-height:105px}
-.stage.r16 .match{margin-top:30px}
-.stage.qf .match{margin-top:104px}
-.stage.sf .match{margin-top:255px}
-.stage.final .match{margin-top:510px}
+.series{
+  margin-top:8px;
+  border-top:1px solid var(--line);
+  padding-top:7px;
+}
 
-.stage.r16 .match + .match{margin-top:30px}
-.stage.qf .match + .match{margin-top:155px}
-.stage.sf .match + .match{margin-top:470px}
-.stage.final .match + .match{margin-top:0}
+.game-result{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:9px;
+  color:var(--muted);
+  padding:3px 0;
+}
+
+.game-result strong{
+  color:var(--text);
+}
+
+.series-score{
+  margin-top:6px;
+  text-align:center;
+  font-size:10px;
+  color:#45c98a;
+  font-weight:bold;
+}
+
+.stage.prelim .match{
+  min-height:105px;
+}
+
+.stage.r16 .match{
+  margin-top:30px;
+}
+
+.stage.qf .match{
+  margin-top:104px;
+}
+
+.stage.sf .match{
+  margin-top:255px;
+}
+
+.stage.final .match{
+  margin-top:510px;
+}
+
+.stage.r16 .match + .match{
+  margin-top:30px;
+}
+
+.stage.qf .match + .match{
+  margin-top:155px;
+}
+
+.stage.sf .match + .match{
+  margin-top:470px;
+}
+
+.stage.final .match + .match{
+  margin-top:0;
+}
 
 .note{
   max-width:1500px;
@@ -191,12 +265,16 @@ body{
 }
 
 @media(max-width:1000px){
-  .topbar{position:static}
+
+  .topbar{
+    position:static;
+  }
 
   #bracket{
     grid-template-columns:repeat(5,250px);
     overflow-x:auto;
   }
+
 }
 </style>
 </head>
@@ -204,20 +282,25 @@ body{
 <body>
 
 <header class="topbar">
+
   <div class="title-wrap">
+
     <h1>FIFA 26 Tournament</h1>
+
     <p>
-      Single match • 6 minutes each half •
-      Draws go to penalties • No Best of 3
+      Single match • Semifinals & Final Best of 3 •
+      6 minutes each half • Draws go to penalties
     </p>
+
   </div>
+
 </header>
 
 <div class="info">
 
   <div class="badge">
     Start:
-    <strong id="startBadge">07:30</strong>
+    <strong id="startBadge">20:30</strong>
   </div>
 
   <div class="badge">
@@ -231,8 +314,13 @@ body{
   </div>
 
   <div class="badge">
-    Rule:
-    <strong>26-only matches first</strong>
+    Semifinals:
+    <strong>Best of 3</strong>
+  </div>
+
+  <div class="badge">
+    Final:
+    <strong>Best of 3</strong>
   </div>
 
 </div>
@@ -240,12 +328,9 @@ body{
 <main id="bracket"></main>
 
 <div class="note">
-  Default layout follows the tournament bracket.
-  Nima is paired with Arush.
-  The winner of Nima vs Arush plays the winner of Anirban Guha vs Robert Gupta in the Round of 16.
-  Kush Soni is paired with Kabir.
-  The winner of Kush Soni vs Kabir plays Varun Rathi in the Round of 16.
-  Results are displayed here only; tournament controls are available on the admin page.
+  Preliminary, Round of 16 and Quarterfinal matches are single matches.
+  Semifinals and Final are Best of 3.
+  Individual game results for the semifinals and final are displayed here.
 </div>
 
 <script>
@@ -267,7 +352,6 @@ const PLAYERS = [
   ["Abhilash Naskar","MBA26004"],
   ["Siddhant Singh","MBA25180"],
   ["Kush Soni","MBA25119"],
-  ["Kabir","MBA25212"],
   ["Jay Mishra","MBATm26037"],
   ["Hemant Agrawal","MBA25188"],
   ["Varun Rathi","MBA25230"],
@@ -276,14 +360,18 @@ const PLAYERS = [
   ["Chaitanya Wankhande","MBA25062"],
   ["RajVardhan","25003"],
   ["Adhiraj","25053"],
-  ["Arush","25005"]
+  ["Arush","25005"],
+  ["Kabir","MBA25212"]
 
 ];
 
 const byName = Object.fromEntries(
   PLAYERS.map(p => [
     p[0],
-    {name:p[0],roll:p[1]}
+    {
+      name:p[0],
+      roll:p[1]
+    }
   ])
 );
 
@@ -304,46 +392,65 @@ function makeMatch(
   nextSlot=null,
   bye=false
 ){
+
   return {
     id,
     stage,
     p1:a,
     p2:b,
+
     score1:null,
     score2:null,
     penalties:null,
+
     winner:null,
+
     nextMatch,
     nextSlot,
+
     bye,
     time:null,
-    played:false
+    played:false,
+
+    bestOf3:stage==="sf" || stage==="final",
+
+    games:[
+      {
+        score1:null,
+        score2:null,
+        winner:null,
+        penalties:null
+      },
+      {
+        score1:null,
+        score2:null,
+        winner:null,
+        penalties:null
+      },
+      {
+        score1:null,
+        score2:null,
+        winner:null,
+        penalties:null
+      }
+    ]
+
   };
+
 }
 
+
 /*
-=========================================================
-DEFAULT BRACKET
+  9 preliminary matches.
 
-9 PRELIMINARY MATCHES
-
-p1 -> r1 slot 1
-p8 -> r1 slot 0
-
-Therefore:
-
-Winner Nima/Arush
-        vs
-Winner Anirban/Robert
-
-p9 -> r8 slot 1
-
-Therefore:
-
-Varun Rathi
-        vs
-Winner Kush/Kabir
-=========================================================
+  p1 + p8 feed R16 match 1.
+  p2 -> Parimal
+  p3 -> Siddhant
+  p4 -> Tushar
+  p5 -> Aryaman
+  p6 -> Hemant
+  p7 -> Shubham
+  p9 -> Varun
 */
 
 const DEFAULT_MATCHES = [
@@ -363,7 +470,7 @@ const DEFAULT_MATCHES = [
     "Prakul Mishra",
     "RajVardhan",
     "r2",
-    1
+    0
   ),
 
   makeMatch(
@@ -372,7 +479,7 @@ const DEFAULT_MATCHES = [
     "Abhilash Naskar",
     "Adhiraj",
     "r3",
-    1
+    0
   ),
 
   makeMatch(
@@ -381,7 +488,7 @@ const DEFAULT_MATCHES = [
     "Karanbir Singh Dhoul",
     "Rieshi Rao",
     "r4",
-    1
+    0
   ),
 
   makeMatch(
@@ -390,7 +497,7 @@ const DEFAULT_MATCHES = [
     "Meet Gowsawmi",
     "Adhyan Kumar",
     "r5",
-    1
+    0
   ),
 
   makeMatch(
@@ -399,7 +506,7 @@ const DEFAULT_MATCHES = [
     "Chaitanya Wankhande",
     "Shubh Wadhwa",
     "r6",
-    1
+    0
   ),
 
   makeMatch(
@@ -408,13 +515,8 @@ const DEFAULT_MATCHES = [
     "Jay Mishra",
     "kartikay sharma",
     "r7",
-    1
+    0
   ),
-
-  /*
-    IMPORTANT:
-    Nima/Arush feeds R1 SLOT 0.
-  */
 
   makeMatch(
     "p8",
@@ -425,10 +527,6 @@ const DEFAULT_MATCHES = [
     0
   ),
 
-  /*
-    Kush/Kabir feeds R8 SLOT 1.
-  */
-
   makeMatch(
     "p9",
     "prelim",
@@ -437,10 +535,6 @@ const DEFAULT_MATCHES = [
     "r8",
     1
   ),
-
-  /* =========================
-     ROUND OF 16
-  ========================= */
 
   makeMatch(
     "r1",
@@ -454,8 +548,8 @@ const DEFAULT_MATCHES = [
   makeMatch(
     "r2",
     "r16",
-    "PARIMAL MISHRA",
     null,
+    "PARIMAL MISHRA",
     "q1",
     1
   ),
@@ -463,8 +557,8 @@ const DEFAULT_MATCHES = [
   makeMatch(
     "r3",
     "r16",
-    "Siddhant Singh",
     null,
+    "Siddhant Singh",
     "q2",
     0
   ),
@@ -472,8 +566,8 @@ const DEFAULT_MATCHES = [
   makeMatch(
     "r4",
     "r16",
-    "Tushar Singh",
     null,
+    "Tushar Singh",
     "q2",
     1
   ),
@@ -481,8 +575,8 @@ const DEFAULT_MATCHES = [
   makeMatch(
     "r5",
     "r16",
-    "Aryaman Singh",
     null,
+    "Aryaman Singh",
     "q3",
     0
   ),
@@ -490,8 +584,8 @@ const DEFAULT_MATCHES = [
   makeMatch(
     "r6",
     "r16",
-    "Hemant Agrawal",
     null,
+    "Hemant Agrawal",
     "q3",
     1
   ),
@@ -499,8 +593,8 @@ const DEFAULT_MATCHES = [
   makeMatch(
     "r7",
     "r16",
-    "Shubham Kashyap",
     null,
+    "Shubham Kashyap",
     "q4",
     0
   ),
@@ -514,27 +608,64 @@ const DEFAULT_MATCHES = [
     1
   ),
 
-  /* =========================
-     QUARTERFINALS
-  ========================= */
+  makeMatch(
+    "q1",
+    "qf",
+    null,
+    null,
+    "s1",
+    0
+  ),
 
-  makeMatch("q1","qf",null,null,"s1",0),
-  makeMatch("q2","qf",null,null,"s1",1),
-  makeMatch("q3","qf",null,null,"s2",0),
-  makeMatch("q4","qf",null,null,"s2",1),
+  makeMatch(
+    "q2",
+    "qf",
+    null,
+    null,
+    "s1",
+    1
+  ),
 
-  /* =========================
-     SEMIFINALS
-  ========================= */
+  makeMatch(
+    "q3",
+    "qf",
+    null,
+    null,
+    "s2",
+    0
+  ),
 
-  makeMatch("s1","sf",null,null,"f1",0),
-  makeMatch("s2","sf",null,null,"f1",1),
+  makeMatch(
+    "q4",
+    "qf",
+    null,
+    null,
+    "s2",
+    1
+  ),
 
-  /* =========================
-     FINAL
-  ========================= */
+  makeMatch(
+    "s1",
+    "sf",
+    null,
+    null,
+    "f1",
+    0
+  ),
 
-  makeMatch("f1","final")
+  makeMatch(
+    "s2",
+    "sf",
+    null,
+    null,
+    "f1",
+    1
+  ),
+
+  makeMatch(
+    "f1",
+    "final"
+  )
 
 ];
 
@@ -543,55 +674,84 @@ function clone(x){
 }
 
 function loadState(){
+
   const saved =
     localStorage.getItem("fifa26TournamentMatches");
 
-  return saved
-    ? JSON.parse(saved)
-    : clone(DEFAULT_MATCHES);
+  if(!saved)
+    return clone(DEFAULT_MATCHES);
+
+  const data=JSON.parse(saved);
+
+  /*
+    Upgrade older single-match state to the
+    new Best-of-3 structure.
+  */
+
+  data.forEach(m=>{
+
+    if(typeof m.bestOf3!=="boolean")
+      m.bestOf3 =
+        m.stage==="sf" ||
+        m.stage==="final";
+
+    if(!Array.isArray(m.games)){
+
+      m.games=[
+        {
+          score1:m.score1,
+          score2:m.score2,
+          winner:m.winner,
+          penalties:m.penalties
+        },
+        {
+          score1:null,
+          score2:null,
+          winner:null,
+          penalties:null
+        },
+        {
+          score1:null,
+          score2:null,
+          winner:null,
+          penalties:null
+        }
+      ];
+
+    }
+
+  });
+
+  return data;
+
 }
 
 function loadSettings(){
+
   const saved =
-    localStorage.getItem("fifa26TournamentSettings");
+    localStorage.getItem(
+      "fifa26TournamentSettings"
+    );
 
   return saved
     ? JSON.parse(saved)
     : {
-        startTime:"07:30",
+        startTime:"20:30",
         halfMinutes:6,
         gapMinutes:0
       };
+
 }
 
-let matches = loadState();
-let settings = loadSettings();
+let matches=loadState();
+let settings=loadSettings();
 
 function player(name){
   return name ? byName[name] : null;
 }
 
-function displayPlayer(name){
-
-  if(!name){
-    return '<span class="empty">TBD</span>';
-  }
-
-  const p = player(name);
-
-  return `
-    <span class="name">
-      ${escapeHtml(p?.name || name)}
-      ${
-        p?.roll
-        ? `<span class="roll">${escapeHtml(p.roll)}</span>`
-        : ""
-      }
-    </span>
-  `;
-}
-
 function escapeHtml(s){
+
   return String(s).replace(
     /[&<>"']/g,
     c => ({
@@ -602,152 +762,270 @@ function escapeHtml(s){
       "'":'&#039;'
     }[c])
   );
+
+}
+
+function displayPlayer(name){
+
+  if(!name)
+    return '<span class="empty">TBD</span>';
+
+  const p=player(name);
+
+  return `
+    <span class="name">
+      ${escapeHtml(p?.name || name)}
+      ${
+        p?.roll
+        ?
+        `<span class="roll">${escapeHtml(p.roll)}</span>`
+        :
+        ""
+      }
+    </span>
+  `;
+
 }
 
 function minutesFromTime(t){
-  const [h,m] = t.split(":").map(Number);
-  return h * 60 + m;
+
+  const [h,m]=t.split(":").map(Number);
+
+  return h*60+m;
+
 }
 
 function timeString(total){
 
-  total = (total + 1440) % 1440;
+  total=(total+1440)%1440;
 
-  const h = Math.floor(total / 60);
-  const m = total % 60;
+  const h=Math.floor(total/60);
+  const m=total%60;
 
   return (
-    String(h).padStart(2,"0") +
-    ":" +
+    String(h).padStart(2,"0")
+    +
+    ":"
+    +
     String(m).padStart(2,"0")
   );
+
 }
 
 function scheduleMatches(){
 
-  const prelim =
-    matches.filter(m => m.stage === "prelim");
+  const prelim=matches.filter(
+    m=>m.stage==="prelim"
+  );
 
-  const both26 = m => {
+  const order=[
 
-    const a = player(m.p1)?.roll || "";
-    const b = player(m.p2)?.roll || "";
+    ...prelim,
 
-    return a.includes("26") && b.includes("26");
-  };
-
-  const only25 = m => {
-
-    const a = player(m.p1)?.roll || "";
-    const b = player(m.p2)?.roll || "";
-
-    return (
-      a &&
-      b &&
-      !a.includes("26") &&
-      !b.includes("26")
-    );
-  };
-
-  const order = [
-
-    ...prelim.filter(both26),
-
-    ...prelim.filter(
-      m => !both26(m) && !only25(m)
+    ...matches.filter(
+      m=>m.stage==="r16"
     ),
 
-    ...prelim.filter(only25),
+    ...matches.filter(
+      m=>m.stage==="qf"
+    ),
 
-    ...matches.filter(m => m.stage === "r16"),
-    ...matches.filter(m => m.stage === "qf"),
-    ...matches.filter(m => m.stage === "sf"),
-    ...matches.filter(m => m.stage === "final")
+    ...matches.filter(
+      m=>m.stage==="sf"
+    ),
+
+    ...matches.filter(
+      m=>m.stage==="final"
+    )
 
   ];
 
-  let cursor = minutesFromTime(settings.startTime);
-
-  const minAfter745 = 466;
+  let cursor=
+    minutesFromTime(settings.startTime);
 
   for(const m of order){
 
-    if(only25(m) && cursor < minAfter745){
-      cursor = minAfter745;
-    }
+    m.time=timeString(cursor);
 
-    m.time = timeString(cursor);
+    /*
+      Keep the existing 12-minute
+      scheduling behavior.
+    */
 
     cursor +=
-      Number(settings.halfMinutes) * 2 +
+      Number(settings.halfMinutes)*2+
       Number(settings.gapMinutes);
+
   }
+
+}
+
+function gameLine(game,index,m){
+
+  if(!m.p1 || !m.p2)
+    return "";
+
+  if(game.winner){
+
+    const winnerName=game.winner;
+
+    return `
+      <div class="game-result">
+        <span>Game ${index+1}</span>
+        <strong>
+          ${game.score1}-${game.score2}
+          • ${escapeHtml(winnerName)}
+          ${game.penalties
+            ? ` • Pens ${escapeHtml(game.penalties)}`
+            : ""}
+        </strong>
+      </div>
+    `;
+
+  }
+
+  if(game.score1!==null || game.score2!==null){
+
+    return `
+      <div class="game-result">
+        <span>Game ${index+1}</span>
+        <strong>
+          ${game.score1 ?? 0}-${game.score2 ?? 0}
+        </strong>
+      </div>
+    `;
+
+  }
+
+  return `
+    <div class="game-result">
+      <span>Game ${index+1}</span>
+      <strong>Not played</strong>
+    </div>
+  `;
+
 }
 
 function matchCard(m){
 
-  const el = document.createElement("article");
+  const el=document.createElement("article");
 
-  el.className = "match";
+  el.className="match";
 
-  const finished = m.played && m.winner;
+  const finished=
+    m.played && m.winner;
 
-  const p1Win =
-    finished && m.winner === m.p1;
+  const p1Win=
+    finished && m.winner===m.p1;
 
-  const p2Win =
-    finished && m.winner === m.p2;
+  const p2Win=
+    finished && m.winner===m.p2;
 
-  let status =
+  let status=
     m.played
-    ? (
-        m.penalties
-        ? `Penalties ${escapeHtml(m.penalties)}`
-        : "Final"
+    ?
+      (
+        m.bestOf3
+        ?
+        `Series complete`
+        :
+        (
+          m.penalties
+          ?
+          `Penalties ${escapeHtml(m.penalties)}`
+          :
+          "Final"
+        )
       )
-    : "Not played";
+    :
+      (
+        m.bye
+        ?
+        "BYE"
+        :
+        "Not played"
+      );
 
-  if(m.id === "r1" && !m.played){
-    status = "Winner Nima / Arush vs Winner Anirban / Robert";
+  let seriesHTML="";
+
+  if(m.bestOf3){
+
+    let wins1=0;
+    let wins2=0;
+
+    m.games.forEach(g=>{
+
+      if(g.winner===m.p1) wins1++;
+      if(g.winner===m.p2) wins2++;
+
+    });
+
+    seriesHTML=`
+      <div class="series">
+
+        ${gameLine(m.games[0],0,m)}
+        ${gameLine(m.games[1],1,m)}
+        ${gameLine(m.games[2],2,m)}
+
+        <div class="series-score">
+          Series: ${wins1} - ${wins2}
+          ${m.winner
+            ? ` • Winner: ${escapeHtml(m.winner)}`
+            : ""}
+        </div>
+
+      </div>
+    `;
+
   }
 
-  if(m.id === "r8" && !m.played){
-    status = "Winner of Kush Soni vs Kabir";
-  }
-
-  el.innerHTML = `
+  el.innerHTML=`
 
     <div class="time">
       ${m.time || "--:--"}
     </div>
 
+    ${
+      m.bestOf3
+      ?
+      `<div class="format">BEST OF 3</div>`
+      :
+      ""
+    }
+
     <div class="
       player
-      ${p1Win ? "winner" : ""}
-      ${finished && !p1Win ? "loser" : ""}
+      ${p1Win?"winner":""}
+      ${finished&&!p1Win?"loser":""}
     ">
 
       ${displayPlayer(m.p1)}
 
       <span class="score">
-        ${m.score1 ?? "–"}
+        ${m.bestOf3
+          ? (m.winner===m.p1 ? "W" : "")
+          : (m.score1 ?? "–")}
       </span>
 
     </div>
 
     <div class="
       player
-      ${p2Win ? "winner" : ""}
-      ${finished && !p2Win ? "loser" : ""}
+      ${p2Win?"winner":""}
+      ${finished&&!p2Win?"loser":""}
     ">
 
       ${displayPlayer(m.p2)}
 
       <span class="score">
-        ${m.score2 ?? "–"}
+        ${m.bestOf3
+          ? (m.winner===m.p2 ? "W" : "")
+          : (m.score2 ?? "–")}
       </span>
 
     </div>
+
+    ${seriesHTML}
 
     <div class="match-foot">
 
@@ -756,52 +1034,65 @@ function matchCard(m){
       </span>
 
     </div>
+
   `;
 
   return el;
+
 }
 
 function render(){
 
   scheduleMatches();
 
-  document.getElementById("startBadge").textContent =
-    settings.startTime;
+  document.getElementById(
+    "startBadge"
+  ).textContent=settings.startTime;
 
-  document.getElementById("durationBadge").textContent =
-    Number(settings.halfMinutes) * 2 + " min";
+  document.getElementById(
+    "durationBadge"
+  ).textContent=
+    Number(settings.halfMinutes)*2+
+    " min";
 
-  const root =
+  const root=
     document.getElementById("bracket");
 
-  root.innerHTML = "";
+  root.innerHTML="";
 
   for(const s of stages){
 
-    const col = document.createElement("section");
+    const col=
+      document.createElement("section");
 
-    col.className = "stage " + s.id;
+    col.className=
+      "stage "+s.id;
 
-    col.innerHTML = `
+    col.innerHTML=`
       <h2>${s.label}</h2>
       <div class="stage-list"></div>
     `;
 
-    const list =
+    const list=
       col.querySelector(".stage-list");
 
     matches
-      .filter(m => m.stage === s.id)
-      .forEach(m =>
-        list.appendChild(matchCard(m))
+      .filter(m=>m.stage===s.id)
+      .forEach(
+        m=>list.appendChild(
+          matchCard(m)
+        )
       );
 
     root.appendChild(col);
+
   }
+
 }
 
 render();
 
 </script>
+
 </body>
 </html>
