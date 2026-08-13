@@ -19,7 +19,9 @@
   --shadow:0 8px 24px rgba(0,0,0,.22);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -119,13 +121,6 @@ body{
   margin-bottom:6px;
 }
 
-.match .format{
-  font-size:9px;
-  color:#45c98a;
-  margin-bottom:6px;
-  font-weight:bold;
-}
-
 .player{
   display:flex;
   align-items:center;
@@ -193,31 +188,31 @@ body{
   font-style:italic;
 }
 
-.series{
+.bo3-results{
   margin-top:8px;
-  border-top:1px solid var(--line);
-  padding-top:7px;
+  border-top:1px solid #153f31;
+  padding-top:5px;
 }
 
-.game-result{
+.bo3-title{
+  font-size:9px;
+  color:#45c98a;
+  margin-bottom:4px;
+  font-weight:bold;
+}
+
+.bo3-game{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  padding:3px 2px;
   font-size:9px;
   color:var(--muted);
-  padding:3px 0;
 }
 
-.game-result strong{
+.bo3-game strong{
   color:var(--text);
-}
-
-.series-score{
-  margin-top:6px;
-  text-align:center;
   font-size:10px;
-  color:#45c98a;
-  font-weight:bold;
 }
 
 .stage.prelim .match{
@@ -288,19 +283,20 @@ body{
     <h1>FIFA 26 Tournament</h1>
 
     <p>
-      Single match • Semifinals & Final Best of 3 •
-      6 minutes each half • Draws go to penalties
+      Single match • 6 minutes each half •
+      Draws go to penalties • No Best of 3 except Semifinals & Final
     </p>
 
   </div>
 
 </header>
 
+
 <div class="info">
 
   <div class="badge">
     Start:
-    <strong id="startBadge">20:30</strong>
+    <strong id="startBadge">07:30</strong>
   </div>
 
   <div class="badge">
@@ -325,15 +321,25 @@ body{
 
 </div>
 
+
 <main id="bracket"></main>
 
+
 <div class="note">
-  Preliminary, Round of 16 and Quarterfinal matches are single matches.
-  Semifinals and Final are Best of 3.
-  Individual game results for the semifinals and final are displayed here.
+
+  Nima is paired with Arush.
+  Varun Rathi receives the Round-of-16 position against the
+  winner of Kush Soni vs Kabir.
+  Any incomplete progression is displayed as <b>TBD</b>.
+
 </div>
 
+
 <script>
+
+/* =========================================================
+   PLAYERS
+========================================================= */
 
 const PLAYERS = [
 
@@ -375,13 +381,44 @@ const byName = Object.fromEntries(
   ])
 );
 
+
+/* =========================================================
+   STAGES
+========================================================= */
+
 const stages = [
-  {id:"prelim",label:"PRELIMINARY"},
-  {id:"r16",label:"ROUND OF 16"},
-  {id:"qf",label:"QUARTERFINALS"},
-  {id:"sf",label:"SEMIFINALS"},
-  {id:"final",label:"FINAL"}
+
+  {
+    id:"prelim",
+    label:"PRELIMINARY"
+  },
+
+  {
+    id:"r16",
+    label:"ROUND OF 16"
+  },
+
+  {
+    id:"qf",
+    label:"QUARTERFINALS"
+  },
+
+  {
+    id:"sf",
+    label:"SEMIFINALS"
+  },
+
+  {
+    id:"final",
+    label:"FINAL"
+  }
+
 ];
+
+
+/* =========================================================
+   MATCH CREATOR
+========================================================= */
 
 function makeMatch(
   id,
@@ -394,13 +431,22 @@ function makeMatch(
 ){
 
   return {
+
     id,
     stage,
+
     p1:a,
     p2:b,
 
     score1:null,
     score2:null,
+
+    games:[
+      {p1:null,p2:null},
+      {p1:null,p2:null},
+      {p1:null,p2:null}
+    ],
+
     penalties:null,
 
     winner:null,
@@ -409,51 +455,23 @@ function makeMatch(
     nextSlot,
 
     bye,
+
     time:null,
-    played:false,
 
-    bestOf3:stage==="sf" || stage==="final",
-
-    games:[
-      {
-        score1:null,
-        score2:null,
-        winner:null,
-        penalties:null
-      },
-      {
-        score1:null,
-        score2:null,
-        winner:null,
-        penalties:null
-      },
-      {
-        score1:null,
-        score2:null,
-        winner:null,
-        penalties:null
-      }
-    ]
+    played:false
 
   };
 
 }
 
 
-/*
-  9 preliminary matches.
-
-  p1 + p8 feed R16 match 1.
-  p2 -> Parimal
-  p3 -> Siddhant
-  p4 -> Tushar
-  p5 -> Aryaman
-  p6 -> Hemant
-  p7 -> Shubham
-  p9 -> Varun
-*/
+/* =========================================================
+   DEFAULT MATCHES
+========================================================= */
 
 const DEFAULT_MATCHES = [
+
+  /* ---------- PRELIMINARY ---------- */
 
   makeMatch(
     "p1",
@@ -461,7 +479,7 @@ const DEFAULT_MATCHES = [
     "Anirban Guha",
     "Robert Gupta",
     "r1",
-    1
+    0
   ),
 
   makeMatch(
@@ -522,11 +540,10 @@ const DEFAULT_MATCHES = [
     "p8",
     "prelim",
     "Nima",
-    "Arush",
-    "r1",
-    0
+    "Arush"
   ),
 
+  /* Kush/Kabir feeds the Varun R16 position */
   makeMatch(
     "p9",
     "prelim",
@@ -535,6 +552,9 @@ const DEFAULT_MATCHES = [
     "r8",
     1
   ),
+
+
+  /* ---------- ROUND OF 16 ---------- */
 
   makeMatch(
     "r1",
@@ -608,6 +628,9 @@ const DEFAULT_MATCHES = [
     1
   ),
 
+
+  /* ---------- QUARTERFINALS ---------- */
+
   makeMatch(
     "q1",
     "qf",
@@ -644,6 +667,9 @@ const DEFAULT_MATCHES = [
     1
   ),
 
+
+  /* ---------- SEMIFINALS ---------- */
+
   makeMatch(
     "s1",
     "sf",
@@ -662,6 +688,9 @@ const DEFAULT_MATCHES = [
     1
   ),
 
+
+  /* ---------- FINAL ---------- */
+
   makeMatch(
     "f1",
     "final"
@@ -669,62 +698,33 @@ const DEFAULT_MATCHES = [
 
 ];
 
+
+/* =========================================================
+   STATE
+========================================================= */
+
 function clone(x){
-  return JSON.parse(JSON.stringify(x));
+
+  return JSON.parse(
+    JSON.stringify(x)
+  );
+
 }
+
 
 function loadState(){
 
   const saved =
-    localStorage.getItem("fifa26TournamentMatches");
+    localStorage.getItem(
+      "fifa26TournamentMatches"
+    );
 
-  if(!saved)
-    return clone(DEFAULT_MATCHES);
-
-  const data=JSON.parse(saved);
-
-  /*
-    Upgrade older single-match state to the
-    new Best-of-3 structure.
-  */
-
-  data.forEach(m=>{
-
-    if(typeof m.bestOf3!=="boolean")
-      m.bestOf3 =
-        m.stage==="sf" ||
-        m.stage==="final";
-
-    if(!Array.isArray(m.games)){
-
-      m.games=[
-        {
-          score1:m.score1,
-          score2:m.score2,
-          winner:m.winner,
-          penalties:m.penalties
-        },
-        {
-          score1:null,
-          score2:null,
-          winner:null,
-          penalties:null
-        },
-        {
-          score1:null,
-          score2:null,
-          winner:null,
-          penalties:null
-        }
-      ];
-
-    }
-
-  });
-
-  return data;
+  return saved
+    ? JSON.parse(saved)
+    : clone(DEFAULT_MATCHES);
 
 }
+
 
 function loadSettings(){
 
@@ -736,19 +736,100 @@ function loadSettings(){
   return saved
     ? JSON.parse(saved)
     : {
-        startTime:"20:30",
+        startTime:"07:30",
         halfMinutes:6,
         gapMinutes:0
       };
 
 }
 
-let matches=loadState();
-let settings=loadSettings();
+
+let matches = loadState();
+
+let settings = loadSettings();
+
+
+/* =========================================================
+   IMPORTANT MIGRATION
+========================================================= */
+
+function normalizeState(){
+
+  for(const m of matches){
+
+    if(!Array.isArray(m.games)){
+
+      m.games = [
+        {p1:null,p2:null},
+        {p1:null,p2:null},
+        {p1:null,p2:null}
+      ];
+
+    }
+
+    while(m.games.length < 3){
+
+      m.games.push({
+        p1:null,
+        p2:null
+      });
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function player(name){
-  return name ? byName[name] : null;
+
+  return name
+    ? byName[name]
+    : null;
+
 }
+
+
+function displayPlayer(name){
+
+  /*
+     IMPORTANT:
+     Never show "Winner X".
+     Any unresolved position is simply TBD.
+  */
+
+  if(!name){
+
+    return '<span class="empty">TBD</span>';
+
+  }
+
+  const p = player(name);
+
+  return `
+    <span class="name">
+
+      ${escapeHtml(p?.name || name)}
+
+      ${
+        p?.roll
+        ?
+        `<span class="roll">
+          ${escapeHtml(p.roll)}
+        </span>`
+        :
+        ""
+      }
+
+    </span>
+  `;
+
+}
+
 
 function escapeHtml(s){
 
@@ -765,42 +846,27 @@ function escapeHtml(s){
 
 }
 
-function displayPlayer(name){
-
-  if(!name)
-    return '<span class="empty">TBD</span>';
-
-  const p=player(name);
-
-  return `
-    <span class="name">
-      ${escapeHtml(p?.name || name)}
-      ${
-        p?.roll
-        ?
-        `<span class="roll">${escapeHtml(p.roll)}</span>`
-        :
-        ""
-      }
-    </span>
-  `;
-
-}
 
 function minutesFromTime(t){
 
-  const [h,m]=t.split(":").map(Number);
+  const [h,m] =
+    t.split(":").map(Number);
 
-  return h*60+m;
+  return h * 60 + m;
 
 }
 
+
 function timeString(total){
 
-  total=(total+1440)%1440;
+  total =
+    (total + 1440) % 1440;
 
-  const h=Math.floor(total/60);
-  const m=total%60;
+  const h =
+    Math.floor(total / 60);
+
+  const m =
+    total % 60;
 
   return (
     String(h).padStart(2,"0")
@@ -812,220 +878,330 @@ function timeString(total){
 
 }
 
-function scheduleMatches(){
 
-  const prelim=matches.filter(
-    m=>m.stage==="prelim"
+function isBestOf3(m){
+
+  return (
+    m.stage === "sf" ||
+    m.stage === "final"
   );
 
-  const order=[
+}
 
-    ...prelim,
+
+/* =========================================================
+   SCHEDULE
+========================================================= */
+
+function scheduleMatches(){
+
+  const prelim =
+    matches.filter(
+      m => m.stage === "prelim"
+    );
+
+
+  const both26 = m => {
+
+    const a =
+      player(m.p1)?.roll || "";
+
+    const b =
+      player(m.p2)?.roll || "";
+
+    return (
+      a.includes("26") &&
+      b.includes("26")
+    );
+
+  };
+
+
+  const only25 = m => {
+
+    const a =
+      player(m.p1)?.roll || "";
+
+    const b =
+      player(m.p2)?.roll || "";
+
+    return (
+      a &&
+      b &&
+      !a.includes("26") &&
+      !b.includes("26")
+    );
+
+  };
+
+
+  const order = [
+
+    ...prelim.filter(both26),
+
+    ...prelim.filter(
+      m =>
+        !both26(m) &&
+        !only25(m)
+    ),
+
+    ...prelim.filter(only25),
 
     ...matches.filter(
-      m=>m.stage==="r16"
+      m => m.stage === "r16"
     ),
 
     ...matches.filter(
-      m=>m.stage==="qf"
+      m => m.stage === "qf"
     ),
 
     ...matches.filter(
-      m=>m.stage==="sf"
+      m => m.stage === "sf"
     ),
 
     ...matches.filter(
-      m=>m.stage==="final"
+      m => m.stage === "final"
     )
 
   ];
 
-  let cursor=
-    minutesFromTime(settings.startTime);
+
+  let cursor =
+    minutesFromTime(
+      settings.startTime
+    );
+
+
+  const minAfter745 = 466;
+
 
   for(const m of order){
 
-    m.time=timeString(cursor);
+    if(
+      only25(m) &&
+      cursor < minAfter745
+    ){
 
-    /*
-      Keep the existing 12-minute
-      scheduling behavior.
-    */
+      cursor = minAfter745;
+
+    }
+
+
+    m.time =
+      timeString(cursor);
+
 
     cursor +=
-      Number(settings.halfMinutes)*2+
+      Number(settings.halfMinutes) * 2
+      +
       Number(settings.gapMinutes);
 
   }
 
 }
 
-function gameLine(game,index,m){
 
-  if(!m.p1 || !m.p2)
-    return "";
+/* =========================================================
+   BEST OF 3 DISPLAY
+========================================================= */
 
-  if(game.winner){
+function bo3Display(m){
 
-    const winnerName=game.winner;
+  const games =
+    m.games || [
+      {p1:null,p2:null},
+      {p1:null,p2:null},
+      {p1:null,p2:null}
+    ];
 
-    return `
-      <div class="game-result">
-        <span>Game ${index+1}</span>
-        <strong>
-          ${game.score1}-${game.score2}
-          • ${escapeHtml(winnerName)}
-          ${game.penalties
-            ? ` • Pens ${escapeHtml(game.penalties)}`
-            : ""}
-        </strong>
-      </div>
-    `;
-
-  }
-
-  if(game.score1!==null || game.score2!==null){
-
-    return `
-      <div class="game-result">
-        <span>Game ${index+1}</span>
-        <strong>
-          ${game.score1 ?? 0}-${game.score2 ?? 0}
-        </strong>
-      </div>
-    `;
-
-  }
 
   return `
-    <div class="game-result">
-      <span>Game ${index+1}</span>
-      <strong>Not played</strong>
+
+    <div class="bo3-results">
+
+      <div class="bo3-title">
+        BEST OF 3
+      </div>
+
+      <div class="bo3-game">
+
+        <span>Game 1</span>
+
+        <strong>
+          ${games[0].p1 ?? "–"}
+          -
+          ${games[0].p2 ?? "–"}
+        </strong>
+
+      </div>
+
+
+      <div class="bo3-game">
+
+        <span>Game 2</span>
+
+        <strong>
+          ${games[1].p1 ?? "–"}
+          -
+          ${games[1].p2 ?? "–"}
+        </strong>
+
+      </div>
+
+
+      ${
+        games[2].p1 !== null ||
+        games[2].p2 !== null
+        ?
+
+        `
+        <div class="bo3-game">
+
+          <span>Game 3</span>
+
+          <strong>
+            ${games[2].p1 ?? "–"}
+            -
+            ${games[2].p2 ?? "–"}
+          </strong>
+
+        </div>
+        `
+
+        :
+
+        ""
+      }
+
     </div>
+
   `;
 
 }
 
+
+/* =========================================================
+   MATCH CARD
+========================================================= */
+
 function matchCard(m){
 
-  const el=document.createElement("article");
+  const el =
+    document.createElement(
+      "article"
+    );
 
-  el.className="match";
 
-  const finished=
+  el.className = "match";
+
+
+  const finished =
     m.played && m.winner;
 
-  const p1Win=
-    finished && m.winner===m.p1;
 
-  const p2Win=
-    finished && m.winner===m.p2;
+  const p1Win =
+    finished &&
+    m.winner === m.p1;
 
-  let status=
+
+  const p2Win =
+    finished &&
+    m.winner === m.p2;
+
+
+  let status =
     m.played
     ?
-      (
-        m.bestOf3
-        ?
-        `Series complete`
-        :
-        (
-          m.penalties
-          ?
-          `Penalties ${escapeHtml(m.penalties)}`
-          :
-          "Final"
-        )
-      )
+    (
+      m.penalties
+      ?
+      `Penalties ${escapeHtml(m.penalties)}`
+      :
+      "Final"
+    )
     :
-      (
-        m.bye
-        ?
-        "BYE"
-        :
-        "Not played"
-      );
+    "Not played";
 
-  let seriesHTML="";
 
-  if(m.bestOf3){
+  if(
+    m.bye
+  ){
 
-    let wins1=0;
-    let wins2=0;
-
-    m.games.forEach(g=>{
-
-      if(g.winner===m.p1) wins1++;
-      if(g.winner===m.p2) wins2++;
-
-    });
-
-    seriesHTML=`
-      <div class="series">
-
-        ${gameLine(m.games[0],0,m)}
-        ${gameLine(m.games[1],1,m)}
-        ${gameLine(m.games[2],2,m)}
-
-        <div class="series-score">
-          Series: ${wins1} - ${wins2}
-          ${m.winner
-            ? ` • Winner: ${escapeHtml(m.winner)}`
-            : ""}
-        </div>
-
-      </div>
-    `;
+    status = "BYE";
 
   }
 
-  el.innerHTML=`
+
+  let scoreArea = "";
+
+
+  if(isBestOf3(m)){
+
+    scoreArea =
+      bo3Display(m);
+
+  }
+
+
+  el.innerHTML = `
 
     <div class="time">
       ${m.time || "--:--"}
     </div>
 
-    ${
-      m.bestOf3
-      ?
-      `<div class="format">BEST OF 3</div>`
-      :
-      ""
-    }
 
-    <div class="
-      player
-      ${p1Win?"winner":""}
-      ${finished&&!p1Win?"loser":""}
-    ">
+    <div
+      class="
+        player
+        ${p1Win ? "winner" : ""}
+        ${finished && !p1Win ? "loser" : ""}
+      "
+    >
 
       ${displayPlayer(m.p1)}
 
-      <span class="score">
-        ${m.bestOf3
-          ? (m.winner===m.p1 ? "W" : "")
-          : (m.score1 ?? "–")}
-      </span>
+      ${
+        !isBestOf3(m)
+        ?
+        `
+        <span class="score">
+          ${m.score1 ?? "–"}
+        </span>
+        `
+        :
+        ""
+      }
 
     </div>
 
-    <div class="
-      player
-      ${p2Win?"winner":""}
-      ${finished&&!p2Win?"loser":""}
-    ">
+
+    <div
+      class="
+        player
+        ${p2Win ? "winner" : ""}
+        ${finished && !p2Win ? "loser" : ""}
+      "
+    >
 
       ${displayPlayer(m.p2)}
 
-      <span class="score">
-        ${m.bestOf3
-          ? (m.winner===m.p2 ? "W" : "")
-          : (m.score2 ?? "–")}
-      </span>
+      ${
+        !isBestOf3(m)
+        ?
+        `
+        <span class="score">
+          ${m.score2 ?? "–"}
+        </span>
+        `
+        :
+        ""
+      }
 
     </div>
 
-    ${seriesHTML}
+
+    ${scoreArea}
+
 
     <div class="match-foot">
 
@@ -1037,52 +1213,87 @@ function matchCard(m){
 
   `;
 
+
   return el;
 
 }
 
+
+/* =========================================================
+   RENDER
+========================================================= */
+
 function render(){
+
+  normalizeState();
 
   scheduleMatches();
 
+
   document.getElementById(
     "startBadge"
-  ).textContent=settings.startTime;
+  ).textContent =
+    settings.startTime;
+
 
   document.getElementById(
     "durationBadge"
-  ).textContent=
-    Number(settings.halfMinutes)*2+
+  ).textContent =
+    (
+      Number(settings.halfMinutes) * 2
+    )
+    +
     " min";
 
-  const root=
-    document.getElementById("bracket");
 
-  root.innerHTML="";
+  const root =
+    document.getElementById(
+      "bracket"
+    );
+
+
+  root.innerHTML = "";
+
 
   for(const s of stages){
 
-    const col=
-      document.createElement("section");
+    const col =
+      document.createElement(
+        "section"
+      );
 
-    col.className=
-      "stage "+s.id;
 
-    col.innerHTML=`
+    col.className =
+      "stage " + s.id;
+
+
+    col.innerHTML = `
+
       <h2>${s.label}</h2>
+
       <div class="stage-list"></div>
+
     `;
 
-    const list=
-      col.querySelector(".stage-list");
+
+    const list =
+      col.querySelector(
+        ".stage-list"
+      );
+
 
     matches
-      .filter(m=>m.stage===s.id)
+      .filter(
+        m =>
+          m.stage === s.id
+      )
       .forEach(
-        m=>list.appendChild(
-          matchCard(m)
-        )
+        m =>
+          list.appendChild(
+            matchCard(m)
+          )
       );
+
 
     root.appendChild(col);
 
@@ -1090,7 +1301,106 @@ function render(){
 
 }
 
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+normalizeState();
+
 render();
+
+
+/*
+   Refresh periodically so that if the admin page is open
+   in another tab on the SAME DEVICE, changes appear.
+*/
+setInterval(() => {
+
+  const latest =
+    localStorage.getItem(
+      "fifa26TournamentMatches"
+    );
+
+  if(!latest) return;
+
+  try{
+
+    const parsed =
+      JSON.parse(latest);
+
+    if(
+      JSON.stringify(parsed)
+      !==
+      JSON.stringify(matches)
+    ){
+
+      matches = parsed;
+
+      render();
+
+    }
+
+  }catch(e){}
+
+}, 1000);
+
+
+/*
+   Also react immediately to storage changes from
+   another tab/window on the same browser.
+*/
+window.addEventListener(
+  "storage",
+  event => {
+
+    if(
+      event.key ===
+      "fifa26TournamentMatches"
+    ){
+
+      if(event.newValue){
+
+        try{
+
+          matches =
+            JSON.parse(
+              event.newValue
+            );
+
+          render();
+
+        }catch(e){}
+
+      }
+
+    }
+
+
+    if(
+      event.key ===
+      "fifa26TournamentSettings"
+    ){
+
+      if(event.newValue){
+
+        try{
+
+          settings =
+            JSON.parse(
+              event.newValue
+            );
+
+          render();
+
+        }catch(e){}
+
+      }
+
+    }
+
+  }
+);
 
 </script>
 
